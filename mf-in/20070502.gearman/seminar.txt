@@ -1,0 +1,58 @@
+ギヤッッッッッマンとシュワルツゥウ
+<div style="text-align:right">
+ <a href="http://d.hatena.ne.jp/tokuhirom/">id:tokuhirom</a>
+ <a href="http://mobilefactory.jp/">Mobile Factory, Inc.</a>
+ mobile factory. 2007-05-02(Wed)
+</div>
+
+*空前のギヤマンブーム
+- 非同期IOが熱い
+- ギヤマンが熱い!
+
+*Danga::Socket
+- イベントドリブン非同期ソケット
+- 最近の API をサポート
+-- epoll
+-- kqueue
+- POE みたいに使える
+
+*Danga::Socket
+- 継承する
+- イベントをつっこむ
+- ソケットつっこむ
+- タイマーつっこむ
+- Danga::Socket->EventLoop => $poe_kernel->run;
+
+*ギヤマン
+
+**ギヤマンとは
+- 分散ジョブ実行システム
+
+**構成図
+<img src="http://willustrator.org/data/198edb79f62bf4c51b7096b7cc855cdb.png" />
+
+**Gearman::Client::Async
+- Danga::Socket からギヤマンを非同期に呼ぶ
+
+**スケーラビリティ
+- Memcached に同じ
+- gearmand を増やすだけで ok
+- worker 増やすだけで OK
+
+*シュワルツ
+- mysql を使ったジョブキュー
+
+**なぜシュワルツ?
+- ギヤマンは On Memory にジョブキューをもってる
+- シュワルツは DB だから落ちても安心
+
+**シュワルツ単体は意味ないカモ
+- シュワルツは blocking IO
+- ギヤマンは nonblocking IO
+
+*連携
+- ギヤマン → シュワルツ
+
+* That's All.
+- Thanks!
+- Any Questions?

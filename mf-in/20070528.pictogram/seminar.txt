@@ -1,0 +1,58 @@
+モバイルの文字コード
+<div style="text-align:right">
+ <a href="http://d.hatena.ne.jp/tokuhirom/">id:tokuhirom</a>
+ <a href="http://mobilefactory.jp/">Mobile Factory, Inc.</a>
+ mobile factory. 2007-05-28(Mon)
+</div>
+
+*Perl の今後の方向性
+- 内部コードは Unicode
+- 入力の時点で Unicode に decode
+- 出力の時点で Unicode に encode
+
+*Encode::JP::Mobile
+- 絵文字を unicode の User Private Area にマッピング
+
+**i-mode の絵文字
+- 基本絵文字 176
+- 拡張絵文字 76
+
+- sjis(外字)
+- utf8(User Private Area)
+
+**kddi
+- http://www.au.kddi.com/ezfactory/tec/spec/3.html
+- 1〜822
+
+- sjis(外字)
+- utf8(User Private Area)
+
+- ゲートウェイにより i-mode の絵文字は見える
+
+**willcom
+- Web入力用絵文字には DoCoMo と互換性がある
+- 基本、拡張両方使える
+
+- sjis(外字)
+- utf8(User Private Area)
+
+*メールの扱い
+
+**i-mode
+ゲタ(\x22 \x2e)になる
+
+**vodafone
+絵文字削除
+
+**kddi
+- 変な領域にマッピング
+- sjis に単純に shift しても shift_jis-kddi にならない
+- CP5022X の NEC選定IBM拡張文字とバッティング
+
+**willcom
+- どうなんだろ……未調査。
+
+* That's All.
+- Thanks!
+- Any Questions?
+

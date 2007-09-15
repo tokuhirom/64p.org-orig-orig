@@ -1,0 +1,82 @@
+utf8 at Sledge
+<div style="text-align:right">
+ <a href="http://d.hatena.ne.jp/tokuhirom/">id:tokuhirom</a>
+ <a href="http://mobilefactory.jp/">Mobile Factory, Inc.</a>
+ mobile factory. 2007-04-23(Mon)
+</div>
+
+*why utf8?
+- internationalization
+- in our site, use the chinese chars, and ...
+
+*unicode@perl
+- flagged utf8
+- SV has utf8-flag
+
+*what's utf8 flag problem?
+- cause by combine flagged utf8 strings and other strings
+- other string implicate to latin-1
+-- We aren't use the latin-1... orz
+
+*utf8
+- input charset
+-- convert to flagged utf8
+- internal
+-- convert to any charset
+- output charset
+
+*@sledge
+
+*input
+- string literal
+- config.yaml
+- messages.yaml
+- template file
+- query string(Apache::Request)
+
+*output
+- http response
+- json response
+
+*concrete modules
+
+*yaml
+- YAML::Syck
+- $YAML::Syck::ImplicitUnicode++
+
+*template file
+- Template::Provider::Encoding by miyagawa-san
+-- you can choose any charset.
+--- [% USE encoding 'utf-8' -%]
+- Template::Stash::ForceUTF8
+-- if not flagged uf8...
+-- makes flagged utf8 strings.
+
+*request
+- Apache::Request::I18N
+- Sledge::Request::Apache::I18N
+
+*Sledge::Charset
+- Sledge::Charset::UTF8::I18N
+
+*string literal
+- use utf8; pragma.
+- source code charset is utf8!
+
+*@validation
+- katakana filter
+-- [REGEX => '^¥p{Katakana}+$']
+-- you can use the Unicode Scripts.
+- our favorite modules implicates euc-jp
+-- Lingua::JA::Regular
+-- S::P::Validator
+-- Sledge::MobileGate
+
+*related modules
+- Data::Visitor::Encode
+-- works recursive.
+-- utf8_on,utf8_off,encode,decode, ...
+
+* That's All.
+- Thanks!
+- Any Questions?

@@ -1,0 +1,120 @@
+about microformats
+
+tokuhirom. 2007-08-08(ぞろめ)
+社内勉強会
+
+----
+分散的開発を実現するために用いられる、セマンティクスをHTMLに埋め込む為のシンプルな仕様
+
+----
+セマンティクスをHTMLに埋め込むためのもの
+
+----
+セマンティックってなんだ
+
+----
+意味。
+
+----
+XHTML は文書構造を表現する
+
+----
+CSS は文書の見た目を制御する
+
+----
+microformats は文書に意味をあたえる
+
+----
+ぶっちゃけると、みんな同じ class を html に振れば
+スクレイピングしやすくてハッピーということ
+
+----
+*rel-nofollow
+
+----
+ボットにこっから先いかないでねと教える
+
+----
+>||
+<a href="..." rel="nofollow">すぱむ</a>
+||<
+
+----
+*hCalendar
+
+----
+イベント情報
+
+----
+>||
+<div class="vevent">
+ <a class="url" href="http://www.web2con.com/">http://www.web2con.com/</a>
+  <span class="summary">Web 2.0 Conference</span>: 
+  <abbr class="dtstart" title="2007-10-05">October 5</abbr>-
+  <abbr class="dtend" title="2007-10-20">19</abbr>,
+ at the <span class="location">Argent Hotel, San Francisco, CA</span>
+</div>
+||<
+
+----
+*hCard
+----
+連絡先とか
+
+----
+>||
+<ul class="about vcard entry-author">
+    <li>Name: <span class="fn">Atsushi Shibata</span></li>
+    <li>Bio: <span class="bio">Hello Python(World)と書いたら負けだと思います</span></li>
+    <li>Location: <span class="adr">Tokyo</span></li>
+    <li>Web: <a href="http://coreblog.org/ats/" class="url" rel="me">http://coreblog.org/...</a></li>
+    <li>Joined: Apr 05 2007</li>
+</ul>
+||<
+
+----
+*XFN
+
+----
+XHTML Friends Network
+
+----
+人のつながりをハイパーリンクで表現
+----
+
+>||
+<a href="http://jeff.example.org" rel="friend met">...
+||<
+
+----
+*hReview
+
+----
+レビューサイト用フォーマット
+----
+
+>||
+<div class="hreview">
+ <span><span class="rating">5</span> out of 5 stars</span>
+ <h4 class="summary">Crepes on Cole is awesome</h4>
+ <span class="reviewer vcard">Reviewer: <span class="fn">Tantek</span> - 
+ <abbr class="dtreviewed" title="20050418T2300-0700">April 18, 2005</abbr></span>
+ <div class="description item vcard"><p>
+  <span class="fn org">Crepes on Cole</span> is one of the best little 
+  creperies in <span class="adr"><span class="locality">San Francisco</span></span>.
+  Excellent food and service. Plenty of tables in a variety of sizes 
+  for parties large and small.  Window seating makes for excellent 
+  people watching to/from the N-Judah which stops right outside.  
+  I've had many fun social gatherings here, as well as gotten 
+  plenty of work done thanks to neighborhood WiFi.
+ </p></div>
+ <p>Visit date: <span>April 2005</span></p>
+ <p>Food eaten: <span>Florentine crepe</span></p>
+</div>
+||<
+----
+*まとめ
+----
+ためしに使ってみるとよいかも
+----
+any questions?

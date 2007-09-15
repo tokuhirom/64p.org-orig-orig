@@ -1,0 +1,289 @@
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8"><title>DBIC to CDBI</title>
+
+<!-- CSSSSSSSSSSSSSSSSSSSSSSSssssssssssssssSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs -->
+<style type="text/css">
+*{
+	background-color: black;
+	color: white;
+}
+
+h2 {
+	background : red;
+	margin : 0 0 10px 0;
+	padding : 0;
+	font-size : 70px;
+	line-height : 1;
+	color: black;
+}
+
+h3{
+	font-size : 50px;
+	background : red;
+	margin : 10px 0;
+	line-height : 1;
+	padding : 0 10px;
+}
+
+#topics li {
+	list-style : none;
+}
+
+#topics ol{
+	margin : 0;
+	padding : 0;
+	text-align : left;
+	font-size : 14px;
+}
+
+.page{
+	display:  none;
+	font-size : 40px;
+	background : black;
+	padding : 10px;
+	line-height : 2;
+}
+
+.page span {
+	margin-left : 20px;
+}
+
+.page span.list{
+	display : block;
+	margin-left : 10px;
+}
+
+.page pre {
+	display : block;
+	margin-left : 10px;
+	font-size: 60%;
+}
+
+#footer {
+	position: absolute;
+	background: blue;
+	width: 100%;
+	padding-left: 10px;
+	padding-top: 3px;
+	padding-bottom: 1px;
+}
+
+.list_child {
+	font-size: 60%;
+}
+
+</style>
+
+<script type="text/javascript" src="presen_files/compat.js"></script></head><body>
+
+<div id="container">
+	<div id="topics"><ol><li id="li_0"><span class="label"> 1. 自己紹介</span><div class="page" id="div_0"></div></li><li id="li_1"><span class="label"> 2. 今日のテーマ</span><div class="page" id="div_1"></div></li><li id="li_2"><span class="label"> 3. livedoor Readerの紹介</span><div class="page" id="div_2"></div></li><li id="li_3"><span class="label"> 4. livedoor Readerの仕組み(Ajaxについて)</span><div class="page" id="div_3"></div></li><li id="li_4"><span class="label"> 5. デスクトップアプリとウェブアプリ</span><div class="page" id="div_4"></div></li><li id="li_5"><span class="label"> 6. 従来のウェブアプリとAjaxの対比</span><div class="page" id="div_5"></div></li><li id="li_6"><span class="label"> 7. クライアントサイドのチューニング</span><div class="page" id="div_6"></div></li><li id="li_7"><span class="label"> 8. サーバーサイドのチューニング</span><div class="page" id="div_7"></div></li><li id="li_8"><span class="label"> 9. まとめ</span><div class="page" id="div_8"></div></li><li id="li_9"><span class="label"> 10. 今後の方向性とか</span><div class="page" id="div_9"></div></li><li id="li_10"><span class="label"> 11. 終わり</span><div class="page" id="div_10"></div></li></ol></div>
+</div>
+<div id="padding"></div>
+
+<div id="footer">
+	<span id="title">Technologies for UI</span>
+	<span id="page_info">
+		<span id="time">TIME</span> <span id="current_page">current</span>/<span id="total_page">total</span>
+	</span>
+</div>
+
+<!-- JavaScriptttttttttttttttttttttttttttttttttttttttttttt -->
+
+<script type="text/javascript">
+
+window.onload = init;
+var Event = {};
+Event.stop = function(e){
+	Event.stopAction(e);
+	Event.stopEvent(e);
+};
+Event.stopAction = function(e){
+	e.preventDefault ? e.preventDefault() : (e.returnValue = false)
+};
+Event.stopEvent = function(e){
+	e.stopPropagation ? e.stopPropagation() : (e.cancelBubble = true)
+};
+
+function $(id){ return document.getElementById(id) }
+function addEvent(obj, evType, fn, useCapture){
+	if(obj.addEventListener){
+		obj.addEventListener(evType, fn, useCapture);
+	}else if (obj.attachEvent){
+		obj.attachEvent("on"+evType, fn);
+	}
+}
+
+function update_footer() {
+	var d = new Date();
+	$("time").innerHTML = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+	$("current_page").innerHTML = (Presen.page+1);
+}
+
+function init(){
+	var req = new _XMLHttpRequest();
+	req.open("GET", "seminar.txt", true);
+	req.onload = function(){
+		var text = req.responseText;
+		if (navigator.userAgent.indexOf("KHTML") != -1) {
+			var esc = escape(text);
+			text = (esc.indexOf("%u") < 0 && esc.indexOf("%") > -1) ? decodeURIComponent(esc) : text;
+		}
+		var lines = text.split("\n");
+		Presen.init(lines);
+	}
+	req.send(null);
+	addEvent(document, "keydown", function(e){
+		var s = Event.stop;
+		switch(e.keyCode){
+			case 13: e.shiftKey?Presen.prev():Presen.next();s(e);break;
+			
+			case 80: // p
+			case 75: // k
+			case 38: Presen.prev();s(e);break;
+			
+			case 78: // n
+			case 74: // j
+			case 40: Presen.next();s(e);break;
+		}
+	});
+	// opera
+	addEvent(document, "keypress", function(e){
+		var s = Event.stop;
+		switch(e.keyCode){
+			case 13: s(e);break;
+			case 38: s(e);break;
+			case 40: s(e);break;
+		}
+	});
+	setInterval(
+		update_footer, 1
+	);
+}
+
+var Presen = {};
+Presen.init = function(data){
+	this.data = data;
+	var sections = [[]];
+	var topic_reg = /^\*/;
+	this.data.forEach(function(v,i){
+		if (topic_reg.test(v)){
+			sections.push([v]);
+		} else {
+			sections[sections.length-1].push(v);
+		}
+	});
+	this.sections = sections;
+	var count = 0;
+	$("topics").innerHTML = "<ol>" + this.sections.map(function(body, i){
+		return "<li id='li_"+ i +"'><div class='page' id='div_" + i + "'></div></li>"
+	}).join("") + "</ol>";
+	this.page = 0;
+	
+	// init title
+	var titles = this.sections[0];
+	document.title = titles[0];
+	$("title").innerHTML = titles[0];
+	
+	// show title
+	this.rewrite();
+	
+	// init footer
+	$("footer").style.top  = (window.innerHeight - 40) + "px";
+	$("footer").style.height = "40px";
+
+	var e = $("page_info");
+	e.style.position  = "absolute";
+	e.style.left = (window.innerWidth - 150) + "px";
+	$("total_page").innerHTML = Presen.sections.length;
+};
+
+Presen.has_next = function(){
+	return this.page < this.sections.length-1;
+};
+Presen.next = function(){
+	if (!this.has_next()) {
+		return;
+	}
+	this.hide();
+	this.page++;
+	this.rewrite();
+};
+
+Presen.has_prev = function(){
+	return this.page > 0;
+}
+Presen.prev = function(){
+	if (! this.has_prev()) {
+		return; // nop.
+	}
+	this.hide();
+	this.page--;
+	this.rewrite();
+};
+
+Presen.hide = function() {
+	$("div_" + this.page).style.display = "none";
+	$("li_" + this.page).className = "";
+};
+Presen.rewrite = function(){
+	var p = this.page;
+	this.focus($("li_" + p));
+	$("div_" + p).innerHTML = this.formatter(this.sections[p]);
+	$("div_" + p).style.display = "block";
+};
+
+Presen.focus = function(el){
+	el.className = "focus";
+	setTimeout(function(){
+		document.body.scrollTop = el.offsetTop;
+	}, 100);
+};
+
+Presen.formatter = function(lines){
+	var context = [];
+	var mode = "p";
+	lines.forEach(function(v, i){
+		if(/^(\*\s)/.test(v)){
+			context.push(v.replace(/^\*+/, "").tag("h2"));
+			return;
+		}
+		if(/^(\*+)/.test(v)){
+			context.push(v.replace(/^\*+/, "").tag("h3"));
+			return;
+		}
+		if(/^\-\-/.test(v)){
+			context.push(v.replace(/^\-\-/,"  ・").tag("span", "list_child"));
+			return;
+		}
+		if(/^\-/.test(v)){
+			context.push(v.replace(/^\-+/,"").tag("span","list"));
+			return;
+		}
+		
+		if (/^\>\|\|/.test(v)) {
+			mode = "pre";
+			context.push("<pre>");
+			return;
+		}
+		if (/^\|\|\</.test(v)) {
+			mode = "p";
+			context.push("</pre>");
+			return;
+		}
+		
+		if (mode=="pre") {
+			context.push(v.tag("span"));
+		} else {
+			context.push(v.tag("span") + "<br>");
+		}
+	});
+	return context.join("");
+};
+
+String.prototype.tag = function(tag, classname){
+	return ['<',tag, (classname?" class='"+classname+"'":""), '>',this,'</',tag,'>'].join("");
+}
+</script>
+</body></html>

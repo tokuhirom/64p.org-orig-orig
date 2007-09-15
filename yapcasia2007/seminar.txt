@@ -1,0 +1,158 @@
+﻿CDBI から DBIC にスムーズするための10の小技
+<div style="text-align:right">
+ <a href="http://d.hatena.ne.jp/tokuhirom/">id:tokuhirom</a>
+ <a href="http://mobilefactory.jp/">Mobile Factory, Inc.</a>
+ YAPC::Asia 2007@Tokyo 2007-04-06(Thu)
+</div>
+
+* Warnings.
+- 何点か注意点があります。
+
+** テクニカルな内容ではありません
+- テクニカルな話を聞きたい方は裏番組の鳳たんをどうぞ
+- これからの技術者は政治パフォーマンスをできないと！という話。
+- もしかして: audreyt
+
+* 自己紹介
+2007年4月7日モバイルファクトリー入社
+システム開発部所属 プログラマ
+
+** 個人的活動
+- Acme:::Kenshiro
+- Net::CIDR::MobileJP
+- <S>イナモデ</S>
+
+** 自己紹介
+- 終わり
+
+* 今日のテーマ
+- なぜ CDBI をやめて DBIC にするのか
+- 政治的アプローチ
+-- ○○から△△へ移行するテクニック
+- DBIC に移行するための実践的な話
+
+** 今日しないお話
+
+- DBIC 入門
+-- それ jrockway でできるよ！
+
+** 話し方
+- まったりと
+
+** DBIC とはなにか
+DBIx::Class
+
+<img src="img/dbic.jpg" />
+
+** CDBI と DBIC
+- 両方とも O/R Mapper
+
+** これまでのあらすじ
+- CDBI 時代
+- CDBI ののコミュとの別離
+
+** 今日のテーマ
+
+おわり。
+
+* CDBI の欠点/DBIC の利点
+- ちょっと使っただけだとわからない
+- 使い込むと見えてくる欠点
+
+** イテレータ
+- スカラーコンテキスト → イテレータ
+- リストコンテキスト → 配列
+- my $b = Boofy::Data->search->first;
+- LIMIT OFFSET しないお ＞＜
+- 若干効率悪いナリィ
+
+** コネクションがクラス変数
+- DB の接続先を動的に変えづらい
+- 動的に名前空間を定義する裏技
+
+** package CDBI; use base qw/Ima::DBI/;
+- connection pooling
+- 余計なお世話だよ！
+- pooling の制御ができねぇ
+
+** Tooooooo many plugins
+- それコアでやれよ
+- Class::DBI::Flavour?
+
+* 移行にいたるまでの政治的なもの。
+
+** 人間は変化を拒む生き物
+- 「変わること自体」を本能的に嫌う
+
+** 障壁
+- DBIC とかつかわなくてよくね？
+- めんどくね？
+- 移行コスト
+- 今まで学習したものを捨てられるか
+
+** ねまわし
+- 誰か偉い人を巻き込む
+
+** 学習させる
+- 勉強会を開く
+- DBIC は怖くないよ。噛み付かないよ。
+
+** 風説の流布
+- DBIC が許されるのは小学生までだよねー
+
+** あれ、俺らもしかして時代に乗り遅れてね？
+- と、おもわせたら勝ち
+
+** 事例を集める
+- 「○○でも使ってるんですよ」
+- 日本人は舶来モノ/海外での事例に弱い
+
+** Java to Ruby
+<img src="img/java2ruby.jpg" />
+読んでないけど。
+
+** このプレゼンの資料を見せる
+- ネタをぬく
+- この章をぬく
+
+* 実際の移行
+- Class Method
+- Instance Method
+- Triggers
+
+** 並行運用
+
+- 一部だけ移行さす
+- デメリット: コネクション数が増える
+
+** コードの作り方
+- CDBI のコードを元にする
+
+** Instance Method
+- Copy & Paste.
+- 99%.
+
+** Triggers(BEFORE)
+>||
+__PACKAGE__->add_trigger(
+	before_insert => sub {
+		(中略)
+	}
+);
+||<
+
+** Triggers(AFTER)
+>||
+sub insert {
+	(中略)
+	$self->next::method(@_);
+}
+||<
+
+**set_sql
+- set_sql とかしなくても普通にかけることが多い
+
+* That's All.
+- Thanks!
+- Any Questions?
+

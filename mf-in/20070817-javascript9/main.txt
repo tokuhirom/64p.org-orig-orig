@@ -1,0 +1,126 @@
+javascript 9 gotchas
+
+tokuhirom. 2007-08-17(fri)
+at mobile factory Inc.
+----
+*Comma Caused Coruption 
+----
+>||
+<script>
+  var theObj = {
+        city : "Boston",
+        state : "MA",
+  }
+</script>
+||<
+- IE...
+----
+*The adulterous "this" can change what it refers to
+----
+>||
+<input type="button" value="Gotcha!" id="MyButton" >
+<script>
+var MyObject = function () {
+    this.alertMessage = "Javascript rules";
+    this.ClickHandler = function() {
+        alert(this.alertMessage );
+  }
+}();
+document.getElementById("theText").onclick =  MyObject.ClickHandler 
+</script>
+||<
+----
+- MyObject.OnClick(); you will get a popup saying "Javascript rules". 
+- if you click on the button "MyButton", the popup will say "undefined". 
+----
+*Identity Theft
+----
+>||
+<input type="button" id="TheButton">
+<script>
+    TheButton = get("TheButton");
+</script>
+||<
+----
+*String replace only replaces the first occurrence
+----
+>||
+<script>
+    var fileName = "This is a title".replace(" ","_");
+    /* => "This_is a title" */
+    var fileName = "This is a title".replace(/ /g,"_");
+</script>
+||<
+----
+*MouseOut sometimes means MouseIn
+----
+- use YUI!
+----
+*ParseInt scoffs at your base ten numbering system 
+----
+>||
+var height = parseInt("200px")
+/* => 200 */
+var height = parseInt("09")
+/* => 0 */
+var height = parseInt("09", 10)
+/* => 9 */
+||<
+- oct!
+----
+*for loops over everying including the kitchen sink
+----
+>||
+>>> for (m in x) {console.log(m)}
+0
+1
+2
+>>> Array.prototype.find = function () {}
+function()
+>>> for (m in x) {console.log(m)}
+0
+1
+2
+find
+||<
+----
+- javascript library that we had recently installed
+- This library added a "find" method to the javascript array object. 
+- "for" loop in javascript will iterate over all object attributes, including functions. 
+----
+*Event Handler Pitfalls
+----
+>||
+window.onclick = MyOnClickMethod
+||<
+- This will overwrite existing events
+- This can introduce memory leaks in Internet Explorer in certain circumstances. 
+>||
+YAHOO.util.Event.addListener(window, "click", MyOnClickMethod);
+window.observe('click', MyOnClickMethod);
+||<
+- use YUI or prototype.js
+----
+*Focus Pocus
+----
+>||
+var newInput = document.createElement("input");
+document.body.appendChild("newInput");
+newInput.focus();
+newInput.select();
+||<
+- the above code will create an error in IE
+- you have added the element, it is not really available yet. Fortunately, a split second delay is all we need
+----
+>||
+var newInput = document.createElement("input");
+newInput.id = "TheNewInput";
+document.body.appendChild("newInput");
+setTimeout(function () {
+    document.getElementById('TheNewInput').focus(); 
+    document.getElementById('TheNewInput').select();
+}, 10);
+||<
+----
+That's all.
+Any questions?

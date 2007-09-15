@@ -1,0 +1,41 @@
+mobile browsers
+
+tokuhirom. 2007-08-13(mon)
+at mobile factory Inc.
+----
+*DoCoMo
+----
+- cheap rendering.
+- Compact NetFront by ACCESS(?)
+- FOMA supports XHTML+CSS(but cheap)
+----
+*EZweb
+----
+- UP.Browser
+- OpenWave Systems.
+----
+*Vodafone
+----
+- NetFront by ACCESS
+- UP.Browser by OpenWave systems.
+- Obigo Browser by Teleca.
+-- only for 705P and 902T(?)
+- SEMC-Browser by Sony Ericson(?)
+-- only 802SE(?)
+----
+- and unknown browsers
+-- VF-Browser
+-- and more...
+----
+*Browser level
+- DoCoMo: 900i
+- Vodafone: type 3G
+- EZweb: xhtml supported phones.
+----
+Should be use
+- XHTML
+- UTF8
+- CSS
+-- style attribute hack by XML parser
+----
+any questions?

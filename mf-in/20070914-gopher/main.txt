@@ -1,0 +1,58 @@
+What's gopher
+
+tokuhirom. 2007-09-14(fri)
+at mobile factory Inc.
+----
+Do you know Gopher?
+----
+What's Gopher?
+<a href="gopher://xn--9bi.net/hport-70">Gopher</a>
+----
+インターネットに接続されたコンピュータにどのような情報があるかを検索するシステム。1991年にミネソタ大学で開発された文献整理用のシステムを改良し、インターネットで使えるようにしたものがGopher。コンピュータに置かれたファイルに見出しをつけて階層化し、メニューにしたがって検索が行える仕組みになっている。Gopherのメニューは全世界で共通のため、どのGopherサーバに接続しても同じサービスが受けられる。WWWやFTPの普及に伴ってGopherは次第に使われなくなった。
+----
+そういうのの相手するくらいならhttpdはぜんぶ捨ててgopherに戻りたい。
+http://memo.hirosiki.jp/article/54026897.html
+----
+hmm...
+----
+- 10 年。
+-
+- 世界が Gopher の真の実力を発見するのに要した時間である。
+-
+- 1991年、ミネソタ大学により開発・設計された Gopher
+- は、「世界で最も誤解されたプロトコル」などと呼ばれもした、ともすれば不遇とすらいい得る歳月を経て、あたりのそこここに満ち充ちていた「Web
+- の旧来的なセキュリティの窮屈さを革命したい」という思いによって、ふたたび表舞台に招来された。
+-
+- Gopher は、Web の「あちら側」と「こちら側」とを取り結ぶ、もっとも古くてもっとも新しい、そして、もっとも重要な技術だ。次の 10
+- 年を自らの手で創り出すために、我々は Shibuya.gopher を結成した。
+----
+RFC 1436.
+http://www.faqs.org/rfcs/rfc1436.html
+----
+- Gopher is simple.
+- easy to implement ;-)
+- (but obsolete...)
+----
+*my products
+----
+Cannot bookmark gopher protocol at del.icio.us, hatena bookmark, and ....
+----
+- I made GopherSnake.
+- http://gopher-snake.labs.mfac.jp/
+- GopherSnake is Social Bookmark System for Gopher.
+----
+and, I wrote simple buggy Gopher server.
+----
+KGopherd
+----
+KGopherd?
+- pluggable
+- likes apache
+----
+*misc prodoucts
+----
+- Apache::Gopher
+-- Gopher on Apache2
+----
+That's all.
+Any questions?

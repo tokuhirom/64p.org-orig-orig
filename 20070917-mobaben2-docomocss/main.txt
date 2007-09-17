@@ -1,0 +1,62 @@
+docomo css hack.
+Tokuhiro Matsuno
+2007-09-17(Mon).
+----
+*warnings
+----
+これは完全に個人的な発表であり
+所属する企業／団体とは一切関係ありません
+----
+ドコモは CSS 対応が適当
+- &lt;div style="color: red;"&gt; みたいな style attribute のみ
+
+<S>これは完全にエンジニアが無知で無能でクズ。アホでバカ。低脳でワーキングプア。</S>
+<img src="http://img01.ico.frepa.livedoor.com/member_photo/e/c/eca81a520a93ecf0e6b7f07812b7bdcc09fc4262_m.png" />
+----
+めんどいお
+----
+ドコモだけテンプレートわける
+
+<S>これは完全にエンジニアが無知で無能でクズ。アホでバカ。低脳でワーキングプア。</S>
+<img src="http://img01.ico.frepa.livedoor.com/member_photo/e/c/eca81a520a93ecf0e6b7f07812b7bdcc09fc4262_m.png" />
+----
+どうするか
+----
+XML Parser+CSS Parser
+動的に置換
+----
+HTTP::DoCoMoCSS for perl
+----
+>||
+my $inliner = HTML::DoCoMoCSS->new(base_dir => '/path/to/documentroot/');
+$inliner->apply(<<'...');
+<html>
+<head>
+<link rel="stylesheet" href="/css/foo.css" />
+</head>
+<body>
+<div class="title">bar</div>
+</body>
+</html>
+...
+----
+>||
+# foo.css
+.title {
+    color: red;
+}
+||<
+----
+>||
+<html>
+<head>
+<link rel="stylesheet" href="/css/foo.css" />
+</head>
+<body>
+<div class="title" style="color: red;">bar</div>
+</body>
+</html>
+||<
+----
+That's all.
+Any questions?

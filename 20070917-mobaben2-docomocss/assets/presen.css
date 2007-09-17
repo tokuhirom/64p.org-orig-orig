@@ -1,0 +1,69 @@
+* {
+	background-color: black;
+	color: white;
+}
+
+h2 {
+	background : red;
+	margin : 0 0 10px 0;
+	padding : 0;
+	font-size : 70px;
+	line-height : 1;
+	color: black;
+}
+
+h3 {
+	background : red;
+    font-size: 70px;
+}
+
+#topics li {
+	list-style : none;
+}
+
+#topics ol{
+	margin : 0;
+	padding : 0;
+	text-align : left;
+	font-size : 14px;
+}
+
+.page{
+	display:  none;
+	font-size : 40px;
+	background : black;
+	padding : 10px;
+	line-height : 2;
+}
+
+.page span {
+	margin-left : 20px;
+}
+
+.page span.list{
+	display : block;
+	margin-left : 10px;
+}
+
+.page pre {
+	display : block;
+	margin-left : 10px;
+	font-size: 60%;
+}
+
+#footer {
+	position: absolute;
+	background: blue;
+	width: 100%;
+	padding-left: 10px;
+	padding-top: 3px;
+	padding-bottom: 1px;
+}
+
+.list_child {
+	font-size: 60%;
+}
+
+strong {
+    color: red;
+}

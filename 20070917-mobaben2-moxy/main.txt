@@ -1,0 +1,236 @@
+Mobile web development with Moxy
+Tokuhiro Matsuno
+2007-09-17(Mon).
+
+http://code.mfac.jp/
+----
+*ECナビはイヤだね
+----
+会場がECナビなので自重。
+----
+ネタ自重してるので面白くはない。
+----
+面白いカンファレンスは○○○○で。
+----
+空気を読むための市場調査
+----
+<S>避けた方がいい</S>PHPつかってるひと
+----
+Perlつかってるひと
+----
+Plagger知ってるひと
+----
+Plagger使ってるひと
+----
+Plagger Committers のひと
+----
+id:miyagawa もってるひと
+----
+アウェーなので自己紹介。
+----
+*about me.
+----
+1999年頃は中学生やってたよ
+----
+- <a href="http://ktaf.jp/">ケータイ★アフィリエイト</a>
+- 基礎のぶぶんは一人でつくった
+- アフィリエイトとクリック広告に対応
+- 実はモバイル用の機能はほとんどない。リダイレクタだけ ;-)
+- ケタフノクライアントガサンケンサレルノデヤリニクイ
+----
+- <a href="http://caspeee.jp/">ケータイポッドキャスティング Caspeee</a>
+- ケータイでもきけるよ
+----
+- <a href="http://wassr.jp/">ケータイ対応お気軽メッセージングハブ Wassr</a>
+- Twitter っぽいアレ
+- 絵文字変換
+- GPS 情報のハンドリング
+----
+- 公式着(?:うた)?(?:めろ)?サイト
+- メンテナンスをボチボチと。
+----
+MobileHacker グループ
+http://mobilehacker.g.hatena.ne.jp/
+----
+- Private.
+- Net::CIDR::MobileJP
+- ソースコード検索エンジンgonzuiにbrainf*ck supportを追加
+- PlPy(Perl で Python の VM)
+- tDiary のツッコミを消す Plagger のプラグイン
+- hyper estraier の SWIG バインディングをつくって放置
+- KGopherd
+- GopherSnake
+----
+本題。
+----
+*Moxyが解決したい問題
+----
+実機でのチェックは面倒。
+ヤルキシネー
+ダルー
+シヌー
+ウツダシノウ
+----
+- 最近は大部ましになったけど……
+- でもやっぱりできるだけ減らしたい
+----
+<strong>「端末エミュレータがあるじゃない」</strong>
+----
+- iモードシミュレータ
+- openwave simulater
+- and more.
+----
+Windows only
+----
+キャリヤごとに使いわけるのは面倒
+----
+インストールが面倒
+----
+クオリティがひくい
+----
+端末エミュレータをだましだまし使うぐらいなら
+実機でチェックした方がマシだったりする
+----
+<strong>「Firefox拡張があるじゃない」</strong>
+----
+- 設定が面倒
+- 営業の人用に設定するのは困難
+- 複数のものをコマコマいれるのは面倒
+----
+*Moxy はどう解決するか
+----
+- <strong>Mobile Contents</strong> を
+- <strong>PC ブラウザ上で</strong>閲覧するために
+- <strong>リクエスト</strong>および<strong>レスポンス</strong>を加工する
+- <strong>プロキシ</strong>というアプローチ
+----
+- browser => Moxy => App.Server
+- browser <= Moxy <= App.Server
+
+- HOOK!HOOK!HOOK!
+----
+pluggable?
+----
+Plagger ミタイナノ。
+----
+- written by Perl
+- use HTTP::Proxy;
+----
+- HTTP::Proxy is pluggable ;-)
+- but, HTTP::Proxy is not like a Plagger ;-(
+----
+Moxyとは
+- <strong>HTTP::Proxy</strong>という<strong>Perl</strong>のモジュールを
+- <strong>Plagger</strong>っぽく拡張できるようにした<strong>フレームワーク</strong>と、
+- その上に構築されたプラグイン群の総称。
+----
+*設定方法
+----
+Plagger like config.yaml.
+----
+>||
+global:
+  server:
+    module: HTTPProxy
+    port: 9999
+    host: localhost
+    max_clients: 80
+plugins:
+  - module: Pictogram
+  - module: QRCode
+  (ry
+||<
+----
+*インストール方法
+----
+>||
+svn co http://code.mfac.jp/svn/Moxy
+cd Moxy
+perl Makefile.PL
+make
+make test
+./moxy.pl -c config.yaml
+||<
+----
+requires:
+- LHa for Unix
+- Ghostscript
+- ImageMagick
+
+for convert pictograms.
+----
+*Moxyのプラグイン
+----
+GPS
+----
+UserAgentSwitcher
+----
+HTMLWidth
+
+端末の画面サイズにあわせて HTML の幅を変える
+----
+FlashUseImgTag
+
+ez は &lt;img src="/logo.swf" /&gt; できる
+----
+HTTPEnv
+----
+Pictogram
+----
+QRCode
+
+- 今表示しているページの URL を常に表示
+- 実機によるチェックにスムーズに移行可能
+----
+RefererCutter
+- docomo cut the referer
+----
+ShowHTTPHeaders
+- for debug.
+----
+UserID
+- subscriber id support
+----
+XHTMLisHTML
+----
+CookieCutter
+- docomo ハクッキータイオウシテナイヨ
+----
+*フックポイント
+----
+リクエスト関連
+----
+request_filter_process_agent
+UAの設定
+----
+request_filter
+リクエストの処理
+----
+request_filter_[EIVNH]
+リクエストの処理(UAごと)
+----
+レスポンス関連
+----
+response_filter_header
+レスポンスのヘッダー
+----
+response_filter_header_E
+レスポンスのヘッダー(UAごと)
+----
+response_filter
+レスポンスボディ
+----
+response_filter_[EIVNH]
+レスポンスボディ(UAごと)
+----
+コンパネ関連
+----
+control_panel
+コンパネに追加
+----
+文字コード判別
+----
+DEMO!DEMO!DEMO!
+----
+That's all.
+Any questions?

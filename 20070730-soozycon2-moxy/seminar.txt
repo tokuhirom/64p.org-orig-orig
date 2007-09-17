@@ -1,0 +1,279 @@
+Mobile web development with Moxy(sanitized)
+Tokuhiro Matsuno
+2007-07-30(Mon).
+* index
+今日なにをはなすか
+* index
+dankogaiは
+大変なものを
+盗んでいきました
+* index
+をやろうかと
+思った。
+* index
+まさかの
+MADだけプレゼン
+* index
+っていうか
+プレゼンじゃないよ
+* index
+と思ったら
+* index
+彼女に
+* index
+dankogaiと私と
+どっちが大事なの？
+* index
+とよくわからない
+キレ方をされたので
+* index
+断念
+* index
+Moxy
+* index
+これまでのあらすじ
+* index
+携帯電話シミュレーター入門
+CodeZine
+* index
+ケータイシミュレータ
+なんて誰も使ってねーよ
+* index
+なぜ誰も
+使わないのか
+* index
+出来が
+悪い
+* index
+以上。
+* index
+理由は
+いくつか。
+* index
+遅イ。
+* index
+セットアップ
+面倒
+* index
+探しまわるの
+面倒すぎ
+* index
+iモードシミュレータは
+北朝鮮やキューバでは
+使えない
+* index
+iモードをシミュレート
+してるわけじゃない
+* index
+単にしょぼい
+HTMLレンダリングエンジン
+つんでるだけ
+* index
+そもそも
+windows
+専用なのがアホ
+* index
+というわけで
+* index
+本当に開発してる
+人は使ってない
+* index
+使ってる奴は
+勤勉なプログラマー
+* index
+正直実機でテスト
+した方がマシ。
+* index
+Moxy
+の話
+* index
+そもそもの
+経緯
+* index
+有史
+以前
+* index
+気合で
+実機。
+* index
+2年前
+* index
+au公式
+サイト
+* index
+au用
+絵文字
+プロキシ
+* index
+2005-09-05
+* index
+hoge.rb
+* index
+powered
+by
+webrick
+* index
+au 以外の
+サイト開発
+活発に
+* index
+Perl
+で
+rewrite
+* index
+各キャリヤ
+に対応
+* index
+っていうか
+なんでプロキシ？
+* index
+UA Switcher
+firefox?
+* index
+営業に
+使わせたい
+* index
+インストール
+させるのが
+ダルイ
+* index
+Moxyなら
+何も考えずに
+使わせることが
+可能
+* index
+(社内は
+Sleipnir普及してる)
+* index
+Moxy
+Architecture
+* index
+Pluggable
+* index
+like
+Plagger.
+* index
+based
+on
+HTTP::Proxy
+* index
+HTTP::Proxy
+is
+pluggable
+* index
+but
+* index
+not like
+plagger...
+* index
+今ある
+プラギン
+* index
+GPS
+* index
+UserAgentSwitcher
+* index
+HTMLWidth
+* index
+FlashUseImgTag
+* index
+HTTPEnv
+* index
+Pictogram
+* index
+QRCode
+* index
+RefererCutter
+* index
+ShowHTTPHeaders
+* index
+StickyUA
+* index
+UserID
+* index
+XHTMLisHTML
+* index
+CookieCutter
+* index
+フック
+ポイント
+* index
+リクエスト関連
+* index
+request_filter_process_agent
+UAの設定
+* index
+request_filter
+リクエストの処理
+* index
+request_filter_[EIVNH]
+リクエストの処理(UAごと)
+* index
+レスポンス関連
+* index
+response_filter_header
+レスポンスのヘッダー
+* index
+response_filter_header_E
+レスポンスのヘッダー(UAごと)
+* index
+response_filter
+レスポンスボディ
+* index
+response_filter_[EIVNH]
+レスポンスボディ(UAごと)
+* index
+コンパネ関連
+* index
+control_panel
+コンパネに追加
+* index
+モジュール
+構成
+* index
+Moxy.pm
+コア。コンテキスト。
+* index
+Moxy::Plugin::*
+register_hook
+* index
+Moxy::Storage::*
+ストレージ(like DBM)
+* index
+Moxy::Scraper
+絵文字
+スクレイピング
+* index
+ImageMagick
+* index
+GhostScript
+* index
+LHa for Unix
+* index
+Moxy::Util
+ユーティリティ関数
+* index
+Plagger::Util
+まるぱくり
+* index
+文字コード判別
+* index
+今後の
+展望
+* index
+CPAN
+にうp
+* index
+GPS
+まわりの
+整備
+* index
+Windows版
+* index
+絵文字
+スクレイパー
+がネック
+* index
+PAR?
+* index
+デモ

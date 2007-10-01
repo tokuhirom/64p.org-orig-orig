@@ -1,0 +1,136 @@
+人はなぜ Gopher に飽きるのか
+
+<div style="text-align: right">
+tokuhirom@subtech 2007-10-01(mon)
+<a href="http://shibuya.pm.org/blosxom/techtalks/200710.html">Shibuya.pm TechTalk#8</a>
+</div>
+----
+オーストラリアいってました
+昨夜一週間ぶりに IP Reachable になりました。
+----
+Hair標準の日々がなんたらいうてるときに
+----
+Hair標準の日々について。
+<div style="color: red;">そういうのの相手するくらいならhttpdはぜんぶ捨ててgopherに戻りたい。</div>
+
+http://memo.hirosiki.jp/article/54026897.html
+----
+% whois bogusne.ws
+ns.bogusne.ws ....... 210.150.167.206
+% host ns.bogusne.ws
+ns.bogusne.ws has address 210.150.167.206
+% host 210.150.167.206
+206.167.150.210.IN-ADDR.ARPA domain name pointer ns.hirosiki.jp
+----
+Gopher ktkr!
+----
+Gopher についてご存じのかたー?
+----
+What's Gopher?
+<a href="gopher://xn--9bi.net/hport-70">Gopher</a>
+
+gopher://xn--9bi.net/hport-70
+----
+インターネットに接続されたコンピュータにどのような情報があるかを検索するシステム。1991年にミネソタ大学で開発された文献整理用のシステムを改良し、インターネットで使えるようにしたものがGopher。コンピュータに置かれたファイルに見出しをつけて階層化し、メニューにしたがって検索が行える仕組みになっている。Gopherのメニューは全世界で共通のため、どのGopherサーバに接続しても同じサービスが受けられる。WWWやFTPの普及に伴ってGopherは次第に使われなくなった。
+----
+- Gopher はシンプル
+- 実装が簡単
+- Gopher のサーバー/クライアントは3時間ぐらいで実装可能
+----
+RFC 1436.
+http://www.faqs.org/rfcs/rfc1436.html
+
+定義が曖昧すぎてすごい。
+----
+- Gopher の時代がキター
+- ブクマ!ブクマ!
+- できねええええええええ ＿|￣|○
+----
+というわけで作ってみた。
+----
+- GopherSnake
+- http://gopher-snake.labs.mfac.jp/
+- 世界初 Gopher 専用 SNS
+----
+- KGophered
+-- KGopherd の K は knagano の k
+-- Pluggable Gopher Server
+----
+- Yappo's Goppper
+-- Pluggable Gopher Server
+-- KGopherd と似たようなもの。
+-- でも Gopher+ 系の実装を真面目にやってるくさい
+----
+- Apache::Gopher@CPAN
+-- Gopher on Apache2
+-- Gopher と HTTP を共存させられマス!
+-- これは便利!
+----
+- PyGopherd
+-- モダーンな Gopherd@Python
+-- http, gopher, wap に対応!
+-- やべー。WAP 対応熱い。
+----
+>||
+10 年。
+世界が Gopher の真の実力を発見するのに要した時間である。
+
+1991年、ミネソタ大学により開発・設計された Gopher は、「世界で最も誤解されたプロ
+トコル」などと呼ばれもした、ともすれば不遇とすらいい得る歳月を経て、あたりのそこ
+ここに満ち充ちていた「Web の旧来的なセキュリティの窮屈さを革命したい」という思い
+によって、ふたたび表舞台に招来された。
+
+Gopher は、Web の「あちら側」と「こちら側」とを取り結ぶ、もっとも古くてもっとも新
+しい、そして、もっとも重要な技術だ。次の 10 年を自らの手で創り出すために、我々は
+Shibuya.gopher を結成した。
+
+||<
+----
+っていう流れかと思ったら
+----
+飽きた。
+----
+at irc.
+>||
+<tokuhirom:19:20@#t******> 古くて新しいプロトコル Gopher
+<tokuhirom:19:20@#t******> について Shibuya.pm で話そうかと
+<m*y*g*w*:19:20@#t******> Gopher は単に古いだけだろww
+||<
+----
+−−終了−−
+----
+というわけで、Gopher ブームは終わりました。
+----
+That's all.
+Nice Boat.
+----
+m
+----
+a
+----
+n
+----
+k
+----
+o
+----
+Reload
+----
+こんなことにならない為に
+----
+スライドはギリギリに書く方がいい?
+----
+YAPCの当日
+----
+>||
+00:11:31 <#t*******:m*******_> スライドやばいなあ
+00:11:35 <#t*******:m*******_> まだ何もかいてなス
+||<
+----
+>||
+02:49:17 <#t*******:Y****> 眠眠打破1グロスかってきた
+08:34:00 <#t*******:Y****> ミサイルAPIできて喜んで遊んでたら弾をなくした件
+||<
+----
+結論: 実装と発表は当日にやる
+<img src="http://tokyo2007.yapcasia.org/speakers/images/yoshinori_takesako_Photo.jpg" width="100" height="100" />

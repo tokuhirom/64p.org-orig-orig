@@ -15,12 +15,7 @@ Hair標準の日々について。
 
 http://memo.hirosiki.jp/article/54026897.html
 ----
-% whois bogusne.ws
-ns.bogusne.ws ....... 210.150.167.206
-% host ns.bogusne.ws
-ns.bogusne.ws has address 210.150.167.206
-% host 210.150.167.206
-206.167.150.210.IN-ADDR.ARPA domain name pointer ns.hirosiki.jp
+検閲
 ----
 Gopher ktkr!
 ----
@@ -103,16 +98,6 @@ at irc.
 ----
 That's all.
 Nice Boat.
-----
-m
-----
-a
-----
-n
-----
-k
-----
-o
 ----
 Reload
 ----

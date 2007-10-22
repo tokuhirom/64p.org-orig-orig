@@ -1,0 +1,118 @@
+DJabberdについて
+
+<div style="text-align: right">
+tokuhirom@mf 2007-10-22(Mon)
+Mobile Factory 社内勉強会.
+</div>
+----
+What's DJaberd?
+----
+- XMPP Server
+- (Jabber Server)
+- brad products
+----
+XMPP?
+- eXtensible Messaging and Presence Protocol
+- RFC3920, RFC3921
+- IM!IM!
+----
+Why XMPP?
+- Open Protocol!
+----
+About XMPP.
+- XMPP like SMTP
+- XMPP uses XML.
+- XMPP uses XML stream.
+----
+Why DJabberd?
+- jabberd(C)
+- ejabberd(erlang)
+- DJabberd(perl)
+
+We use Perl.
+----
+port number.
+- 5223 (SSL)
+- 5222 (non-SSL）
+- 5269 (S2S)
+----
+S2S?
+- server to server
+- example@jabber.org => twitter@jabber.jp
+- like SMTP
+----
+SRV Record.
+----
+- example@xmpp.example.com(ugly)
+- example@example.com(ok)
+
+- like MX record.
+- protocol independent
+----
+for example.
+- _xmpp-server._tcp.example.com => xmpp.example.com
+----
+tinydns
+- tinydns is not supported SRV record.
+- use record builder.
+-- http://www.anders.com/projects/sysadmin/djbdnsRecordBuilder/
+----
+Grossary
+----
+- roster
+-- buddy list
+- stanza
+-- one of the XML element in the XML stream
+----
+DJabberd class structure.
+----
+Stanza.
+>||
+XMLElement => Stanza
+                      => IQ
+                      => Message(chat とか)
+                      => Presence
+||<
+----
+plugins.
+----
+- DJabberd is pluggable
+- like plagger.
+----
+Plugins.
+>||
+Plugin
+        => Authen
+        => Bot
+        => Cluster
+        => Delivery
+                     => Agent
+                               => Component
+        => PresenceChecker
+        => RosterStorage
+||<
+----
+Practice.
+----
+WRITE BOT.
+----
+package DJabberd::Bot::jNaoya;
+use base qw/DJabberd::Bot/;
+
+sub process_text {
+    # process message here.
+}
+----
+SEND MESSAGE FROM EXTERNAL PROCESS.
+----
+- DJabberd::Component::MyMessageReceiver?
+- listen any port...
+- or dirty hack.
+-- DJabberdrd::Connection::Admin::CMD_my_command
+----
+ROSTER STORAGE
+----
+- DJabberd::RosterStorage::AlwaysBoth(written by tokuhirom)
+----
+that's all.
+any questions?

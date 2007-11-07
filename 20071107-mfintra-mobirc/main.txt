@@ -1,0 +1,60 @@
+mobirc
+
+<div style="text-align: right">
+tokuhirom@mf 2007-11-07(Wed)
+Mobile Factory intra.
+</div>
+----
+mobirc?
+----
+my private project.
+----
+keitai => irc gateway.
+----
+i.e.
+----
+http => irc
+gateway.
+----
+- PoCo::HTTPD
+- PoCo::IRC(client)
+----
+- plaggable way.
+----
+core modules
+- Mobirc(global context)
+- Mobirc::HTTPD
+- Mobirc::HTTPD::Controller
+- Mobirc::HTTPD::Router
+- Mobirc::Channel
+- Mobirc::Message
+----
+Plugin::Component
+- IRCClient
+- Twitter
+- XMPP
+----
+Plugin::Authorizer
+- SoftBankID
+- EZSubscriberID
+- BasicAuth
+- Cookie
+-- cache for basic auth(willcom)
+----
+Plugin::IRCCommand
+- TiarraLog
+----
+Plugin::MessageBodyFilter
+- Clickable
+- IRCColor(mIRC color)
+----
+Plugin::HTMLFilter
+- CompressHTML
+-- for working poor
+- DoCoMoCSS
+-- style attributes
+----
+demo
+----
+that's all.
+any questions?

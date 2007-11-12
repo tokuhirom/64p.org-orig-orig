@@ -1,0 +1,71 @@
+Prism
+
+<div style="text-align: right">
+tokuhirom@mf 2007-11-12(Mon)
+Mobile Factory intra.
+</div>
+----
+たいちょうわるい。
+扇風機の導入で大丈夫になったか
+と思ったけど、また寒い
+----
+Prism?
+----
+- Site Specific Browsers
+- (SSB)
+- using gecko
+----
+- "専用ブラウザ" in Japanese
+----
+example.
+----
+Wassr
+----
+gmail
+----
+2ch
+----
+Twitter
+----
+and more.
+----
+how to build?
+----
+- webapp.ini
+- webapp.css
+- webapp.js
+----
+pack to zip file.
+----
+rename to *.webapp.
+----
+That's ALL!
+----
+WARNINGS!
+----
+- use !important
+- use host.getBrowser().contentWindow.document
+----
+!important
+- change priority(user css > server css)
+- default is(server css>user css)
+----
+host.getBrowser().contentWindow.document
+- default document is not a browser document.
+- If you want document.getElementById,
+- you use host.getBrowser().contentWindow.document.getElementById.
+----
+you can use XMLHttpRequest.
+- you can use Ajax!
+----
+misc features
+- notify(growl, and others)
+- D&D
+----
+- stylish
+-- 
+- userstyles.org
+-- http://userstyles.org/
+----
+that's all.
+any questions?

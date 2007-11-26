@@ -1,0 +1,100 @@
+Life with Pictogram 2
+
+<div style="text-align: right">
+tokuhirom@mf 2007-11-26(Mon)
+Mobile Factory intra.
+</div>
+----
+- internal code is UNICODE!
+- flagged utf8
+----
+sjis => flagged utf8 => sjis ?
+----
+no.
+----
+utf8 => flagged utf8 => utf8
+----
+が理想。
+----
+実は最近の機種ならだいたいみれる
+- WIN
+- 3GC
+- FOMA
+----
+KDDI の絵文字がおかしい件
+----
+utf8 でフォームだすと絵文字のところで謎コードが
+送られてくる
+----
+結論。
+----
+いわゆるKDDI裏ユニコード
+id:miyagawa++
+----
+''0x0700''
+sjis - 裏ユニ
+----
+softbank と au のかぶり問題も
+裏ユニコードで保存しておけばOK
+----
+基本動作
+----
+ucm. unicode character map.
+----
+>||
+<UE74C> \xF9\xF1 |0 # DoCoMo pictogram
+<UE74D> \xF9\xF2 |0 # DoCoMo pictogram
+<UE74E> \xF9\xF3 |0 # DoCoMo pictogram
+||<
+----
+最近のあっぷでーと
+----
+Unicode プロパティ
+----
+$str =~ /\p{InDocomoPictogram}/
+----
+>||
+sub InKDDIPictograms {
+    return <<END;
+E468\tE5DF
+EA80\tEB88
+END
+}
+||<
+----
+こういうふうにするだけで、\p{} は実装できるみたい。
+----
+- \p{InMobileJPPictograms} もあるよ。
+- s!\p{InMobileJPPictograms}!〓!;
+----
+x-iso-2022-jp-kddi
+----
+use Encode::JP::Mobile::KDDIJIS;
+- au メールの絵文字
+- docomo/softbank は基本的に〓になる
+----
+Algorithm?
+----
+- 絵文字用JISコード
+- 素直にずらす
+- => 絵文字用SJISコード
+----
+- 0xED40 から 0xEE8D の区間では、0x0600 足す
+- 0xEB59から0xECE4の区間では 0x0b00 足す
+----
+features-charnames branch
+----
+Encode::JP::Mobile::Charnames
+----
+- unicode2name_en
+- unicode2name
+- vianame
+----
+>||
+s!(\p{InMobileJPPictograms})!unicode2name_en(unpack とか $1)!ge;
+||<
+----
+絵文字からナマエに一括置換できる！
+----
+that's all.
+any questions?

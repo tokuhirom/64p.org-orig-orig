@@ -1,0 +1,162 @@
+life with brad
+<img src="http://bradfitz.com/pics/brad-belize-small.jpg" />
+
+<div style="text-align: right">
+tokuhirom@mf 2007-11-30(Fri)
+</div>
+----
+we use bradfitz products very hard :)
+----
+brad products?
+----
+- Perlbal
+- gearman
+- MogileFS
+- DJabberd
+- Danga::Socket
+- TheSchwartz
+- memcached
+- ShipIt
+- LiveJournal
+----
+- ○Perlbal
+- ○gearman
+- ○MogileFS
+- ○DJabberd
+- ○Danga::Socket
+- ○TheSchwartz
+- ○memcached
+- ShipIt
+- LiveJournal
+----
+Why do you use Perlbal?
+----
+- Perlbal is stable.
+- Perlbal is fast.
+- Perlbal is hackable.
+- Perlbal is simple.
+- Perlbal is pluggable.
+- (BIG-IP is too expensive...)
+----
+I'm switched from Pound.
+----
+Pound's RewriteRedirect sucks.
+----
+Why do you use L7 balancer?
+
+   by id:hirose31
+----
+We have a lot of small services...
+- balance 67 domains in one LB.
+- we serve many mobile web services.
+- and we don't have a network engineer ;-)
+----
+Why do you use MogileFS?
+----
+mogilefs is distributed file system.
+----
+very simple ;-)
+----
+- WebDAV server.
+- balancing server(with mysql)
+- very hackable :)
+- very simple.
+- Perlbal friendly :)
+- very fast
+----
+- X-Reproxy-URL
+- X-Reproxy-Cache-For
+----
+Why do you use DJabberd?
+----
+- very simple
+- very hackable
+- pluggable
+----
+Why do you use memcached?
+----
+- very fast
+----
+Good Concept!
+----
+Why do you use gearman?
+----
+- simple
+- Danga::Socket friendly :)
+----
+Why do'not use ActiveMQ or STOMP?
+----
+- we hate Java :(
+- I have read the mala's document at frepa.
+----
+Why do you use TheSchwartz?
+----
+- TheSchwartz is reliable
+- TheSchwartz uses MySQL
+-- we use MySQL hard.
+----
+How to monitoring the brad's daemons?
+
+    by id:kazeburo
+----
+use IO::Socket;
+----
+I know brad's protocols :)
+----
+☆ Main Knitting ☆
+<img src="http://bradfitz.com/pics/brad-belize-small.jpg" />
+----
+brad との正しい付き合い方
+----
+brad が想定していない使い方をしない
+----
+これ基本中の基本！
+----
+■Perlbal は SSL をサポートしている
+----
+がまともに動かない！
+----
+brad は apache で SSL を処理してるから！
+----
+ごく最近なおった。
+----
+それまでは。。。
+----
+■Perlbal の X-Reproxy-URL の罠
+----
+X-Reproxy-URL: http://img.example.com/
+----
+hmm....
+----
+Host: ヘッダーサポートしてねええええ
+----
+X-Reproxy-URL: http://192.168.1.2/
+----
+Mogile では IP でだしているから。
+----
+ポイント: brad が想定してないケースに関する実装は甘い
+----
+■Gearman で大きいデータを送る
+----
+ぶらっど「gearmanで大きいデータを投げたら遅くなるから誰もやらねーよな。常考」
+----
+常識はずれな SEX さん
+http://clouder.jp/yoshiki/mt/archives/000997.html
+----
+データとれねええ
+----
+ポイント: brad が想定してないようなことはやらない
+----
+■memcached で 4000 個 get_multi する
+----
+ぶらっど「memcached の get_multi で一気にひくのは100個ぐらいだよな。常考」
+----
+常識はずれな mala さん
+http://mala.nowa.jp/entry/16d316e37f
+----
+☆結論☆
+----
+livedoor は常識はずれ。
+----
+that's all.
+any questions?

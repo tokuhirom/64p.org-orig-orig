@@ -1,0 +1,1629 @@
+<?xml version="1.0" encoding="euc-jp"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja-JP" lang="ja-JP">
+    <head>
+        
+        <title>Error in Mock::Pages</title>
+        <style type="text/css">
+            body {
+                font-family: "Bitstream Vera Sans", "Trebuchet MS", Verdana,
+                            Tahoma, Arial, helvetica, sans-serif;
+                color: #000;
+                background-color: #F5131A;
+                margin: 0px;
+                padding: 0px;
+            }
+            :link, :link:hover, :visited, :visited:hover {
+                color: #000;
+            }
+            div.box {
+                position: relative;
+                background-color: #fff;
+                border: 1px solid #aaa;
+                padding: 4px;
+                margin: 10px;
+                -moz-border-radius: 10px;
+            }
+            div.infos {
+                background-color: #fff;
+                border: 3px solid #FBEE1A;
+                padding: 8px;
+                margin: 4px;
+                margin-bottom: 10px;
+                -moz-border-radius: 10px;
+            }
+            h1 {
+                margin: 0;
+            }
+            h2 {
+                margin-top: 0;
+                margin-bottom: 10px;
+                font-size: medium;
+                font-weight: bold;
+                text-decoration: underline;
+            }
+            div.url {
+                font-size: x-small;
+            }
+            pre {
+                font-size: .8em;
+                line-height: 120%;
+                font-family: 'Courier New', Courier, monospace;
+                background-color: #fee;
+                color: #333;
+                border: 1px dotted #000;
+                padding: 5px;
+                margin: 8px;
+                width: 90%;
+            }
+            pre b {
+                font-weight: bold;
+                color: #000;
+                background-color: #f99;
+            }
+        </style>
+        <script type="text/javascript">
+            function toggle(e) {
+                if (e.style.display == 'none') {
+                    e.style.display = '';
+                } else {
+                    e.style.display = 'none';
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="box">
+            <h1>Mock::Pages</h1>
+
+            <div class="url">http://localhost/?aff_type=mock&amp;s=ABCDEFG</div>
+
+            <div class="infos">
+                or&lt;&gt;z at 03_methods.t line 30.
+<br />
+            </div>
+
+            <div class="infos">
+                <h2>StackTrace</h2>
+                                <table>
+                    <tr>
+                        <th>Package</th>
+                        <th>Line   </th>
+                        <th>File   </th>
+                    </tr>
+                        <tr>
+                            <td>Mock::Pages</td>
+                            <td>30</td>
+                            <td>03_methods.t</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><pre>   27: sub _die {
+   28:     my $a = 'b';
+   29:     our $b = 'mk';
+<b>   30:     die &quot;or&lt;&gt;z&quot;;
+</b>   31: }
+   32: sub dispatch_die {
+   33:     my $self = shift;
+</pre></td>
+                        </tr>
+                </table>
+
+                <table>
+                    <tr><th>key</th><th>val</th></tr>
+                    
+                    <tr>
+                        <td>$a</td>
+                        <td>
+                            <a onclick="toggle(document.getElementById('1$a'))">SCALAR(0x8242824)</a>
+                            <div id="1$a" style="display:none">$VAR1 = \'b';<br>
+</div>
+                        </td>
+                    </tr>
+                    
+                </table>                <table>
+                    <tr>
+                        <th>Package</th>
+                        <th>Line   </th>
+                        <th>File   </th>
+                    </tr>
+                        <tr>
+                            <td>Mock::Pages</td>
+                            <td>34</td>
+                            <td>03_methods.t</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><pre>   31: }
+   32: sub dispatch_die {
+   33:     my $self = shift;
+<b>   34:     $self-&gt;_die(4,5,2);
+</b>   35: }
+   36: 
+   37: package main;
+</pre></td>
+                        </tr>
+                </table>
+
+                <table>
+                    <tr><th>key</th><th>val</th></tr>
+                    
+                    <tr>
+                        <td>$self</td>
+                        <td>
+                            <a onclick="toggle(document.getElementById('2$self'))">REF(0x8630b24)</a>
+                            <div id="2$self" style="display:none">$VAR1 = \bless( {<br>
+                   'page' =&gt; 'die',<br>
+                   'r' =&gt; bless( {<br>
+                                   'header_hash' =&gt; {},<br>
+                                   'query' =&gt; bless( {<br>
+                                                       '.parameters' =&gt; [<br>
+                                                                          'aff_type',<br>
+                                                                          's'<br>
+                                                                        ],<br>
+                                                       '.charset' =&gt; 'ISO-8859-1',<br>
+                                                       '.fieldnames' =&gt; {},<br>
+                                                       's' =&gt; [<br>
+                                                                'ABCDEFG'<br>
+                                                              ],<br>
+                                                       'aff_type' =&gt; [<br>
+                                                                       'mock'<br>
+                                                                     ],<br>
+                                                       'escape' =&gt; 1<br>
+                                                     }, 'CGI' )<br>
+                                 }, 'Sledge::Request::CGI' ),<br>
+                   'charset' =&gt; bless( {}, 'Sledge::Charset::Default' ),<br>
+                   'manager' =&gt; bless( {}, 'Sledge::SessionManager::Cookie' ),<br>
+                   '__stacktrace' =&gt; [<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {<br>
+                                                                '$b' =&gt; \'mk'<br>
+                                                              },<br>
+                                                'level' =&gt; 1,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$a' =&gt; \'b'<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Mock::Pages',<br>
+                                                'file' =&gt; '03_methods.t',<br>
+                                                'line' =&gt; 30<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 2,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$self' =&gt; $VAR1<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Mock::Pages',<br>
+                                                'file' =&gt; '03_methods.t',<br>
+                                                'line' =&gt; 34<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 3,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$method' =&gt; \'dispatch_die',<br>
+                                                               '$page' =&gt; \'die',<br>
+                                                               '$self' =&gt; \${$VAR1}<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::Pages::Base',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/Pages/Base.pm',<br>
+                                                'line' =&gt; 94<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 4,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$out' =&gt; \undef,<br>
+                                                               '$self' =&gt; \${$VAR1}<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::Pages::Base',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/Pages/Base.pm',<br>
+                                                'line' =&gt; 85<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {<br>
+                                                                '$TEMPLATE' =&gt; \'<br>
+&lt;?xml version="1.0" encoding="euc-jp"?&gt;<br>
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja-JP" lang="ja-JP"&gt;<br>
+    &lt;head&gt;<br>
+        [% USE Dumper %]<br>
+        &lt;title&gt;Error in [% title | html %]&lt;/title&gt;<br>
+        &lt;style type="text/css"&gt;<br>
+            body {<br>
+                font-family: "Bitstream Vera Sans", "Trebuchet MS", Verdana,<br>
+                            Tahoma, Arial, helvetica, sans-serif;<br>
+                color: #000;<br>
+                background-color: #F5131A;<br>
+                margin: 0px;<br>
+                padding: 0px;<br>
+            }<br>
+            :link, :link:hover, :visited, :visited:hover {<br>
+                color: #000;<br>
+            }<br>
+            div.box {<br>
+                position: relative;<br>
+                background-color: #fff;<br>
+                border: 1px solid #aaa;<br>
+                padding: 4px;<br>
+                margin: 10px;<br>
+                -moz-border-radius: 10px;<br>
+            }<br>
+            div.infos {<br>
+                background-color: #fff;<br>
+                border: 3px solid #FBEE1A;<br>
+                padding: 8px;<br>
+                margin: 4px;<br>
+                margin-bottom: 10px;<br>
+                -moz-border-radius: 10px;<br>
+            }<br>
+            h1 {<br>
+                margin: 0;<br>
+            }<br>
+            h2 {<br>
+                margin-top: 0;<br>
+                margin-bottom: 10px;<br>
+                font-size: medium;<br>
+                font-weight: bold;<br>
+                text-decoration: underline;<br>
+            }<br>
+            div.url {<br>
+                font-size: x-small;<br>
+            }<br>
+            pre {<br>
+                font-size: .8em;<br>
+                line-height: 120%;<br>
+                font-family: \'Courier New\', Courier, monospace;<br>
+                background-color: #fee;<br>
+                color: #333;<br>
+                border: 1px dotted #000;<br>
+                padding: 5px;<br>
+                margin: 8px;<br>
+                width: 90%;<br>
+            }<br>
+            pre b {<br>
+                font-weight: bold;<br>
+                color: #000;<br>
+                background-color: #f99;<br>
+            }<br>
+        &lt;/style&gt;<br>
+        &lt;script type="text/javascript"&gt;<br>
+            function toggle(e) {<br>
+                if (e.style.display == \'none\') {<br>
+                    e.style.display = \'\';<br>
+                } else {<br>
+                    e.style.display = \'none\';<br>
+                }<br>
+            }<br>
+        &lt;/script&gt;<br>
+    &lt;/head&gt;<br>
+    &lt;body&gt;<br>
+        &lt;div class="box"&gt;<br>
+            &lt;h1&gt;[% title | html %]&lt;/h1&gt;<br>
+<br>
+            &lt;div class="url"&gt;[% pages.current_url | html %]&lt;/div&gt;<br>
+<br>
+            &lt;div class="infos"&gt;<br>
+                [% desc | html %]&lt;br /&gt;<br>
+            &lt;/div&gt;<br>
+<br>
+            &lt;div class="infos"&gt;<br>
+                &lt;h2&gt;StackTrace&lt;/h2&gt;<br>
+                [% FOR s IN stacktrace -%]<br>
+                &lt;table&gt;<br>
+                    &lt;tr&gt;<br>
+                        &lt;th&gt;Package&lt;/th&gt;<br>
+                        &lt;th&gt;Line   &lt;/th&gt;<br>
+                        &lt;th&gt;File   &lt;/th&gt;<br>
+                    &lt;/tr&gt;<br>
+                        &lt;tr&gt;<br>
+                            &lt;td&gt;[% s.pkg  | html %]&lt;/td&gt;<br>
+                            &lt;td&gt;[% s.line | html %]&lt;/td&gt;<br>
+                            &lt;td&gt;[% s.file | html %]&lt;/td&gt;<br>
+                        &lt;/tr&gt;<br>
+                        &lt;tr&gt;<br>
+                            &lt;td colspan="3"&gt;&lt;pre&gt;[% s.print_context %]&lt;/pre&gt;&lt;/td&gt;<br>
+                        &lt;/tr&gt;<br>
+                &lt;/table&gt;<br>
+<br>
+                &lt;table&gt;<br>
+                    &lt;tr&gt;&lt;th&gt;key&lt;/th&gt;&lt;th&gt;val&lt;/th&gt;&lt;/tr&gt;<br>
+                    [% FOR key IN s.peek_my.keys %]<br>
+                    &lt;tr&gt;<br>
+                        &lt;td&gt;[% key %]&lt;/td&gt;<br>
+                        &lt;td&gt;<br>
+                            &lt;a onclick="toggle(document.getElementById(\'[% s.level _ key | html %]\'))"&gt;[% s.peek_my.$key | html %]&lt;/a&gt;<br>
+                            &lt;div id="[% s.level _ key | html %]" style="display:none"&gt;[% Dumper.dump_html(s.peek_my.$key) %]&lt;/div&gt;<br>
+                        &lt;/td&gt;<br>
+                    &lt;/tr&gt;<br>
+                    [% END %]<br>
+                &lt;/table&gt;<br>
+                [%- END %]<br>
+            &lt;/div&gt;<br>
+        &lt;/div&gt;<br>
+    &lt;/body&gt;<br>
+&lt;/html&gt;<br>
+',<br>
+                                                                '$VERSION' =&gt; \'0.08'<br>
+                                                              },<br>
+                                                'level' =&gt; 5,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$self' =&gt; \${$VAR1},<br>
+                                                               '$super' =&gt; \sub { "DUMMY" },<br>
+                                                               '$pkg' =&gt; \undef<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::TestPages',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/TestPages.pm',<br>
+                                                'line' =&gt; 52<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 6,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$page' =&gt; \${$VAR1},<br>
+                                                               '$d' =&gt; \undef,<br>
+                                                               '$c' =&gt; \undef,<br>
+                                                               '$warn_msg' =&gt; \'or&lt;&gt;z at 03_methods.t line 30.<br>
+'<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::Plugin::DebugScreen',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/Plugin/DebugScreen.pm',<br>
+                                                'line' =&gt; 187<br>
+                                              }, 'Sledge::Exception::StackTrace' )<br>
+                                     ],<br>
+                   'session' =&gt; bless( {<br>
+                                         '_lock' =&gt; undef,<br>
+                                         '_data' =&gt; {<br>
+                                                      '_timestamp' =&gt; 1143687427,<br>
+                                                      '_url' =&gt; 'http://localhost/?aff_type=mock&amp;s=ABCDEFG'<br>
+                                                    },<br>
+                                         '_sid' =&gt; 'SIDSIDSIDSID',<br>
+                                         '_new' =&gt; 0,<br>
+                                         '_dbh' =&gt; undef,<br>
+                                         '_changed' =&gt; 2<br>
+                                       }, 'Sledge::TestSession' ),<br>
+                   'tmpl' =&gt; bless( {<br>
+                                      '_params' =&gt; {<br>
+                                                     'r' =&gt; ${$VAR1}-&gt;{'r'},<br>
+                                                     'session' =&gt; ${$VAR1}-&gt;{'session'},<br>
+                                                     'config' =&gt; bless( {<br>
+                                                                          'pkg' =&gt; 'Mock::Pages'<br>
+                                                                        }, 'Sledge::TestConfig' )<br>
+                                                   },<br>
+                                      '_options' =&gt; {<br>
+                                                      'ABSOLUTE' =&gt; 1,<br>
+                                                      'filename' =&gt; 't/die.html',<br>
+                                                      'RELATIVE' =&gt; 1,<br>
+                                                      'INCLUDE_PATH' =&gt; [<br>
+                                                                          't/',<br>
+                                                                          '.'<br>
+                                                                        ]<br>
+                                                    }<br>
+                                    }, 'Sledge::Template::TT' ),<br>
+                   'config' =&gt; bless( {<br>
+                                        'pkg' =&gt; 'Mock::Pages'<br>
+                                      }, 'Sledge::TestConfig' ),<br>
+                   'authorizer' =&gt; bless( {}, 'Sledge::Authorizer::Null' )<br>
+                 }, 'Mock::Pages' );<br>
+</div>
+                        </td>
+                    </tr>
+                    
+                </table>                <table>
+                    <tr>
+                        <th>Package</th>
+                        <th>Line   </th>
+                        <th>File   </th>
+                    </tr>
+                        <tr>
+                            <td>Sledge::Pages::Base</td>
+                            <td>94</td>
+                            <td>/home/tokuhirom/project/CPAN/lib/Sledge/Pages/Base.pm</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><pre>   91: 	}
+   92: 	unless ($self-&gt;finished) {
+   93: 	    my $method = 'dispatch_' . $page;
+<b>   94: 	    $self-&gt;$method();
+</b>   95: 	    $self-&gt;invoke_hook('AFTER_DISPATCH');
+   96: 	}
+   97: 	$self-&gt;output_content unless $self-&gt;finished;
+</pre></td>
+                        </tr>
+                </table>
+
+                <table>
+                    <tr><th>key</th><th>val</th></tr>
+                    
+                    <tr>
+                        <td>$method</td>
+                        <td>
+                            <a onclick="toggle(document.getElementById('3$method'))">SCALAR(0x8419e34)</a>
+                            <div id="3$method" style="display:none">$VAR1 = \'dispatch_die';<br>
+</div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>$page</td>
+                        <td>
+                            <a onclick="toggle(document.getElementById('3$page'))">SCALAR(0x840f0e4)</a>
+                            <div id="3$page" style="display:none">$VAR1 = \'die';<br>
+</div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>$self</td>
+                        <td>
+                            <a onclick="toggle(document.getElementById('3$self'))">REF(0x840f0cc)</a>
+                            <div id="3$self" style="display:none">$VAR1 = \bless( {<br>
+                   'page' =&gt; 'die',<br>
+                   'r' =&gt; bless( {<br>
+                                   'header_hash' =&gt; {},<br>
+                                   'query' =&gt; bless( {<br>
+                                                       '.parameters' =&gt; [<br>
+                                                                          'aff_type',<br>
+                                                                          's'<br>
+                                                                        ],<br>
+                                                       '.charset' =&gt; 'ISO-8859-1',<br>
+                                                       '.fieldnames' =&gt; {},<br>
+                                                       's' =&gt; [<br>
+                                                                'ABCDEFG'<br>
+                                                              ],<br>
+                                                       'aff_type' =&gt; [<br>
+                                                                       'mock'<br>
+                                                                     ],<br>
+                                                       'escape' =&gt; 1<br>
+                                                     }, 'CGI' )<br>
+                                 }, 'Sledge::Request::CGI' ),<br>
+                   'charset' =&gt; bless( {}, 'Sledge::Charset::Default' ),<br>
+                   'manager' =&gt; bless( {}, 'Sledge::SessionManager::Cookie' ),<br>
+                   '__stacktrace' =&gt; [<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {<br>
+                                                                '$b' =&gt; \'mk'<br>
+                                                              },<br>
+                                                'level' =&gt; 1,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$a' =&gt; \'b'<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Mock::Pages',<br>
+                                                'file' =&gt; '03_methods.t',<br>
+                                                'line' =&gt; 30<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 2,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$self' =&gt; \${$VAR1}<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Mock::Pages',<br>
+                                                'file' =&gt; '03_methods.t',<br>
+                                                'line' =&gt; 34<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 3,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$method' =&gt; \'dispatch_die',<br>
+                                                               '$page' =&gt; \'die',<br>
+                                                               '$self' =&gt; $VAR1<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::Pages::Base',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/Pages/Base.pm',<br>
+                                                'line' =&gt; 94<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 4,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$out' =&gt; \undef,<br>
+                                                               '$self' =&gt; \${$VAR1}<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::Pages::Base',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/Pages/Base.pm',<br>
+                                                'line' =&gt; 85<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {<br>
+                                                                '$TEMPLATE' =&gt; \'<br>
+&lt;?xml version="1.0" encoding="euc-jp"?&gt;<br>
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja-JP" lang="ja-JP"&gt;<br>
+    &lt;head&gt;<br>
+        [% USE Dumper %]<br>
+        &lt;title&gt;Error in [% title | html %]&lt;/title&gt;<br>
+        &lt;style type="text/css"&gt;<br>
+            body {<br>
+                font-family: "Bitstream Vera Sans", "Trebuchet MS", Verdana,<br>
+                            Tahoma, Arial, helvetica, sans-serif;<br>
+                color: #000;<br>
+                background-color: #F5131A;<br>
+                margin: 0px;<br>
+                padding: 0px;<br>
+            }<br>
+            :link, :link:hover, :visited, :visited:hover {<br>
+                color: #000;<br>
+            }<br>
+            div.box {<br>
+                position: relative;<br>
+                background-color: #fff;<br>
+                border: 1px solid #aaa;<br>
+                padding: 4px;<br>
+                margin: 10px;<br>
+                -moz-border-radius: 10px;<br>
+            }<br>
+            div.infos {<br>
+                background-color: #fff;<br>
+                border: 3px solid #FBEE1A;<br>
+                padding: 8px;<br>
+                margin: 4px;<br>
+                margin-bottom: 10px;<br>
+                -moz-border-radius: 10px;<br>
+            }<br>
+            h1 {<br>
+                margin: 0;<br>
+            }<br>
+            h2 {<br>
+                margin-top: 0;<br>
+                margin-bottom: 10px;<br>
+                font-size: medium;<br>
+                font-weight: bold;<br>
+                text-decoration: underline;<br>
+            }<br>
+            div.url {<br>
+                font-size: x-small;<br>
+            }<br>
+            pre {<br>
+                font-size: .8em;<br>
+                line-height: 120%;<br>
+                font-family: \'Courier New\', Courier, monospace;<br>
+                background-color: #fee;<br>
+                color: #333;<br>
+                border: 1px dotted #000;<br>
+                padding: 5px;<br>
+                margin: 8px;<br>
+                width: 90%;<br>
+            }<br>
+            pre b {<br>
+                font-weight: bold;<br>
+                color: #000;<br>
+                background-color: #f99;<br>
+            }<br>
+        &lt;/style&gt;<br>
+        &lt;script type="text/javascript"&gt;<br>
+            function toggle(e) {<br>
+                if (e.style.display == \'none\') {<br>
+                    e.style.display = \'\';<br>
+                } else {<br>
+                    e.style.display = \'none\';<br>
+                }<br>
+            }<br>
+        &lt;/script&gt;<br>
+    &lt;/head&gt;<br>
+    &lt;body&gt;<br>
+        &lt;div class="box"&gt;<br>
+            &lt;h1&gt;[% title | html %]&lt;/h1&gt;<br>
+<br>
+            &lt;div class="url"&gt;[% pages.current_url | html %]&lt;/div&gt;<br>
+<br>
+            &lt;div class="infos"&gt;<br>
+                [% desc | html %]&lt;br /&gt;<br>
+            &lt;/div&gt;<br>
+<br>
+            &lt;div class="infos"&gt;<br>
+                &lt;h2&gt;StackTrace&lt;/h2&gt;<br>
+                [% FOR s IN stacktrace -%]<br>
+                &lt;table&gt;<br>
+                    &lt;tr&gt;<br>
+                        &lt;th&gt;Package&lt;/th&gt;<br>
+                        &lt;th&gt;Line   &lt;/th&gt;<br>
+                        &lt;th&gt;File   &lt;/th&gt;<br>
+                    &lt;/tr&gt;<br>
+                        &lt;tr&gt;<br>
+                            &lt;td&gt;[% s.pkg  | html %]&lt;/td&gt;<br>
+                            &lt;td&gt;[% s.line | html %]&lt;/td&gt;<br>
+                            &lt;td&gt;[% s.file | html %]&lt;/td&gt;<br>
+                        &lt;/tr&gt;<br>
+                        &lt;tr&gt;<br>
+                            &lt;td colspan="3"&gt;&lt;pre&gt;[% s.print_context %]&lt;/pre&gt;&lt;/td&gt;<br>
+                        &lt;/tr&gt;<br>
+                &lt;/table&gt;<br>
+<br>
+                &lt;table&gt;<br>
+                    &lt;tr&gt;&lt;th&gt;key&lt;/th&gt;&lt;th&gt;val&lt;/th&gt;&lt;/tr&gt;<br>
+                    [% FOR key IN s.peek_my.keys %]<br>
+                    &lt;tr&gt;<br>
+                        &lt;td&gt;[% key %]&lt;/td&gt;<br>
+                        &lt;td&gt;<br>
+                            &lt;a onclick="toggle(document.getElementById(\'[% s.level _ key | html %]\'))"&gt;[% s.peek_my.$key | html %]&lt;/a&gt;<br>
+                            &lt;div id="[% s.level _ key | html %]" style="display:none"&gt;[% Dumper.dump_html(s.peek_my.$key) %]&lt;/div&gt;<br>
+                        &lt;/td&gt;<br>
+                    &lt;/tr&gt;<br>
+                    [% END %]<br>
+                &lt;/table&gt;<br>
+                [%- END %]<br>
+            &lt;/div&gt;<br>
+        &lt;/div&gt;<br>
+    &lt;/body&gt;<br>
+&lt;/html&gt;<br>
+',<br>
+                                                                '$VERSION' =&gt; \'0.08'<br>
+                                                              },<br>
+                                                'level' =&gt; 5,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$self' =&gt; \${$VAR1},<br>
+                                                               '$super' =&gt; \sub { "DUMMY" },<br>
+                                                               '$pkg' =&gt; \undef<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::TestPages',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/TestPages.pm',<br>
+                                                'line' =&gt; 52<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 6,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$page' =&gt; \${$VAR1},<br>
+                                                               '$d' =&gt; \undef,<br>
+                                                               '$c' =&gt; \undef,<br>
+                                                               '$warn_msg' =&gt; \'or&lt;&gt;z at 03_methods.t line 30.<br>
+'<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::Plugin::DebugScreen',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/Plugin/DebugScreen.pm',<br>
+                                                'line' =&gt; 187<br>
+                                              }, 'Sledge::Exception::StackTrace' )<br>
+                                     ],<br>
+                   'session' =&gt; bless( {<br>
+                                         '_lock' =&gt; undef,<br>
+                                         '_data' =&gt; {<br>
+                                                      '_timestamp' =&gt; 1143687427,<br>
+                                                      '_url' =&gt; 'http://localhost/?aff_type=mock&amp;s=ABCDEFG'<br>
+                                                    },<br>
+                                         '_sid' =&gt; 'SIDSIDSIDSID',<br>
+                                         '_new' =&gt; 0,<br>
+                                         '_dbh' =&gt; undef,<br>
+                                         '_changed' =&gt; 2<br>
+                                       }, 'Sledge::TestSession' ),<br>
+                   'tmpl' =&gt; bless( {<br>
+                                      '_params' =&gt; {<br>
+                                                     'r' =&gt; ${$VAR1}-&gt;{'r'},<br>
+                                                     'session' =&gt; ${$VAR1}-&gt;{'session'},<br>
+                                                     'config' =&gt; bless( {<br>
+                                                                          'pkg' =&gt; 'Mock::Pages'<br>
+                                                                        }, 'Sledge::TestConfig' )<br>
+                                                   },<br>
+                                      '_options' =&gt; {<br>
+                                                      'ABSOLUTE' =&gt; 1,<br>
+                                                      'filename' =&gt; 't/die.html',<br>
+                                                      'RELATIVE' =&gt; 1,<br>
+                                                      'INCLUDE_PATH' =&gt; [<br>
+                                                                          't/',<br>
+                                                                          '.'<br>
+                                                                        ]<br>
+                                                    }<br>
+                                    }, 'Sledge::Template::TT' ),<br>
+                   'config' =&gt; bless( {<br>
+                                        'pkg' =&gt; 'Mock::Pages'<br>
+                                      }, 'Sledge::TestConfig' ),<br>
+                   'authorizer' =&gt; bless( {}, 'Sledge::Authorizer::Null' )<br>
+                 }, 'Mock::Pages' );<br>
+</div>
+                        </td>
+                    </tr>
+                    
+                </table>                <table>
+                    <tr>
+                        <th>Package</th>
+                        <th>Line   </th>
+                        <th>File   </th>
+                    </tr>
+                        <tr>
+                            <td>Sledge::Pages::Base</td>
+                            <td>85</td>
+                            <td>/home/tokuhirom/project/CPAN/lib/Sledge/Pages/Base.pm</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><pre>   82:     no warnings 'redefine';
+   83:     local *Sledge::Registrar::context = sub { $self };
+   84:     Sledge::Exception-&gt;do_trace(1) if $self-&gt;debug_level;
+<b>   85:     eval {
+</b>   86: 	$self-&gt;init_dispatch($page);
+   87: 	$self-&gt;invoke_hook('BEFORE_DISPATCH') unless $self-&gt;finished;
+   88: 	if ($self-&gt;is_post_request &amp;&amp; ! $self-&gt;finished) {
+</pre></td>
+                        </tr>
+                </table>
+
+                <table>
+                    <tr><th>key</th><th>val</th></tr>
+                    
+                    <tr>
+                        <td>$out</td>
+                        <td>
+                            <a onclick="toggle(document.getElementById('4$out'))">SCALAR(0x85fcc50)</a>
+                            <div id="4$out" style="display:none">$VAR1 = \undef;<br>
+</div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>$self</td>
+                        <td>
+                            <a onclick="toggle(document.getElementById('4$self'))">REF(0x85fcc20)</a>
+                            <div id="4$self" style="display:none">$VAR1 = \bless( {<br>
+                   'page' =&gt; 'die',<br>
+                   'r' =&gt; bless( {<br>
+                                   'header_hash' =&gt; {},<br>
+                                   'query' =&gt; bless( {<br>
+                                                       '.parameters' =&gt; [<br>
+                                                                          'aff_type',<br>
+                                                                          's'<br>
+                                                                        ],<br>
+                                                       '.charset' =&gt; 'ISO-8859-1',<br>
+                                                       '.fieldnames' =&gt; {},<br>
+                                                       's' =&gt; [<br>
+                                                                'ABCDEFG'<br>
+                                                              ],<br>
+                                                       'aff_type' =&gt; [<br>
+                                                                       'mock'<br>
+                                                                     ],<br>
+                                                       'escape' =&gt; 1<br>
+                                                     }, 'CGI' )<br>
+                                 }, 'Sledge::Request::CGI' ),<br>
+                   'charset' =&gt; bless( {}, 'Sledge::Charset::Default' ),<br>
+                   'manager' =&gt; bless( {}, 'Sledge::SessionManager::Cookie' ),<br>
+                   '__stacktrace' =&gt; [<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {<br>
+                                                                '$b' =&gt; \'mk'<br>
+                                                              },<br>
+                                                'level' =&gt; 1,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$a' =&gt; \'b'<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Mock::Pages',<br>
+                                                'file' =&gt; '03_methods.t',<br>
+                                                'line' =&gt; 30<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 2,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$self' =&gt; \${$VAR1}<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Mock::Pages',<br>
+                                                'file' =&gt; '03_methods.t',<br>
+                                                'line' =&gt; 34<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 3,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$method' =&gt; \'dispatch_die',<br>
+                                                               '$page' =&gt; \'die',<br>
+                                                               '$self' =&gt; \${$VAR1}<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::Pages::Base',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/Pages/Base.pm',<br>
+                                                'line' =&gt; 94<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 4,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$out' =&gt; \undef,<br>
+                                                               '$self' =&gt; $VAR1<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::Pages::Base',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/Pages/Base.pm',<br>
+                                                'line' =&gt; 85<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {<br>
+                                                                '$TEMPLATE' =&gt; \'<br>
+&lt;?xml version="1.0" encoding="euc-jp"?&gt;<br>
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja-JP" lang="ja-JP"&gt;<br>
+    &lt;head&gt;<br>
+        [% USE Dumper %]<br>
+        &lt;title&gt;Error in [% title | html %]&lt;/title&gt;<br>
+        &lt;style type="text/css"&gt;<br>
+            body {<br>
+                font-family: "Bitstream Vera Sans", "Trebuchet MS", Verdana,<br>
+                            Tahoma, Arial, helvetica, sans-serif;<br>
+                color: #000;<br>
+                background-color: #F5131A;<br>
+                margin: 0px;<br>
+                padding: 0px;<br>
+            }<br>
+            :link, :link:hover, :visited, :visited:hover {<br>
+                color: #000;<br>
+            }<br>
+            div.box {<br>
+                position: relative;<br>
+                background-color: #fff;<br>
+                border: 1px solid #aaa;<br>
+                padding: 4px;<br>
+                margin: 10px;<br>
+                -moz-border-radius: 10px;<br>
+            }<br>
+            div.infos {<br>
+                background-color: #fff;<br>
+                border: 3px solid #FBEE1A;<br>
+                padding: 8px;<br>
+                margin: 4px;<br>
+                margin-bottom: 10px;<br>
+                -moz-border-radius: 10px;<br>
+            }<br>
+            h1 {<br>
+                margin: 0;<br>
+            }<br>
+            h2 {<br>
+                margin-top: 0;<br>
+                margin-bottom: 10px;<br>
+                font-size: medium;<br>
+                font-weight: bold;<br>
+                text-decoration: underline;<br>
+            }<br>
+            div.url {<br>
+                font-size: x-small;<br>
+            }<br>
+            pre {<br>
+                font-size: .8em;<br>
+                line-height: 120%;<br>
+                font-family: \'Courier New\', Courier, monospace;<br>
+                background-color: #fee;<br>
+                color: #333;<br>
+                border: 1px dotted #000;<br>
+                padding: 5px;<br>
+                margin: 8px;<br>
+                width: 90%;<br>
+            }<br>
+            pre b {<br>
+                font-weight: bold;<br>
+                color: #000;<br>
+                background-color: #f99;<br>
+            }<br>
+        &lt;/style&gt;<br>
+        &lt;script type="text/javascript"&gt;<br>
+            function toggle(e) {<br>
+                if (e.style.display == \'none\') {<br>
+                    e.style.display = \'\';<br>
+                } else {<br>
+                    e.style.display = \'none\';<br>
+                }<br>
+            }<br>
+        &lt;/script&gt;<br>
+    &lt;/head&gt;<br>
+    &lt;body&gt;<br>
+        &lt;div class="box"&gt;<br>
+            &lt;h1&gt;[% title | html %]&lt;/h1&gt;<br>
+<br>
+            &lt;div class="url"&gt;[% pages.current_url | html %]&lt;/div&gt;<br>
+<br>
+            &lt;div class="infos"&gt;<br>
+                [% desc | html %]&lt;br /&gt;<br>
+            &lt;/div&gt;<br>
+<br>
+            &lt;div class="infos"&gt;<br>
+                &lt;h2&gt;StackTrace&lt;/h2&gt;<br>
+                [% FOR s IN stacktrace -%]<br>
+                &lt;table&gt;<br>
+                    &lt;tr&gt;<br>
+                        &lt;th&gt;Package&lt;/th&gt;<br>
+                        &lt;th&gt;Line   &lt;/th&gt;<br>
+                        &lt;th&gt;File   &lt;/th&gt;<br>
+                    &lt;/tr&gt;<br>
+                        &lt;tr&gt;<br>
+                            &lt;td&gt;[% s.pkg  | html %]&lt;/td&gt;<br>
+                            &lt;td&gt;[% s.line | html %]&lt;/td&gt;<br>
+                            &lt;td&gt;[% s.file | html %]&lt;/td&gt;<br>
+                        &lt;/tr&gt;<br>
+                        &lt;tr&gt;<br>
+                            &lt;td colspan="3"&gt;&lt;pre&gt;[% s.print_context %]&lt;/pre&gt;&lt;/td&gt;<br>
+                        &lt;/tr&gt;<br>
+                &lt;/table&gt;<br>
+<br>
+                &lt;table&gt;<br>
+                    &lt;tr&gt;&lt;th&gt;key&lt;/th&gt;&lt;th&gt;val&lt;/th&gt;&lt;/tr&gt;<br>
+                    [% FOR key IN s.peek_my.keys %]<br>
+                    &lt;tr&gt;<br>
+                        &lt;td&gt;[% key %]&lt;/td&gt;<br>
+                        &lt;td&gt;<br>
+                            &lt;a onclick="toggle(document.getElementById(\'[% s.level _ key | html %]\'))"&gt;[% s.peek_my.$key | html %]&lt;/a&gt;<br>
+                            &lt;div id="[% s.level _ key | html %]" style="display:none"&gt;[% Dumper.dump_html(s.peek_my.$key) %]&lt;/div&gt;<br>
+                        &lt;/td&gt;<br>
+                    &lt;/tr&gt;<br>
+                    [% END %]<br>
+                &lt;/table&gt;<br>
+                [%- END %]<br>
+            &lt;/div&gt;<br>
+        &lt;/div&gt;<br>
+    &lt;/body&gt;<br>
+&lt;/html&gt;<br>
+',<br>
+                                                                '$VERSION' =&gt; \'0.08'<br>
+                                                              },<br>
+                                                'level' =&gt; 5,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$self' =&gt; \${$VAR1},<br>
+                                                               '$super' =&gt; \sub { "DUMMY" },<br>
+                                                               '$pkg' =&gt; \undef<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::TestPages',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/TestPages.pm',<br>
+                                                'line' =&gt; 52<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 6,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$page' =&gt; \${$VAR1},<br>
+                                                               '$d' =&gt; \undef,<br>
+                                                               '$c' =&gt; \undef,<br>
+                                                               '$warn_msg' =&gt; \'or&lt;&gt;z at 03_methods.t line 30.<br>
+'<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::Plugin::DebugScreen',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/Plugin/DebugScreen.pm',<br>
+                                                'line' =&gt; 187<br>
+                                              }, 'Sledge::Exception::StackTrace' )<br>
+                                     ],<br>
+                   'session' =&gt; bless( {<br>
+                                         '_lock' =&gt; undef,<br>
+                                         '_data' =&gt; {<br>
+                                                      '_timestamp' =&gt; 1143687427,<br>
+                                                      '_url' =&gt; 'http://localhost/?aff_type=mock&amp;s=ABCDEFG'<br>
+                                                    },<br>
+                                         '_sid' =&gt; 'SIDSIDSIDSID',<br>
+                                         '_new' =&gt; 0,<br>
+                                         '_dbh' =&gt; undef,<br>
+                                         '_changed' =&gt; 2<br>
+                                       }, 'Sledge::TestSession' ),<br>
+                   'tmpl' =&gt; bless( {<br>
+                                      '_params' =&gt; {<br>
+                                                     'r' =&gt; ${$VAR1}-&gt;{'r'},<br>
+                                                     'session' =&gt; ${$VAR1}-&gt;{'session'},<br>
+                                                     'config' =&gt; bless( {<br>
+                                                                          'pkg' =&gt; 'Mock::Pages'<br>
+                                                                        }, 'Sledge::TestConfig' )<br>
+                                                   },<br>
+                                      '_options' =&gt; {<br>
+                                                      'ABSOLUTE' =&gt; 1,<br>
+                                                      'filename' =&gt; 't/die.html',<br>
+                                                      'RELATIVE' =&gt; 1,<br>
+                                                      'INCLUDE_PATH' =&gt; [<br>
+                                                                          't/',<br>
+                                                                          '.'<br>
+                                                                        ]<br>
+                                                    }<br>
+                                    }, 'Sledge::Template::TT' ),<br>
+                   'config' =&gt; bless( {<br>
+                                        'pkg' =&gt; 'Mock::Pages'<br>
+                                      }, 'Sledge::TestConfig' ),<br>
+                   'authorizer' =&gt; bless( {}, 'Sledge::Authorizer::Null' )<br>
+                 }, 'Mock::Pages' );<br>
+</div>
+                        </td>
+                    </tr>
+                    
+                </table>                <table>
+                    <tr>
+                        <th>Package</th>
+                        <th>Line   </th>
+                        <th>File   </th>
+                    </tr>
+                        <tr>
+                            <td>Sledge::TestPages</td>
+                            <td>52</td>
+                            <td>/home/tokuhirom/project/CPAN/lib/Sledge/TestPages.pm</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><pre>   49:     my $self = shift;
+   50:     CGI::initialize_globals();
+   51:     tie *STDOUT, 'IO::Scalar', \my $out;
+<b>   52:     $self-&gt;SUPER::dispatch(@_);
+</b>   53:     untie *STDOUT;
+   54:     bless $self, __PACKAGE__;
+   55:     $self-&gt;{output} = $out;
+</pre></td>
+                        </tr>
+                </table>
+
+                <table>
+                    <tr><th>key</th><th>val</th></tr>
+                    
+                    <tr>
+                        <td>$self</td>
+                        <td>
+                            <a onclick="toggle(document.getElementById('5$self'))">REF(0x8660cb8)</a>
+                            <div id="5$self" style="display:none">$VAR1 = \bless( {<br>
+                   'page' =&gt; 'die',<br>
+                   'r' =&gt; bless( {<br>
+                                   'header_hash' =&gt; {},<br>
+                                   'query' =&gt; bless( {<br>
+                                                       '.parameters' =&gt; [<br>
+                                                                          'aff_type',<br>
+                                                                          's'<br>
+                                                                        ],<br>
+                                                       '.charset' =&gt; 'ISO-8859-1',<br>
+                                                       '.fieldnames' =&gt; {},<br>
+                                                       's' =&gt; [<br>
+                                                                'ABCDEFG'<br>
+                                                              ],<br>
+                                                       'aff_type' =&gt; [<br>
+                                                                       'mock'<br>
+                                                                     ],<br>
+                                                       'escape' =&gt; 1<br>
+                                                     }, 'CGI' )<br>
+                                 }, 'Sledge::Request::CGI' ),<br>
+                   'charset' =&gt; bless( {}, 'Sledge::Charset::Default' ),<br>
+                   'manager' =&gt; bless( {}, 'Sledge::SessionManager::Cookie' ),<br>
+                   '__stacktrace' =&gt; [<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {<br>
+                                                                '$b' =&gt; \'mk'<br>
+                                                              },<br>
+                                                'level' =&gt; 1,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$a' =&gt; \'b'<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Mock::Pages',<br>
+                                                'file' =&gt; '03_methods.t',<br>
+                                                'line' =&gt; 30<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 2,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$self' =&gt; \${$VAR1}<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Mock::Pages',<br>
+                                                'file' =&gt; '03_methods.t',<br>
+                                                'line' =&gt; 34<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 3,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$method' =&gt; \'dispatch_die',<br>
+                                                               '$page' =&gt; \'die',<br>
+                                                               '$self' =&gt; \${$VAR1}<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::Pages::Base',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/Pages/Base.pm',<br>
+                                                'line' =&gt; 94<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 4,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$out' =&gt; \undef,<br>
+                                                               '$self' =&gt; \${$VAR1}<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::Pages::Base',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/Pages/Base.pm',<br>
+                                                'line' =&gt; 85<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {<br>
+                                                                '$TEMPLATE' =&gt; \'<br>
+&lt;?xml version="1.0" encoding="euc-jp"?&gt;<br>
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja-JP" lang="ja-JP"&gt;<br>
+    &lt;head&gt;<br>
+        [% USE Dumper %]<br>
+        &lt;title&gt;Error in [% title | html %]&lt;/title&gt;<br>
+        &lt;style type="text/css"&gt;<br>
+            body {<br>
+                font-family: "Bitstream Vera Sans", "Trebuchet MS", Verdana,<br>
+                            Tahoma, Arial, helvetica, sans-serif;<br>
+                color: #000;<br>
+                background-color: #F5131A;<br>
+                margin: 0px;<br>
+                padding: 0px;<br>
+            }<br>
+            :link, :link:hover, :visited, :visited:hover {<br>
+                color: #000;<br>
+            }<br>
+            div.box {<br>
+                position: relative;<br>
+                background-color: #fff;<br>
+                border: 1px solid #aaa;<br>
+                padding: 4px;<br>
+                margin: 10px;<br>
+                -moz-border-radius: 10px;<br>
+            }<br>
+            div.infos {<br>
+                background-color: #fff;<br>
+                border: 3px solid #FBEE1A;<br>
+                padding: 8px;<br>
+                margin: 4px;<br>
+                margin-bottom: 10px;<br>
+                -moz-border-radius: 10px;<br>
+            }<br>
+            h1 {<br>
+                margin: 0;<br>
+            }<br>
+            h2 {<br>
+                margin-top: 0;<br>
+                margin-bottom: 10px;<br>
+                font-size: medium;<br>
+                font-weight: bold;<br>
+                text-decoration: underline;<br>
+            }<br>
+            div.url {<br>
+                font-size: x-small;<br>
+            }<br>
+            pre {<br>
+                font-size: .8em;<br>
+                line-height: 120%;<br>
+                font-family: \'Courier New\', Courier, monospace;<br>
+                background-color: #fee;<br>
+                color: #333;<br>
+                border: 1px dotted #000;<br>
+                padding: 5px;<br>
+                margin: 8px;<br>
+                width: 90%;<br>
+            }<br>
+            pre b {<br>
+                font-weight: bold;<br>
+                color: #000;<br>
+                background-color: #f99;<br>
+            }<br>
+        &lt;/style&gt;<br>
+        &lt;script type="text/javascript"&gt;<br>
+            function toggle(e) {<br>
+                if (e.style.display == \'none\') {<br>
+                    e.style.display = \'\';<br>
+                } else {<br>
+                    e.style.display = \'none\';<br>
+                }<br>
+            }<br>
+        &lt;/script&gt;<br>
+    &lt;/head&gt;<br>
+    &lt;body&gt;<br>
+        &lt;div class="box"&gt;<br>
+            &lt;h1&gt;[% title | html %]&lt;/h1&gt;<br>
+<br>
+            &lt;div class="url"&gt;[% pages.current_url | html %]&lt;/div&gt;<br>
+<br>
+            &lt;div class="infos"&gt;<br>
+                [% desc | html %]&lt;br /&gt;<br>
+            &lt;/div&gt;<br>
+<br>
+            &lt;div class="infos"&gt;<br>
+                &lt;h2&gt;StackTrace&lt;/h2&gt;<br>
+                [% FOR s IN stacktrace -%]<br>
+                &lt;table&gt;<br>
+                    &lt;tr&gt;<br>
+                        &lt;th&gt;Package&lt;/th&gt;<br>
+                        &lt;th&gt;Line   &lt;/th&gt;<br>
+                        &lt;th&gt;File   &lt;/th&gt;<br>
+                    &lt;/tr&gt;<br>
+                        &lt;tr&gt;<br>
+                            &lt;td&gt;[% s.pkg  | html %]&lt;/td&gt;<br>
+                            &lt;td&gt;[% s.line | html %]&lt;/td&gt;<br>
+                            &lt;td&gt;[% s.file | html %]&lt;/td&gt;<br>
+                        &lt;/tr&gt;<br>
+                        &lt;tr&gt;<br>
+                            &lt;td colspan="3"&gt;&lt;pre&gt;[% s.print_context %]&lt;/pre&gt;&lt;/td&gt;<br>
+                        &lt;/tr&gt;<br>
+                &lt;/table&gt;<br>
+<br>
+                &lt;table&gt;<br>
+                    &lt;tr&gt;&lt;th&gt;key&lt;/th&gt;&lt;th&gt;val&lt;/th&gt;&lt;/tr&gt;<br>
+                    [% FOR key IN s.peek_my.keys %]<br>
+                    &lt;tr&gt;<br>
+                        &lt;td&gt;[% key %]&lt;/td&gt;<br>
+                        &lt;td&gt;<br>
+                            &lt;a onclick="toggle(document.getElementById(\'[% s.level _ key | html %]\'))"&gt;[% s.peek_my.$key | html %]&lt;/a&gt;<br>
+                            &lt;div id="[% s.level _ key | html %]" style="display:none"&gt;[% Dumper.dump_html(s.peek_my.$key) %]&lt;/div&gt;<br>
+                        &lt;/td&gt;<br>
+                    &lt;/tr&gt;<br>
+                    [% END %]<br>
+                &lt;/table&gt;<br>
+                [%- END %]<br>
+            &lt;/div&gt;<br>
+        &lt;/div&gt;<br>
+    &lt;/body&gt;<br>
+&lt;/html&gt;<br>
+',<br>
+                                                                '$VERSION' =&gt; \'0.08'<br>
+                                                              },<br>
+                                                'level' =&gt; 5,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$self' =&gt; $VAR1,<br>
+                                                               '$super' =&gt; \sub { "DUMMY" },<br>
+                                                               '$pkg' =&gt; \undef<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::TestPages',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/TestPages.pm',<br>
+                                                'line' =&gt; 52<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 6,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$page' =&gt; \${$VAR1},<br>
+                                                               '$d' =&gt; \undef,<br>
+                                                               '$c' =&gt; \undef,<br>
+                                                               '$warn_msg' =&gt; \'or&lt;&gt;z at 03_methods.t line 30.<br>
+'<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::Plugin::DebugScreen',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/Plugin/DebugScreen.pm',<br>
+                                                'line' =&gt; 187<br>
+                                              }, 'Sledge::Exception::StackTrace' )<br>
+                                     ],<br>
+                   'session' =&gt; bless( {<br>
+                                         '_lock' =&gt; undef,<br>
+                                         '_data' =&gt; {<br>
+                                                      '_timestamp' =&gt; 1143687427,<br>
+                                                      '_url' =&gt; 'http://localhost/?aff_type=mock&amp;s=ABCDEFG'<br>
+                                                    },<br>
+                                         '_sid' =&gt; 'SIDSIDSIDSID',<br>
+                                         '_new' =&gt; 0,<br>
+                                         '_dbh' =&gt; undef,<br>
+                                         '_changed' =&gt; 2<br>
+                                       }, 'Sledge::TestSession' ),<br>
+                   'tmpl' =&gt; bless( {<br>
+                                      '_params' =&gt; {<br>
+                                                     'r' =&gt; ${$VAR1}-&gt;{'r'},<br>
+                                                     'session' =&gt; ${$VAR1}-&gt;{'session'},<br>
+                                                     'config' =&gt; bless( {<br>
+                                                                          'pkg' =&gt; 'Mock::Pages'<br>
+                                                                        }, 'Sledge::TestConfig' )<br>
+                                                   },<br>
+                                      '_options' =&gt; {<br>
+                                                      'ABSOLUTE' =&gt; 1,<br>
+                                                      'filename' =&gt; 't/die.html',<br>
+                                                      'RELATIVE' =&gt; 1,<br>
+                                                      'INCLUDE_PATH' =&gt; [<br>
+                                                                          't/',<br>
+                                                                          '.'<br>
+                                                                        ]<br>
+                                                    }<br>
+                                    }, 'Sledge::Template::TT' ),<br>
+                   'config' =&gt; bless( {<br>
+                                        'pkg' =&gt; 'Mock::Pages'<br>
+                                      }, 'Sledge::TestConfig' ),<br>
+                   'authorizer' =&gt; bless( {}, 'Sledge::Authorizer::Null' )<br>
+                 }, 'Mock::Pages' );<br>
+</div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>$super</td>
+                        <td>
+                            <a onclick="toggle(document.getElementById('5$super'))">REF(0x865bb28)</a>
+                            <div id="5$super" style="display:none">$VAR1 = \sub { "DUMMY" };<br>
+</div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>$pkg</td>
+                        <td>
+                            <a onclick="toggle(document.getElementById('5$pkg'))">SCALAR(0x865baf8)</a>
+                            <div id="5$pkg" style="display:none">$VAR1 = \undef;<br>
+</div>
+                        </td>
+                    </tr>
+                    
+                </table>                <table>
+                    <tr>
+                        <th>Package</th>
+                        <th>Line   </th>
+                        <th>File   </th>
+                    </tr>
+                        <tr>
+                            <td>Sledge::Plugin::DebugScreen</td>
+                            <td>187</td>
+                            <td>/home/tokuhirom/project/CPAN/lib/Sledge/Plugin/DebugScreen.pm</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><pre>  184:                 }
+  185:                 die $E; # rethrow
+  186:             };
+<b>  187:             $self-&gt;$super(@_);
+</b>  188:         };
+  189:     }
+  190: 
+</pre></td>
+                        </tr>
+                </table>
+
+                <table>
+                    <tr><th>key</th><th>val</th></tr>
+                    
+                    <tr>
+                        <td>$page</td>
+                        <td>
+                            <a onclick="toggle(document.getElementById('6$page'))">REF(0x8630cbc)</a>
+                            <div id="6$page" style="display:none">$VAR1 = \bless( {<br>
+                   'page' =&gt; 'die',<br>
+                   'r' =&gt; bless( {<br>
+                                   'header_hash' =&gt; {},<br>
+                                   'query' =&gt; bless( {<br>
+                                                       '.parameters' =&gt; [<br>
+                                                                          'aff_type',<br>
+                                                                          's'<br>
+                                                                        ],<br>
+                                                       '.charset' =&gt; 'ISO-8859-1',<br>
+                                                       '.fieldnames' =&gt; {},<br>
+                                                       's' =&gt; [<br>
+                                                                'ABCDEFG'<br>
+                                                              ],<br>
+                                                       'aff_type' =&gt; [<br>
+                                                                       'mock'<br>
+                                                                     ],<br>
+                                                       'escape' =&gt; 1<br>
+                                                     }, 'CGI' )<br>
+                                 }, 'Sledge::Request::CGI' ),<br>
+                   'charset' =&gt; bless( {}, 'Sledge::Charset::Default' ),<br>
+                   'manager' =&gt; bless( {}, 'Sledge::SessionManager::Cookie' ),<br>
+                   '__stacktrace' =&gt; [<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {<br>
+                                                                '$b' =&gt; \'mk'<br>
+                                                              },<br>
+                                                'level' =&gt; 1,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$a' =&gt; \'b'<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Mock::Pages',<br>
+                                                'file' =&gt; '03_methods.t',<br>
+                                                'line' =&gt; 30<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 2,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$self' =&gt; \${$VAR1}<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Mock::Pages',<br>
+                                                'file' =&gt; '03_methods.t',<br>
+                                                'line' =&gt; 34<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 3,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$method' =&gt; \'dispatch_die',<br>
+                                                               '$page' =&gt; \'die',<br>
+                                                               '$self' =&gt; \${$VAR1}<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::Pages::Base',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/Pages/Base.pm',<br>
+                                                'line' =&gt; 94<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 4,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$out' =&gt; \undef,<br>
+                                                               '$self' =&gt; \${$VAR1}<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::Pages::Base',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/Pages/Base.pm',<br>
+                                                'line' =&gt; 85<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {<br>
+                                                                '$TEMPLATE' =&gt; \'<br>
+&lt;?xml version="1.0" encoding="euc-jp"?&gt;<br>
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja-JP" lang="ja-JP"&gt;<br>
+    &lt;head&gt;<br>
+        [% USE Dumper %]<br>
+        &lt;title&gt;Error in [% title | html %]&lt;/title&gt;<br>
+        &lt;style type="text/css"&gt;<br>
+            body {<br>
+                font-family: "Bitstream Vera Sans", "Trebuchet MS", Verdana,<br>
+                            Tahoma, Arial, helvetica, sans-serif;<br>
+                color: #000;<br>
+                background-color: #F5131A;<br>
+                margin: 0px;<br>
+                padding: 0px;<br>
+            }<br>
+            :link, :link:hover, :visited, :visited:hover {<br>
+                color: #000;<br>
+            }<br>
+            div.box {<br>
+                position: relative;<br>
+                background-color: #fff;<br>
+                border: 1px solid #aaa;<br>
+                padding: 4px;<br>
+                margin: 10px;<br>
+                -moz-border-radius: 10px;<br>
+            }<br>
+            div.infos {<br>
+                background-color: #fff;<br>
+                border: 3px solid #FBEE1A;<br>
+                padding: 8px;<br>
+                margin: 4px;<br>
+                margin-bottom: 10px;<br>
+                -moz-border-radius: 10px;<br>
+            }<br>
+            h1 {<br>
+                margin: 0;<br>
+            }<br>
+            h2 {<br>
+                margin-top: 0;<br>
+                margin-bottom: 10px;<br>
+                font-size: medium;<br>
+                font-weight: bold;<br>
+                text-decoration: underline;<br>
+            }<br>
+            div.url {<br>
+                font-size: x-small;<br>
+            }<br>
+            pre {<br>
+                font-size: .8em;<br>
+                line-height: 120%;<br>
+                font-family: \'Courier New\', Courier, monospace;<br>
+                background-color: #fee;<br>
+                color: #333;<br>
+                border: 1px dotted #000;<br>
+                padding: 5px;<br>
+                margin: 8px;<br>
+                width: 90%;<br>
+            }<br>
+            pre b {<br>
+                font-weight: bold;<br>
+                color: #000;<br>
+                background-color: #f99;<br>
+            }<br>
+        &lt;/style&gt;<br>
+        &lt;script type="text/javascript"&gt;<br>
+            function toggle(e) {<br>
+                if (e.style.display == \'none\') {<br>
+                    e.style.display = \'\';<br>
+                } else {<br>
+                    e.style.display = \'none\';<br>
+                }<br>
+            }<br>
+        &lt;/script&gt;<br>
+    &lt;/head&gt;<br>
+    &lt;body&gt;<br>
+        &lt;div class="box"&gt;<br>
+            &lt;h1&gt;[% title | html %]&lt;/h1&gt;<br>
+<br>
+            &lt;div class="url"&gt;[% pages.current_url | html %]&lt;/div&gt;<br>
+<br>
+            &lt;div class="infos"&gt;<br>
+                [% desc | html %]&lt;br /&gt;<br>
+            &lt;/div&gt;<br>
+<br>
+            &lt;div class="infos"&gt;<br>
+                &lt;h2&gt;StackTrace&lt;/h2&gt;<br>
+                [% FOR s IN stacktrace -%]<br>
+                &lt;table&gt;<br>
+                    &lt;tr&gt;<br>
+                        &lt;th&gt;Package&lt;/th&gt;<br>
+                        &lt;th&gt;Line   &lt;/th&gt;<br>
+                        &lt;th&gt;File   &lt;/th&gt;<br>
+                    &lt;/tr&gt;<br>
+                        &lt;tr&gt;<br>
+                            &lt;td&gt;[% s.pkg  | html %]&lt;/td&gt;<br>
+                            &lt;td&gt;[% s.line | html %]&lt;/td&gt;<br>
+                            &lt;td&gt;[% s.file | html %]&lt;/td&gt;<br>
+                        &lt;/tr&gt;<br>
+                        &lt;tr&gt;<br>
+                            &lt;td colspan="3"&gt;&lt;pre&gt;[% s.print_context %]&lt;/pre&gt;&lt;/td&gt;<br>
+                        &lt;/tr&gt;<br>
+                &lt;/table&gt;<br>
+<br>
+                &lt;table&gt;<br>
+                    &lt;tr&gt;&lt;th&gt;key&lt;/th&gt;&lt;th&gt;val&lt;/th&gt;&lt;/tr&gt;<br>
+                    [% FOR key IN s.peek_my.keys %]<br>
+                    &lt;tr&gt;<br>
+                        &lt;td&gt;[% key %]&lt;/td&gt;<br>
+                        &lt;td&gt;<br>
+                            &lt;a onclick="toggle(document.getElementById(\'[% s.level _ key | html %]\'))"&gt;[% s.peek_my.$key | html %]&lt;/a&gt;<br>
+                            &lt;div id="[% s.level _ key | html %]" style="display:none"&gt;[% Dumper.dump_html(s.peek_my.$key) %]&lt;/div&gt;<br>
+                        &lt;/td&gt;<br>
+                    &lt;/tr&gt;<br>
+                    [% END %]<br>
+                &lt;/table&gt;<br>
+                [%- END %]<br>
+            &lt;/div&gt;<br>
+        &lt;/div&gt;<br>
+    &lt;/body&gt;<br>
+&lt;/html&gt;<br>
+',<br>
+                                                                '$VERSION' =&gt; \'0.08'<br>
+                                                              },<br>
+                                                'level' =&gt; 5,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$self' =&gt; \${$VAR1},<br>
+                                                               '$super' =&gt; \sub { "DUMMY" },<br>
+                                                               '$pkg' =&gt; \undef<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::TestPages',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/TestPages.pm',<br>
+                                                'line' =&gt; 52<br>
+                                              }, 'Sledge::Exception::StackTrace' ),<br>
+                                       bless( {<br>
+                                                'peek_our' =&gt; {},<br>
+                                                'level' =&gt; 6,<br>
+                                                'peek_my' =&gt; {<br>
+                                                               '$page' =&gt; $VAR1,<br>
+                                                               '$d' =&gt; \undef,<br>
+                                                               '$c' =&gt; \undef,<br>
+                                                               '$warn_msg' =&gt; \'or&lt;&gt;z at 03_methods.t line 30.<br>
+'<br>
+                                                             },<br>
+                                                'pkg' =&gt; 'Sledge::Plugin::DebugScreen',<br>
+                                                'file' =&gt; '/home/tokuhirom/project/CPAN/lib/Sledge/Plugin/DebugScreen.pm',<br>
+                                                'line' =&gt; 187<br>
+                                              }, 'Sledge::Exception::StackTrace' )<br>
+                                     ],<br>
+                   'session' =&gt; bless( {<br>
+                                         '_lock' =&gt; undef,<br>
+                                         '_data' =&gt; {<br>
+                                                      '_timestamp' =&gt; 1143687427,<br>
+                                                      '_url' =&gt; 'http://localhost/?aff_type=mock&amp;s=ABCDEFG'<br>
+                                                    },<br>
+                                         '_sid' =&gt; 'SIDSIDSIDSID',<br>
+                                         '_new' =&gt; 0,<br>
+                                         '_dbh' =&gt; undef,<br>
+                                         '_changed' =&gt; 2<br>
+                                       }, 'Sledge::TestSession' ),<br>
+                   'tmpl' =&gt; bless( {<br>
+                                      '_params' =&gt; {<br>
+                                                     'r' =&gt; ${$VAR1}-&gt;{'r'},<br>
+                                                     'session' =&gt; ${$VAR1}-&gt;{'session'},<br>
+                                                     'config' =&gt; bless( {<br>
+                                                                          'pkg' =&gt; 'Mock::Pages'<br>
+                                                                        }, 'Sledge::TestConfig' )<br>
+                                                   },<br>
+                                      '_options' =&gt; {<br>
+                                                      'ABSOLUTE' =&gt; 1,<br>
+                                                      'filename' =&gt; 't/die.html',<br>
+                                                      'RELATIVE' =&gt; 1,<br>
+                                                      'INCLUDE_PATH' =&gt; [<br>
+                                                                          't/',<br>
+                                                                          '.'<br>
+                                                                        ]<br>
+                                                    }<br>
+                                    }, 'Sledge::Template::TT' ),<br>
+                   'config' =&gt; bless( {<br>
+                                        'pkg' =&gt; 'Mock::Pages'<br>
+                                      }, 'Sledge::TestConfig' ),<br>
+                   'authorizer' =&gt; bless( {}, 'Sledge::Authorizer::Null' )<br>
+                 }, 'Mock::Pages' );<br>
+</div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>$d</td>
+                        <td>
+                            <a onclick="toggle(document.getElementById('6$d'))">SCALAR(0x8242680)</a>
+                            <div id="6$d" style="display:none">$VAR1 = \undef;<br>
+</div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>$c</td>
+                        <td>
+                            <a onclick="toggle(document.getElementById('6$c'))">SCALAR(0x8630bb4)</a>
+                            <div id="6$c" style="display:none">$VAR1 = \undef;<br>
+</div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>$warn_msg</td>
+                        <td>
+                            <a onclick="toggle(document.getElementById('6$warn_msg'))">SCALAR(0x8630c50)</a>
+                            <div id="6$warn_msg" style="display:none">$VAR1 = \'or&lt;&gt;z at 03_methods.t line 30.<br>
+';<br>
+</div>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

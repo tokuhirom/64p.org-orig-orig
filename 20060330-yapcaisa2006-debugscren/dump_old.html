@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="euc-jp"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja-JP" lang="ja-JP">
+    <head>
+        
+        <title>Error in Mock::Pages</title>
+        <style type="text/css">
+            body {
+                font-family: "Bitstream Vera Sans", "Trebuchet MS", Verdana,
+                            Tahoma, Arial, helvetica, sans-serif;
+                color: #000;
+                background-color: #F5131A;
+                margin: 0px;
+                padding: 0px;
+            }
+            :link, :link:hover, :visited, :visited:hover {
+                color: #000;
+            }
+            div.box {
+                position: relative;
+                background-color: #fff;
+                border: 1px solid #aaa;
+                padding: 4px;
+                margin: 10px;
+                -moz-border-radius: 10px;
+            }
+            div.infos {
+                background-color: #fff;
+                border: 3px solid #FBEE1A;
+                padding: 8px;
+                margin: 4px;
+                margin-bottom: 10px;
+                -moz-border-radius: 10px;
+            }
+            h1 {
+                margin: 0;
+            }
+            h2 {
+                margin-top: 0;
+                margin-bottom: 10px;
+                font-size: medium;
+                font-weight: bold;
+                text-decoration: underline;
+            }
+            div.url {
+                font-size: x-small;
+            }
+            pre {
+                font-size: .8em;
+                line-height: 120%;
+                font-family: 'Courier New', Courier, monospace;
+                background-color: #fee;
+                color: #333;
+                border: 1px dotted #000;
+                padding: 5px;
+                margin: 8px;
+                width: 90%;
+            }
+            pre b {
+                font-weight: bold;
+                color: #000;
+                background-color: #f99;
+            }
+        </style>
+        <script type="text/javascript">
+            function toggle(e) {
+                if (e.style.display == 'none') {
+                    e.style.display = '';
+                } else {
+                    e.style.display = 'none';
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="box">
+            <h1>Mock::Pages</h1>
+
+            <div class="url">http://localhost/?aff_type=mock&amp;s=ABCDEFG</div>
+
+            <div class="infos">
+                or&lt;&gt;z at 03_methods.t line 30.
+<br />
+            </div>
+
+            <div class="infos">
+                <h2>StackTrace</h2>
+                                <table>
+                    <tr>
+                        <th>Package</th>
+                        <th>Line   </th>
+                        <th>File   </th>
+                    </tr>
+                        <tr>
+                            <td>Mock::Pages</td>
+                            <td>30</td>
+                            <td>03_methods.t</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><pre>   27: sub _die {
+   28:     my $a = 'b';
+   29:     our $b = 'mk';
+<b>   30:     die &quot;or&lt;&gt;z&quot;;
+</b>   31: }
+   32: sub dispatch_die {
+   33:     my $self = shift;
+</pre></td>
+                        </tr>
+                </table>                <table>
+                    <tr>
+                        <th>Package</th>
+                        <th>Line   </th>
+                        <th>File   </th>
+                    </tr>
+                        <tr>
+                            <td>Mock::Pages</td>
+                            <td>34</td>
+                            <td>03_methods.t</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><pre>   31: }
+   32: sub dispatch_die {
+   33:     my $self = shift;
+<b>   34:     $self-&gt;_die(4,5,2);
+</b>   35: }
+   36: 
+   37: package main;
+</pre></td>
+                        </tr>
+                </table>                <table>
+                    <tr>
+                        <th>Package</th>
+                        <th>Line   </th>
+                        <th>File   </th>
+                    </tr>
+                        <tr>
+                            <td>Sledge::Pages::Base</td>
+                            <td>94</td>
+                            <td>/home/tokuhirom/project/CPAN/lib/Sledge/Pages/Base.pm</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><pre>   91: 	}
+   92: 	unless ($self-&gt;finished) {
+   93: 	    my $method = 'dispatch_' . $page;
+<b>   94: 	    $self-&gt;$method();
+</b>   95: 	    $self-&gt;invoke_hook('AFTER_DISPATCH');
+   96: 	}
+   97: 	$self-&gt;output_content unless $self-&gt;finished;
+</pre></td>
+                        </tr>
+                </table>                <table>
+                    <tr>
+                        <th>Package</th>
+                        <th>Line   </th>
+                        <th>File   </th>
+                    </tr>
+                        <tr>
+                            <td>Sledge::Pages::Base</td>
+                            <td>85</td>
+                            <td>/home/tokuhirom/project/CPAN/lib/Sledge/Pages/Base.pm</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><pre>   82:     no warnings 'redefine';
+   83:     local *Sledge::Registrar::context = sub { $self };
+   84:     Sledge::Exception-&gt;do_trace(1) if $self-&gt;debug_level;
+<b>   85:     eval {
+</b>   86: 	$self-&gt;init_dispatch($page);
+   87: 	$self-&gt;invoke_hook('BEFORE_DISPATCH') unless $self-&gt;finished;
+   88: 	if ($self-&gt;is_post_request &amp;&amp; ! $self-&gt;finished) {
+</pre></td>
+                        </tr>
+                </table>                <table>
+                    <tr>
+                        <th>Package</th>
+                        <th>Line   </th>
+                        <th>File   </th>
+                    </tr>
+                        <tr>
+                            <td>Sledge::TestPages</td>
+                            <td>52</td>
+                            <td>/home/tokuhirom/project/CPAN/lib/Sledge/TestPages.pm</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><pre>   49:     my $self = shift;
+   50:     CGI::initialize_globals();
+   51:     tie *STDOUT, 'IO::Scalar', \my $out;
+<b>   52:     $self-&gt;SUPER::dispatch(@_);
+</b>   53:     untie *STDOUT;
+   54:     bless $self, __PACKAGE__;
+   55:     $self-&gt;{output} = $out;
+</pre></td>
+                        </tr>
+                </table>                <table>
+                    <tr>
+                        <th>Package</th>
+                        <th>Line   </th>
+                        <th>File   </th>
+                    </tr>
+                        <tr>
+                            <td>Sledge::Plugin::DebugScreen</td>
+                            <td>174</td>
+                            <td>lib/Sledge/Plugin/DebugScreen.pm</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><pre>  171:                 }
+  172:                 die $E; # rethrow
+  173:             };
+<b>  174:             $self-&gt;$super(@_);
+</b>  175:         };
+  176:     }
+  177: 
+</pre></td>
+                        </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

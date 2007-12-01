@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>MF最新Sledge事情</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger
+:Contact: goodger@users.sourceforge.net
+:Date: $Date: 2006-02-03 02:09:16 +0100 (Fri, 03 Feb 2006) $
+:Revision: $Revision: 4332 $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin-left: 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left {
+  clear: left }
+
+img.align-right {
+  clear: right }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font-family: serif ;
+  font-size: 100% }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="mf-sledge">
+<h1 class="title">MF最新Sledge事情</h1>
+<p>2006-04-03(Mon)</p>
+<p>Tokuhiro Matsuno</p>
+<p>Mobile Factory/Subtech</p>
+<div class="section">
+<h1><a id="id1" name="id1">概要</a></h1>
+<ul class="simple">
+<li>最新スナップショット</li>
+</ul>
+</div>
+<div class="section">
+<h1><a id="id2" name="id2">2006年開発の基本方針</a></h1>
+<ul class="simple">
+<li>DRY</li>
+</ul>
+<blockquote>
+<ul class="simple">
+<li>同じことを二度やんなボケ</li>
+<li>コピペで済ますな!</li>
+<li>過度の Plugin 化</li>
+<li>Mix-in の多用</li>
+</ul>
+</blockquote>
+<ul class="simple">
+<li>規約をキツめにかける</li>
+<li>「あの人にしかわからない」こと撲滅運動</li>
+</ul>
+<blockquote>
+<ul class="simple">
+<li>ハネムーンナンバー</li>
+</ul>
+</blockquote>
+</div>
+<div class="section">
+<h1><a id="id3" name="id3">サーバ環境</a></h1>
+<ul class="simple">
+<li>svn(cvs から完全移行済)</li>
+<li>mysql</li>
+<li>qmail</li>
+<li>tinydns</li>
+<li>apache(1.3 系)</li>
+</ul>
+<blockquote>
+<ul class="simple">
+<li>そのうち 2.x 系に移行するかも？</li>
+</ul>
+</blockquote>
+<ul class="simple">
+<li>perlbal/pound</li>
+</ul>
+</div>
+<div class="section">
+<h1><a id="id4" name="id4">開発環境</a></h1>
+<ul class="simple">
+<li>一個のサーバにみんなで入って開発</li>
+<li>ケータイの実機でのチェックが必要!</li>
+<li>svk でノートで開発もありかも？</li>
+</ul>
+</div>
+<div class="section">
+<h1><a id="id5" name="id5">ディレクトリ構成</a></h1>
+<pre class="literal-block">
+caspeee/conf/
+caspeee/htdocs/
+caspeee/script/
+caspeee/script/cron/
+caspeee/script/tmp/
+caspeee/template/
+site_perl/Caspeee/
+site_perl/Caspeee/Authorizer.pm
+site_perl/Caspeee/Authorizer/
+site_perl/Caspeee/Config.pm
+site_perl/Caspeee/Data.pm
+site_perl/Caspeee/Data/
+site_perl/Caspeee/Dispatcher.pm
+site_perl/Caspeee/Pages.pm
+site_perl/Caspeee/Pages/Mobile/
+site_perl/Caspeee/Pages/PC/
+</pre>
+</div>
+<div class="section">
+<h1><a id="id6" name="id6">利用モジュール一覧</a></h1>
+<p>使ってる Sledge の Plugin はこんな感じですねー。とにかくプラグイン
+にしまくる作戦。</p>
+<div class="section">
+<h2><a id="mobilegate" name="mobilegate">MobileGate</a></h2>
+<p><a class="reference" href="http://cvs.sourceforge.jp/cgi-bin/viewcvs.cgi/sledge/Sledge-MobileGate/">http://cvs.sourceforge.jp/cgi-bin/viewcvs.cgi/sledge/Sledge-MobileGate/</a></p>
+<p>つかってます。全面的に再構成したいかも。(こまかいプラグインにチギ
+りたい)</p>
+</div>
+<div class="section">
+<h2><a id="cache" name="cache">Cache</a></h2>
+<p><a class="reference" href="http://search.cpan.org/~tokuhirom/Sledge-Plugin-Cache-0.01/">http://search.cpan.org/~tokuhirom/Sledge-Plugin-Cache-0.01/</a></p>
+<p>Memcached で cache するのに使ってます。Controller レベルでキャッシュ
+の術。</p>
+</div>
+<div class="section">
+<h2><a id="alwaysfillinform" name="alwaysfillinform">AlwaysFillInForm</a></h2>
+<p><a class="reference" href="http://search.cpan.org/~tokuhirom/Sledge-Plugin-AlwaysFillInForm-0.02/">http://search.cpan.org/~tokuhirom/Sledge-Plugin-AlwaysFillInForm-0.02/</a></p>
+<p>FillInForm は get の時でも効くようにしています。
+# わざわざプラグインにする必要もないかもですが :-P</p>
+</div>
+<div class="section">
+<h2><a id="download" name="download">Download</a></h2>
+<p><a class="reference" href="http://cvs.sourceforge.jp/cgi-bin/viewcvs.cgi/sledge/Sledge-Plugin-Download/">http://cvs.sourceforge.jp/cgi-bin/viewcvs.cgi/sledge/Sledge-Plugin-Download/</a></p>
+<p>ダウンロードさせるときにつかてる。かも。</p>
+</div>
+<div class="section">
+<h2><a id="validator" name="validator">Validator</a></h2>
+<p><a class="reference" href="http://cvs.sourceforge.jp/cgi-bin/viewcvs.cgi/sledge/Sledge-Plugin-Validator/">http://cvs.sourceforge.jp/cgi-bin/viewcvs.cgi/sledge/Sledge-Plugin-Validator/</a></p>
+<p>validation はなんだかんだいってもまだこれ使ってる</p>
+<p>(S::P::FormValidator::Simple に移行予定でございますー)</p>
+</div>
+<div class="section">
+<h2><a id="debugscreen" name="debugscreen">DebugScreen</a></h2>
+<p><a class="reference" href="http://search.cpan.org/~tokuhirom/Sledge-Plugin-DebugScreen-0.07/">http://search.cpan.org/~tokuhirom/Sledge-Plugin-DebugScreen-0.07/</a></p>
+<p>debug 時には必須!スタックトレース無しのデバッグは辛すぎっす。</p>
+</div>
+<div class="section">
+<h2><a id="email-japanese" name="email-japanese">Email::Japanese</a></h2>
+<p><a class="reference" href="http://cvs.sourceforge.jp/cgi-bin/viewcvs.cgi/sledge/Sledge-Plugin-Download/">http://cvs.sourceforge.jp/cgi-bin/viewcvs.cgi/sledge/Sledge-Plugin-Download/</a>
+security 的な観点から S::P::Mailer からのりかえました(Mail header
+injection 脆弱性対策)</p>
+</div>
+<div class="section">
+<h2><a id="nocache" name="nocache">NoCache</a></h2>
+<p><a class="reference" href="http://cvs.sourceforge.jp/cgi-bin/viewcvs.cgi/sledge/Sledge-Plugin-NoCache/">http://cvs.sourceforge.jp/cgi-bin/viewcvs.cgi/sledge/Sledge-Plugin-NoCache/</a></p>
+<p>cache してほしくねーページがあるのでー。</p>
+</div>
+<div class="section">
+<h2><a id="qrcode" name="qrcode">QRCode</a></h2>
+<p><a class="reference" href="http://search.cpan.org/~tokuhirom/Sledge-Plugin-QRCode-0.01/">http://search.cpan.org/~tokuhirom/Sledge-Plugin-QRCode-0.01/</a></p>
+<p>モバイルな関係で QRCode の表示は割と頻繁に必要になるので。</p>
+</div>
+<div class="section">
+<h2><a id="csrfdefender" name="csrfdefender">CSRFDefender</a></h2>
+<p><a class="reference" href="http://search.cpan.org/~tokuhirom/Sledge-Plugin-CSRFDefender-0.01/">http://search.cpan.org/~tokuhirom/Sledge-Plugin-CSRFDefender-0.01/</a></p>
+<p>CSRF 対策。</p>
+</div>
+<div class="section">
+<h2><a id="affiliate" name="affiliate">Affiliate</a></h2>
+<p>モバイル系のアフィリエイトサイトとの連携をがんばってくれる人。CPAN
+にアップ予定。まだやってないけどナ。</p>
+</div>
+<div class="section">
+<h2><a id="autoescapett" name="autoescapett">AutoEscapeTT</a></h2>
+<p>Template::Stash::EscapeHTML で全部エスケープしてます。XSS 脆弱性対
+策。</p>
+</div>
+<div class="section">
+<h2><a id="showimage" name="showimage">ShowImage</a></h2>
+<p>画像の表示に。</p>
+</div>
+</div>
+<div class="section">
+<h1><a id="cdbi" name="cdbi">CDBI のプラグイン</a></h1>
+<div class="section">
+<h2><a id="class-dbi-plugin-retrieveall" name="class-dbi-plugin-retrieveall">Class::DBI::Plugin::RetrieveAll</a></h2>
+<p>retrieve_all 時に並び順を指定できるです。ちょうべんりー。</p>
+</div>
+<div class="section">
+<h2><a id="class-dbi-pager" name="class-dbi-pager">Class::DBI::Pager</a></h2>
+<p>みやーんの Pager。CDBI::P::Iterator と組み合わせないと死ねるので注
+意がひつよう。</p>
+</div>
+<div class="section">
+<h2><a id="class-dbi-plugin-retrievefromsql" name="class-dbi-plugin-retrievefromsql">Class::DBI::Plugin::RetrieveFromSQL</a></h2>
+<p>C::P::SQLPlaceHolder。retrieve_from_sql で complex な SQL を書くと
+きに綺麗にかける。</p>
+</div>
+<div class="section">
+<h2><a id="class-dbi-plugin-randomstringcolumn" name="class-dbi-plugin-randomstringcolumn">Class::DBI::Plugin::RandomStringColumn</a></h2>
+<p>10桁程度のランダムな文字列を行に振りたいときに使う。
+(Screen Scraper 対策とか。)</p>
+</div>
+<div class="section">
+<h2><a id="class-dbi-plugin-countsearch" name="class-dbi-plugin-countsearch">Class::DBI::Plugin::CountSearch</a></h2>
+<p>条件にあてはまる行数を得る。count_search</p>
+</div>
+<div class="section">
+<h2><a id="class-dbi-plugin-asfdat" name="class-dbi-plugin-asfdat">Class::DBI::Plugin::AsFdat</a></h2>
+<p>FillInForm に渡すための object をつくる。</p>
+</div>
+<div class="section">
+<h2><a id="class-dbi-fromsledge" name="class-dbi-fromsledge">Class::DBI::FromSledge</a></h2>
+<p>S::P::Validator と連携する。create_from_sledge と
+update_from_sledge が使えるようになる。</p>
+<p>S::P::FormValidator::Simple の導入と同時に bye-bye する予定なので
+すが。</p>
+</div>
+<div class="section">
+<h2><a id="class-dbi-plugin-iterator" name="class-dbi-plugin-iterator">Class::DBI::Plugin::Iterator</a></h2>
+<p>C::P::Pager と連携させて使うのです。</p>
+</div>
+<div class="section">
+<h2><a id="class-dbi-plugin-digestcolumns" name="class-dbi-plugin-digestcolumns">Class::DBI::Plugin::DigestColumns</a></h2>
+<p>パスワードとかを before_set_pw などのトリガーでハッシュにしてくれ
+る。便利かも。</p>
+</div>
+<div class="section">
+<h2><a id="mf-class-dbi-plugin-mfdatetime" name="mf-class-dbi-plugin-mfdatetime">MF::Class::DBI::Plugin::MFDateTime</a></h2>
+<p>社内むけ DateTime wrapper。__PACKAGE__-&gt;datetime_column('created_on')
+とか。</p>
+</div>
+</div>
+<div class="section">
+<h1><a id="id7" name="id7">移行しちゃう？どうしちゃう？</a></h1>
+<ul class="simple">
+<li>DBIC</li>
+<li>Catalyst</li>
+</ul>
+<blockquote>
+<ul class="simple">
+<li>今あるプラグインとかの移植作業をしないとー</li>
+</ul>
+</blockquote>
+<ul class="simple">
+<li>(いっそ)Rails</li>
+<li>apache2</li>
+<li>S::P::FormValidator::Simple</li>
+</ul>
+</div>
+<div class="section">
+<h1><a id="id8" name="id8">以上です</a></h1>
+<p>Thank you.</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+web.py
+......
+
+株式会社モバイルファクトリー
+
+松野 'tokuhirom' 徳大
+
+特徴は？？
+----------
+
+- インストールが簡単!!
+- web.py さえあれば とりあえず動く
+- Simple!
+
+動作環境
+--------
+
+- mod_python
+- cgi
+- stand alone server
+- fast-cgi
+
+テンプレートエンジン
+------------------
+Cheetah(ちょー強力!!)
+
+オリジナルのテンプレートエンジンに移行予定(template.py)
+
+O/R Mapper
+----------
+なし。
+
+MySQLdb, psycopg2 などを直接使います。
+
+Validation
+----------
+form.py
+
+オリジナル。form の生成と一体となっているタイプ。
+
+URI Mapper
+----------
+
+::
+
+	urls = (
+	    '/(.*)', 'hello'
+	)
+
+- 上から順番にマッチ
+- Regexp で柔軟
+
+Controller
+----------
+
+::
+
+  class hello:
+    def GET(self, name):
+      i = web.input(times=1)
+      if not name: name = 'world'
+      for c in xrange(int(i.times)):
+         print 'Hello,', name+'!'
+
+事例
+----
+
+http://reddit.com/

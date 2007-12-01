@@ -1,0 +1,198 @@
+TITLE::曜日判定における言語の壁問題
+曜日判定
+における
+言語の壁
+問題
+
+松野徳大
+Mobile Factory
+----
+今一番熱い
+日時モジュールは？
+----
+DateTime
+----
+でも
+問題が
+----
+曜日
+判定
+----
+[[PRE:use DateTime;
+my $d = DateTime->now;
+print "sunday" if $d->day_of_week == 0;:PRE]]
+----
+ダサい
+----
+わかりにくい
+----
+DateTime::Util::DayOfWeek
+----
+[[PRE:use DateTime;
+use DateTime::Util::DayOfWeek;
+my $d = DateTime->now;
+print "sunday" if $d->is_sunday;:PRE]]
+----
+問題
+アリ
+----
+曜日の綴りを
+間違えやすい
+----
+Sunday
+Monday
+Tuesday
+Wednesday
+Thurday
+Friday
+Saturday
+----
+どれか
+間違ってる
+----
+気がする
+----
+TOEIC 970点
+持ってないので。
+----
+$d->is_日曜日;
+----
+なら
+間違え
+ないのに。
+----
+というわけで
+----
+作って
+みた。
+----
+use DateTime::Util::DayOfWeek::Locale;
+----
+$d->is_日曜日;
+----
+できる。
+----
+あなたは
+日本人
+です。
+----
+(このセッションを聞いてる人は多くがそうでしょう)
+----
+日本人は
+日本語を
+使います。
+----
+使います
+よね？
+----
+使うべき
+です。
+----
+むしろ
+使え、と。
+----
+日本語
+プログラミング
+言語？
+----
+それには
+CPAN
+あるの？
+----
+We
+Love
+Perl!!
+----
+Perl
+で
+日本語
+使いたい。
+----
+use utf8;
+----
+すれば
+----
+UTF-8 な
+変数名
+----
+UTF-8 な
+関数名
+----
+使い放題
+----
+[[PRE:sub oyasumi {
+  my $d = DateTime->now;
+  if ($d->is_sunday) {
+    print "Sunday!\n";
+  }
+}:PRE]]
+----
+と、書いていた
+----
+use utf8;
+----
+すれば
+----
+[[PRE:use utf8;
+sub おやすみ {
+  my $日時 = DateTime->now;
+  if ($日時->is_日曜日) {
+    print "Sunday!\n";
+  }
+}:PRE]]
+----
+でＯＫ。
+----
+DateTime::Util::DayOfWeek::Locale
+----
+メソッド
+動的
+生成
+----
+DateTime::Locale::*
+を使う
+----
+日本語の場合は
+DateTime::Locale::ja
+を使ってる
+----
+DateTime::Locale::ja::day_names
+----
+[[PRE:[
+"月曜日",
+"火曜日",
+"水曜日",
+"木曜日",
+"金曜日",
+"土曜日",
+"日曜日",
+]:PRE]]
+----
+が帰ってくる。
+----
+フランス語
+----
+DateTime::Locale::fr::day_names
+----
+[[PRE:[
+"lundi",
+"mardi",
+"mercredi",
+"jeudi",
+"vendredi",
+"samedi",
+"dimanche",
+]:PRE]]
+----
+[[PRE:use utf8;
+sub oyasumi {
+  my $d = DateTime->now;
+  if ($d->is_vendredi) {
+    print "Sunday!\n";
+  }
+}:PRE]]
+----
+母国語を
+使いましょう!
+----
+Thanks

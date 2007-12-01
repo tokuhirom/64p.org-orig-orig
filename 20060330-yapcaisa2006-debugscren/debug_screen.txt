@@ -1,0 +1,121 @@
+TITLE::S::P::DebugScreen meets PadWalker
+S::P::DebugScreen
+meets
+PadWalker
+
+by tokuhirom
+
+Mobile Factory/Subtech
+----
+今
+DebugScreen
+ブーム
+----
+嘘
+----
+本当は
+もう終わった
+----
+けど
+----
+スピーカに
+エントリした
+時点では
+流行ってた
+----
+そんなことは
+どうでもよくて
+----
+本編
+----
+S::P::DebugScreen
+----
+Sledge
+Plugin
+DebugScreen
+----
+Sledge
+=
+Web App. Framework
+----
+[[file:///home/tokuhirom/presen/20060330_yapc/debug_screen/dump_old.html]]
+----
+die
+か
+throw
+したら
+----
+スタックトレース
+見れる
+----
+Sledge,
+Catalyst,
+C::App
+----
+団栗の
+背比べ
+----
+頭一つ
+抜けたい
+----
+C::P::BindLex
+の話題で
+PadWalker を知る
+----
+DebugScreen
+に最適じゃね？
+----
+DebugScreen
+meets
+PadWalker
+----
+What's
+PadWalker?
+----
+caller の
+レキシカル変数
+----
+覗き見
+----
+変態的
+----
+DebugScreen
+に最適じゃん!
+----
+example code:
+[[PRE:use PadWalker qw(peek_my);
+sub f {
+  peek_my(1);
+}
+my $subtech = 'warunori';
+&f;:PRE]]
+----
+result:
+[[PRE:$VAR1 = {
+          '$subtech' => \'warunori'
+        };:PRE]]
+----
+デバッグ時に
+見れると便利
+----
+[[file:///home/tokuhirom/presen/20060330_yapc/debug_screen/dump_new.html]]
+----
+S::P::DebugScreen
+は他のフレームワークのより
+良いのでは
+----
+PadWalker
+使うと色々
+楽しいことが
+できる!
+----
+是非
+お試し
+あれ
+----
+Thanks to:
+id:nipotan
+id:nekokak
+id:ysano2005
+id:charsbar
+id:naoya

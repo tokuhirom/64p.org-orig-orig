@@ -1,0 +1,52 @@
+readable test code with DSL.
+
+<div style="text-align: right">
+tokuhirom@mf 2007-12-10(Mon)
+</div>
+----
+how to write readable test code?
+----
+bad code:
+
+>||
+my $operator = Test::Operator->new;
+$operator->login('foo', 'bad pass');
+contains $operator->content, 'login failed', 'case 1: login failed';
+
+$operator = Test::Operator->new;
+$operator->login('foo', 'good pass');
+contains $operator->content, 'login succeeded', 'case 2: login succeeded';
+||<
+----
+good code:
+
+>||
+session 'ログイン失敗' => sub {
+    login 'foo', 'bad pass';
+    content_contains 'login failed';
+};
+
+session 'ログイン成功' => sub {
+    login 'foo', 'good pass';
+    content_contains 'login succeeded';
+};
+||<
+----
+how to use DSL?
+----
+Perl DSL uses Perl's magical power!
+----
+>||
+our $operator;
+sub session ($&) {
+    my ($name, $code) = @_;
+    local $operator = Test::Operator->new;
+    $code->();
+}
+||<
+----
+- local binds value.
+- my binds name.
+----
+that's all.
+any questions?

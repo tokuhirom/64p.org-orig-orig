@@ -1,0 +1,71 @@
+SVK
+
+<div style="text-align: right">
+tokuhirom@mf 2007-12-10(Mon)
+</div>
+----
+*why use svk?
+----
+FAST
+----
+user friendly
+----
+svk add .
+----
+easy to use the branch
+----
+local branch
+----
+*Architecture
+----
+~/.svk/ depotmap
+----
+~/.svk/config map
+----
+~/.svk/local/ svn repos
+----
+*Usage
+----
+>||
+svk depotmap --init
+||<
+(OPTIONAL)
+----
+>||
+svk mirror //mirror/coderepos http://svn.coderepos.org/share/
+||<
+----
+>||
+svk sync -s HEAD //mirror/coderepos
+||<
+----
+>||
+svk co //mirror/coderepos/lang/perl/Moxy/trunk/ Moxy
+||<
+----
+svn up
+>||
+svk up -s
+||<
+or
+>||
+svk pull
+||<
+----
+*Tips
+----
+local branch
+>||
+svk mkdir //local
+svk copy  //mirror/coderepos/Moxy/trunk //local/Moxy
+||<
+----
+merge
+>||
+svk smerge //mirror/foo/branches/feature-foo //mirror/foo/trunk/
+||<
+----
+svk sync --all
+----
+that's all.
+any questions?

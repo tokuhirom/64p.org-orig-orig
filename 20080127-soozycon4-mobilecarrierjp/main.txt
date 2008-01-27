@@ -1,0 +1,52 @@
+WWW::MobileCarrierJP
+
+<div style="text-align: right">
+tokuhirom@soozycon#4 2008-01-27(Sun)
+</div>
+----
+わーわーわー。もばいるきゃりやーじぇーぴー。
+----
+これなーに?
+----
+モバイルサイトの開発時
+----
+キャリヤのサイトにのってるテーブルからスクレイピング
+----
+データベースにためこんだり。
+----
+ケータイキャリヤ公式サイトのスクレイピングスクリプト集。
+----
+お前ら車輪の再発明をいつまでやりつづけるおつもりですか?
+----
+くだらねえ。実にくだらねえ。
+----
+TDD
+----
+テストコード。
+----
+cron で実行。
+----
+コケたらすぐなおしてます。
+----
+YAML でダンプするスクリプトつき。
+----
+再発明は馬鹿のやること。
+----
+AirHPhone::CIDR
+----
+DoCoMo::CIDR
+DoCoMo::Display
+DoCoMo::Flash
+DoCoMo::PictogramInfo
+----
+EZWeb::CIDR
+EZWeb::DeviceID
+EZWeb::Model
+EZWeb::PictogramInfo
+----
+ThirdForce::CIDR
+ThirdForce::PictogramInfo
+ThirdForce::UserAgent
+----
+that's all.
+any questions?

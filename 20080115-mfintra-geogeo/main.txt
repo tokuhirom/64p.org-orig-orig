@@ -1,0 +1,55 @@
+adlocal
+
+<div style="text-align: right">
+tokuhirom@mf 2008-01-15(Tue)
+</div>
+----
+おさらい
+----
+use HTTP::MobileAgent::Plugin::Locator;
+----
+ふたつの測地系
+- wgs84( ← 時代はこっち )
+- tokyo
+----
+座標表記方法
+- degree(+135.55222)
+- dms(+135.2.4.5)
+----
+>||
+[% SWITCH mobile_agent.carrier %]
+[% CASE 'I' %]
+    [% IF mobile_agent.gps_compliant %]
+        <a href="[% url | html %]" lcs="lcs">
+    [% ELSE %]
+        <a href="http://w1m.docomo.ne.jp/cp/iarea?ecode=OPENAREACODE&msn=OPENAREAKEY&posinfo=1&nl=[% url | uri %]">
+    [% END %]
+[% CASE 'E' %]
+    [% IF mobile_agent.gps_compliant %]
+        <a href="device:gpsone?url=[% url | uri %]&ver=1&datum=0&unit=0&acry=0&number=0">
+    [% ELSE %]
+        <a href="device:location?url=[% url | uri %]">
+    [% END %]
+[% CASE 'V' %]
+    [% IF mobile_agent.gps_compliant %]
+        <a href="location:auto?url=[% url | uri %]">
+    [% ELSE %]
+        <a href="[% url | uri %]" z="z">
+    [% END %]
+[% CASE 'H' %]
+    <a href="http://location.request/dummy.cgi?my=[% url | uri %]&pos=$location">
+[% END %]
+
+            Send Location Information
+</a>
+||<
+----
+>||
+my $point = $self->mobile_agent->get_location($self->r);
+my $geo = Geo::Coordinates::Converter->new(point => $point);
+$point = $geo->convert('degree', 'wgs84');
+say "@{[ $point->lat ]}, @{[ $point->lng ]}";
+||<
+----
+that's all.
+any questions?

@@ -1,0 +1,109 @@
+From CDBI to DBIC
+<div style="text-align:right">
+ <a href="http://d.hatena.ne.jp/tokuhirom/">id:tokuhirom</a>
+ <a href="http://mobilefactory.jp/">Mobile Factory, Inc.</a>
+ YAPC::Asia 2007@Tokyo 2007-04-06(Thu)
+</div>
+
+*WARNINGS FOR ENGLISH VERSION OF THIS SLIDES
+
+I snipped some slides :-)
+
+* Warnings.
+
+**This is not a technical talks.
+- If you want a technical talks then, you should go to audereyt's room!
+- Did you mean: audreyt
+
+* Self Introduction
+
+** My Private Projects...
+- Acme:::Kenshiro
+- Net::CIDR::MobileJP
+
+** Self Introduction
+- finished.
+
+* Today's theme
+- Why you should switch CDBI to DBIC?
+- political approach
+-- From ○○ to ▽▽
+- How to switch CDBI to DBIC?
+
+** not Today's theme
+
+- introduction to DBIC
+-- You should listen the jrockway's talk :-)
+
+** What's DBIC
+DBIx::Class
+
+** CDBI and DBIC
+- both are O/R Mapper
+
+* DBIC and DBIC/pros. and cons.
+- If you use in the works...
+- you finds some demerit with CDBI...
+
+** CDBI's Iterator is plutocratic :-P
+- Scalar Context → Iterator
+- List Context → Array of the rows.
+- my $b = Boofy::Data->search->first;
+- This code does not use "LIMIT" or "OFFSET" orz
+- This code makes too many traffics.
+-- DB Server => Application Server.
+
+** Connection in the Class Variable.
+- class variable is very static :(
+- some people overwrite the method :(
+
+** package CDBI; use base qw/Ima::DBI/;
+- Ima::DBI have a connection pooling feature!
+- but, I don't want a connection pooling!
+- Ima::DBI cannot turned off this feature.
+
+** Tooooooo many plugins
+- hey, some plugin should be in the core!
+- Class::DBI::Flavour?
+
+* How to switch?
+- Class Method
+- Instance Method
+- Triggers
+
+** overlap :(
+- rewrite some controller(MVC's C).
+- demerit: too many connections... :(
+
+** how to write the code.
+- based on the CDBI code.
+
+** Instance Method
+- Copy & Paste.
+- 99%.
+
+** Triggers(BEFORE)
+>||
+__PACKAGE__->add_trigger(
+	before_insert => sub {
+		(snip)
+	}
+);
+||<
+
+** Triggers(AFTER)
+>||
+sub insert {
+	(snip)
+	$self->next::method(@_);
+}
+||<
+
+**set_sql
+- DBIC's SQL generater is more bit powerful!
+- you may not use set_sql
+- If you want too obfuscated SQL, you can use $model->storage->dbh directory ;-)
+
+* That's All.
+- Thanks!
+- Any Questions?

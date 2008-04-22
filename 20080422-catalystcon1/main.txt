@@ -1,0 +1,72 @@
+Sledgeと私
+<div style="text-align: right">
+CatalystCon#1
+2008-04-22(Tue)
+id:tokuhirom
+</div>
+----
+Catalyst が世にでてから数年
+(くわしくはしらない)
+----
+おれ Sledge User
+----
+catalyst.g.hatena.ne.jp
+----
+トカアルシー
+----
+いいなーと
+----
+Sledge はいまだに
+mod_perl1.3 しかないよ
+----
+ラストリリースは 2004-02-24 17:56
+----
+やっぱりサイボウズラボなので
+----
+801ネタかなーとおもって
+<img src="img/takesako.jpg" />
+<img src="img/kazuho.gif" />
+----
+Sledge×Catalyst
+<img src="img/801.jpg" />
+----
+ってのを考えてみました。
+----
+Sledge on Cat.
+----
+2008.04.22:10:10:40 <miyagawa> やはりCatalystはプラグインとか使わずに素の URI mapping と Engine としてだけ使うのがいいとおもう件
+----
+2008.03.06:14:52:37 <ikebe> とか、考えてると Catalyst を dispatcher として使うってのが正解な気がしてきてる。
+----
+2008.03.06:14:53:52 <ikebe> ある程度の規模のサイト用のフレームワークってView の切り替えとセッション位あればいいなと。
+----
+2008.04.22:10:10:40 <miyagawa> やはりCatalystはプラグインとか使わずに素の URI mapping と Engine としてだけ使うのがいいとおもう件
+----
+2007.12.25:22:33:48 <ikebe> それより Catalyst の上で Sledge 動けばいいんじゃね。とか。
+----
+というわけでやってみた。
+----
+# in your Pages class.
+use Sledge::Pages::Compat;
+↓
+use Sledge::Pages::Catalyst;
+----
+Apache::Request のラッパーを書く。
+↓
+Sledge::Request::Catalyst
+----
+- Catalyst::Request
+- Catalyst::Response
+を適当によぶ
+----
+あとは適当に Catalyst の Controller を実装すればいいよ
+----
+>||
+Proj::Pages::Content
+    ->new($c)
+    ->dispatch('list');
+||<
+----
+ってしまくればおk
+----
+That's all.

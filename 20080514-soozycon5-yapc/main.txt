@@ -1,0 +1,54 @@
+Write your own WAF in 3 hours.
+<div style="text-align: right">
+SoozyCon#5 in YAPC.
+2008-05-12(Wed)
+Mobile Factory Inc.
+Tokuhiro Matsuno (PAUSE:tokuhirom)
+</div>
+----
+ha, ready-made WAF is not enough at real business!
+----
+a lot of web developers write wrappers for ready-made WAF
+----
+But, I think you should write your own WAF instead of wrapper
+----
+BTW
+----
+In the Python World
+----
+Tooooooooooo many WAF!
+----
+over 100!!!
+----
+Why??
+----
+Write WAF IN Python is Very Easy!
+----
+<object data="img/waf-python.svg" width="480" height="460" type="image/svg+xml"/>
+----
+OK, you only write glue code in 60 lines.
+very easy.
+----
+In the Perl World.
+----
+<object data="img/waf-perl.svg" width="480" height="460" type="image/svg+xml"/>
+----
+Difficult to write your own WAF.
+Catalyst is too big.
+Jifty is too big.
+----
+I cannot write whole part of Catalyst/Jifty.
+I'm tied up!
+----
+he, We wrote the HTTP::Engine and HTTPx::Dispatcher.
+----
+<object data="img/waf-perl-new.svg" width="480" height="460" type="image/svg+xml"/>
+----
+we can write part of the WAF.
+----
+Hey, folks. Let's write the part of WAF.
+----
+then, we get the diy waf In the Perl world!
+----
+That's all.
+Thanks.

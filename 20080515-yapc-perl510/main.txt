@@ -1,0 +1,252 @@
+Perl5.10をつかうべき510の理由
+510 Reasons Why You Should Use Perl 5.10
+<div style="text-align: right">
+in YAPC::Asia 2008.
+2008-05-13(Thu)
+Mobile Factory Inc.
+Tokuhiro Matsuno (PAUSE:tokuhirom)
+</div>
+----
+this title is social bookmark ready :)
+please bookmark =)
+----
+why should i present this slides?
+----
+ha
+----
+I want to use perl 5.10 more many people, strongly!!
+----
+slide hist
+a long time ago: I'm presenting?
+Today: download acme's slides
+Today: tweak design
+Today: play with fonts
+Today: release!
+----
+be agile!
+----
+*perlhist
+----
+ 1987: 1.0
+ 1988: 2.0
+ 1989: 3.0...
+ 1991: 4.0...
+ 1994: 5.0
+----
+*perlhist 5.0
+----
+ 1994: 5.0
+ 1995: 5.1
+ 1996: 5.2, 5.3
+ 1997: 5.4
+ 1998: 5.5...
+ 2000: 5.6...
+----
+*5.8 perlhist
+----
+ 2002: 5.8.0
+ 2003: 5.8.1, 5.8.2
+ 2004: 5.8.3, 5.8.4, 5.8.5, 5.8.6
+ 2005: 5.8.7
+ 2006: 5.8.8
+----
+*2007: perl 5.10 is out!
+----
+2008
+Stable: 5.10.0
+New: 5.12.0
+New new: 6.0.0 ← ??
+----
+perl 5.10 is real!!
+(maybe perl6 is real...)
+----
+perl6 will released at christmas!
+(do not ask `which christmas?')
+(this is obra's works ;-)
+----
+SEE ALSO:
+<img src="img/dankogai_book.jpg" />
+----
+who using perl 5.10?
+show of hands!
+----
+ok.
+----
+ya, I think, you should use perl 5.10 :)
+----
+Perl 5.10 is compatible with perl 5.8!
+(mostly)
+----
+a lot of perl modules are tested by cpan-testers
+----
+I use many modules on Perl5.10.
+no problem.
+----
+I got only one problem
+----
+Ingy's XXX.pm :(
+----
+use warnings;
+does not
+use Carp;
+----
+use warnings;
+Carp::croak("This method does not works.");
+----
+if mainteners are active, fixed incomatibility :)
+----
+use feature qw/something/;
+use feature qw/:5.10/;
+use 5.10;
+----
+yeah let's see the perl 5.10 world.
+----
+*say!
+----
+>||
+say "moooose"
+||<
+instead of
+>||
+print "mooose\n"
+||<
+----
+*dor operator
+----
+$c = $a || $b
+----
+- confused by empty string
+- undef
+- zero
+----
+>||
+$c = defined($a) ? $a : $b;
+||<
+----
+use feature qw/dor err/;
+$c = $a // $b
+----
+ofcourse. this is inspired from:
+<img src="img/dankogai.png" width="400" />
+----
+*state variables
+----
+old way
+>||
+{
+  my $i = 0;
+  sub incr {
+    return $i++;
+  }
+}
+||<
+----
+>||
+use feature qw/state/;
+sub incr {
+  state $i = 0;
+  return $i++;
+}
+||<
+----
+my, our, local, and `state'!!
+わけわからん!
+わけわからん!
+わけわからん!
+----
+*Switch!
+----
+ native switch statement!
+ similar to perl6's switch, and Switch.pm(source filter)
+ built into perl interpreter
+ Switch.pm makes obfuscated error message :(
+----
+use feature 'switch'
+----
+>||
+use feature 'switch'
+given ($foo) {
+  when (/^abc/) { $abc = 1; }
+    when (/^def/) { $def = 1; }
+    when (/^xyz/) { $xyz = 1; }
+    default { $nothing = 1; }
+  }
+||<
+----
+>||
+use feature 'switch'
+foreach (@cool_things) {
+	when (/pirate/) { $pirate++ }
+	when (/ninja/) { $ninja++ }
+	when (/robot/) { $robot++ }
+	say "$_ doesn't look cool...";
+}
+||<
+----
+>||
+use feature '~~';
+if ($x ~~ @array) { say "$x exists" }
+if ($x ~~ /ninja/) { say "Ninja in string"}
+if (@x ~~ /ninja/) { say "Ninja in array" }
+if ($key ~~ %hash) { say "$key exists" }
+if ($subref ~~ $arg) { say 'sub($arg) true' } 
+||<
+----
+*Regular expressions
+----
+named captures
+----
+>||
+s/(?<letter>.)\k<letter>/$+{letter}/g
+||<
+----
+>||
+    foreach my $name (keys %+) {
+        print "content of buffer '$name' is $+{$name}\n";
+    }
+||<
+----
+"-E" → "-e" & perl 5.10 features
+----
+*stacked filetests
+----
+you can now say if  (-e -f -x $file).
+----
+*Other goodies
+----
+ Misc Attribute Decoration
+ $AUTOLOAD can be tainted
+ Source filters in @INC
+ encodings::warnings is lexical
+ Better threads
+ Faster UTF-8 
+----
+*More other goodies
+----
+ Faster stat() on Windows
+ Relocatable installs
+ Overloading for re-blessed objects
+ Better Windows support
+ Smaller memory footprint (slightly ● faster) More documentation ● 
+----
+why do't you use perl 5.10?
+----
+Let's use perl 5.10
+----
+thanks to
+ Paul Fenwick
+ Audrey Tang
+ Leon Brocard
+----
+License These slides are Copyright 2006
+ Paul Fenwick
+ Audrey Tang
+ Leon Brocard
+----
+The text may be distributed under your choice of any of the following:
+ The license terms of Perl itself
+ GNU Free Documentation License
+ Creative Commons Attribution 
+----
+That's all.
+Thanks.

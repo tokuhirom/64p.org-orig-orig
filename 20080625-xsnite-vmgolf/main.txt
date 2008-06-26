@@ -1,0 +1,121 @@
+Perl5VM Golf
+<div style="text-align: right">
+2008-06-25(Wed) XS Nite
+Mobile Factory Inc.
+Tokuhiro Matsuno
+</div>
+----
+*VM Golf?
+----
+perl5 has
+Virtual Machine
+----
+Virtual Machine
+has
+OP Code
+----
+OP Code
+の
+総和
+(Sum of opcode)
+----
+>||
+0   null      OP_NULL      null operation
+1   stub      OP_STUB      stub
+2   scalar    OP_SCALAR    scalar
+3   pushmark  OP_PUSHMARK  pushmark
+4   wantarray OP_WANTARRAY wantarray
+5   const     OP_CONST     constant item
+6   gvsv      OP_GVSV      scalar variable
+7   gv        OP_GV        glob value
+8   gelem     OP_GELEM     glob elem
+9   padsv     OP_PADSV     private variable
+10  padav     OP_PADAV     private array
+11  padhv     OP_PADHV     private hash
+12  padany    OP_PADANY    private value
+13  pushre    OP_PUSHRE    push regexp
+14  rv2gv     OP_RV2GV     ref-to-glob cast
+...
+||<
+----
+めざすスコアぴったりをねらう
+バイト数をへらす
+(short code is good)
+----
+*1000op
+----
+"n"+"i"+"p"+"o"+"t"-"a"<<$$$n
+>||
+hit: 5op(const, constant item)
+hit: 5op(const, constant item)
+hit: 62op(add, addition (+))
+hit: 5op(const, constant item)
+hit: 5op(const, constant item)
+hit: 62op(add, addition (+))
+...
+||<
+----
+snip snip snip
+----
+<span style="font-size: 10px;">つづき</span>
+>||
+hit: 5op(const, constant item)
+hit: 6op(gvsv, scalar variable)
+hit: 15op(rv2sv, scalar dereference)
+hit: 15op(rv2sv, scalar dereference)
+hit: 68op(left_shift, left bitshift (<<))
+hit: 178op(leave, block exit)
+Your perl is : 5.8.8
+Your score is : 1000op
+||<
+----
+29B
+----
+*Other Asnwers
+----
+``;``;1*1
+17B
+backtick++
+----
+1>>-f1%1-f1.-f1
+15B
+
+253op(ftfile, -f)
+----
+do+1<<(1<<1)
+12B
+
+310op(dofile, do "file")
+----
+!!!!$a>=1
+9B
+
+96op(not, not)
+----
+1<<[]-[]
+8B
+
+143op(anonlist, anonymous list ([]))
+21op(srefgen, single ref constructor)
+----
+1/!!!!1
+7B
+----
+*2000op
+----
+{$a++}{[]}
+10B
+
+loop makes too much op code!
+----
+*3000op
+----
+{{{~!1};!!1};}!1
+16B
+----
+*Let's try!
+----
+perl -MAcme::PerlVMGolf -e '0'
+----
+That's all.
+Thanks.

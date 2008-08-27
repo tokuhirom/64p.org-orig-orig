@@ -1,0 +1,103 @@
+Queueueueueue
+<div style="text-align: right">
+2008-08-27(Wed) MicroBlogCon#1
+tokuhirom
+</div>
+----
+焦点。
+Gearman/TheSchwartz と Q4M
+----
+随時ツッコミ歓迎
+(主に id:kazuhooku の)
+----
+Gearman
+----
+client, gearmand, worker
+----
+gearmand
+- Gearman::Server
+- pure perl
+- binary protocol
+- store jobs on memory
+----
+Gearman::Worker
+- select(2) でまってるからリアルタイムだョ
+----
+Gearman::Client
+- perl, ruby, python
+----
+Gearman::Client::Async
+- Danga::Socket
+- epoll(2)/kqueue(2)/select(2)
+- 非同期に結果をうけとれる
+- DJabberd
+-- based on Danga::Socket
+-- XMPP Server
+----
+用途
+- Danga::Socket な鯖でブロッキング(DJabberd)
+- ヒトコトを投稿したときのフック
+----
+フックでやること多すぎにつき
+- IM に通知
+- fav otsune
+- リアルタイムで処理したいけど、Apache ではやるほどのこともない
+----
+TheSchwartz
+----
+- reliable job queue
+- MySQL にがんばるの術
+- インストール楽すぎる
+----
+reliable?
+----
+Yes! Gearman is not a reliable!
+- 落ちちゃうときもある
+- お茶目な存在
+----
+実装
+- 1秒に一回ぐらい SQL うってジョブないかみてる
+----
+用途
+- Feed の生成
+- 画像ブログパーツのさくせい
+- cron のスクリプト
+- gearman → TheSchwartz
+- etc.
+----
+Perl モジュールの読み込みおそいよー ＞＜
+そこで TheSchwartz
+----
+ポイント
+- リアルタイム性がない
+- 信頼できる男。MySQL
+----
+Q4M
+----
+持続的な非同期コミュニケーションのための
+ミドルウェア
+----
+MySQL5.1 storage engine
+----
+>||
+while (1) {
+    SELECT queue_wait('queue'); # XXX block!
+    my @row = SELECT ROW * FROM queue or next;
+    # snip
+}
+||<
+----
+Q4Mでしかできないこと
+- キューの (reliable) forward
+- 特定のフィールドの条件を指定した conditional subscription
+ってあたりになるのかなぁ
+(id:kazuhooku 談)
+----
+みんな Q4M つかえばいいよ！
+----
+Q4M の欠点。
+----
+インスコまんどいお ＞＜
+----
+That's all.
+Thanks.

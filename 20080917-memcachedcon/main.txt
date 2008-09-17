@@ -1,0 +1,24 @@
+memcachedに最適な言語はなにか
+<div style="text-align: right">
+2008-09-17(Wed) Memcachedの未来サミット
+tokuhirom
+</div>
+----
+memcachedは速い
+libmemcachedは速い
+----
+アプリケーションは?
+----
+推測するな
+計測せよ
+----
+Benchmarking
+----
+incr 10000 times.
+----
+<img src="assets/img/benchmark.png" width="600" />
+1.2x faster
+----
+結論: <B>memcached</B> をつかうときは <B>Python</B> をつかう
+----
+That's all

@@ -1,0 +1,49 @@
+body {
+    color: #ffffff;
+    background-color: #000000;
+}
+
+body * {
+    margin: 0;
+    padding : 0;
+}
+
+#topics {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 60px;
+    margin-bottom: 5px;
+    text-align : left;
+    font-size : 60px;
+    font-weight: bold;
+}
+
+#topics h3 {
+    padding : 5px;
+    font-size : 220%;
+    line-height : 1;
+    background-color : #ff0000;
+    color: black;
+}
+
+#topics pre {
+    padding-left: 4px;
+    font-size: 80%;
+    background-color: #202010;
+}
+
+/* ------------------------------------------------------------------------- */
+
+#footer {
+    position: absolute;
+    width: 99%;
+    height: 30px;
+    padding-top: 3px;
+    padding-bottom: 1px;
+    border-top: 1px solid #ffffff;
+    background-color: #000000;
+}
+
+#footer #page_info {
+    position: absolute;
+}

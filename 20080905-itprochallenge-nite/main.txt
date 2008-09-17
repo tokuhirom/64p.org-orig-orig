@@ -1,0 +1,41 @@
+llv8call
+<div style="text-align: right">
+2008-09-05(Fri) ITProchallenge nite
+tokuhirom
+</div>
+----
+Google
+chrome
+----
+おととい?
+----
+fast
+robust
+etc.
+----
+おもろいのは
+----
+v8
+----
+JS Engine
+----
+Fast
+Robust
+Well Tested
+----
+Server Side
+JavaScript
+----
+libfastcgi
+----
+file operation
+os とあれこれ
+----
+*server 連携
+memcached
+mysql
+----
+demo
+----
+http://svn.coderepos.org/share/cplusplus/fcgi-v8/
+patches wellcome

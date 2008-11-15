@@ -1,0 +1,111 @@
+PerlがもっともLightweightな件
+<div style="text-align: right">
+2008-11-14(Sat) LL温泉のLT
+tokuhirom
+</div>
+----
+Lightweight?
+----
+軽量言語とは
+脳にかける負担がすくないこと
+----
+Perl がもっともいい
+----
+Perl はプログラマの柔軟性を活かそうとしている
+----
+WHY?
+----
+たとえば
+----
+たくさんのメソッドをつくりたい
+----
+コピペしたいなあ……
+----
+そこで
+----
+Module::Compile::TT
+----
+>||
+sub foo {
+    my $self = shift;
+    $self->{foo} = shift if @_;
+    $self->{foo};
+}
+sub bar {
+    my $self = shift;
+    $self->{bar} = shift if @_;
+    $self->{bar};
+}
+||<
+----
+>||
+use tt ( fields => [qw/foo bar/] );
+[% FOREACH fields IN fields %]
+sub [% field %] {
+    my $self = shift;
+    $self−>{'[% field %]'} = shift if @_;
+    $self−>{'[% field %]'};
+}
+[% END %]
+no tt;
+||<
+----
+ソースコードフィルタ
+----
+すばらしいですね
+----
+たとえば
+----
+>||
+sub get {
+    my ($self, $key) = @_;
+    $self->{$key};
+}
+||<
+----
+use Method::Signatures;
+----
+>||
+method get($key) {
+    $self->{$key};
+}
+||<
+----
+Perl に実行時に動的に
+パッチをあてている!
+----
+すばらしいですね
+----
+たとえば
+----
+Switch 文をかきたいケド
+Perl には Switch がない
+----
+if 文いっぱいかくのめんどい
+----
+use Switch;
+----
+>||
+switch ($val) {
+    case 1     { print "number 1" }
+    case "a"   { print "string a" }
+    case /\w+/ { print "pattern" }
+}
+||<
+----
+ソースコードフィルタって
+すばらしいですね
+----
+SQL を楽に書きたい
+----
+>||
+for my $row (SELECT * FROM t;) {
+    print "v: $row[0]\n";
+}
+||<
+----
+実にすばらしいですね!!!
+----
+まとめ
+----
+Perl の柔軟性は神!

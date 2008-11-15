@@ -1,0 +1,97 @@
+Perl 入門
+<div style="text-align: right">
+2008-11-14(Fri) LL温泉#1
+tokuhirom
+</div>
+----
+歴史がある
+----
+ユーザーが多い
+----
+書籍がおおい
+----
+レンタルサーバーでも使えます
+----
+というのはどうでもよくて
+----
+柔軟性
+----
+Hello, World!
+----
+length q pop and print chr ord uc q chr lc and print chr ord q ref or and
+print chr ord q else and print chr ord qw q lc q and print chr ord q xor x
+and print chr oct oct oct ord qw q for q and print chr ord q q q and print
+chr ord qw q warn q and print chr ord q local and print chr ord q qr q and
+print chr ord qw q le q and print chr ord qw q do q and print chr hex
+length q q shift shmread bless q 
+----
+安定感
+----
+1986 年から開始。
+バージョンごとの互換性が非常に高い
+----
+CPAN
+----
+62884 Modules
+----
+ありとあらゆるモジュールが。。。
+----
+10行程度のものから数千行のものまで、いろいろ
+----
+String-IRC - IRC のカラーコードを判別する
+----
+XML::LibXML - libxml bindings
+----
+DBI - database interface
+----
+クオリティもばらばら
+----
+使う人が選んで使うというスタンス
+----
+203 人の日本人 CPAN Author がいます
+----
+テストが充実
+----
+ドキュメントが充実(英語だけど)
+----
+充実してないと DIS られる
+----
+急進派と初心者の溝をうめる試み
+----
+*Perl 文法の基礎
+----
+ruby とか PHP とかとかわらないよね。
+----
+ただ、Perl は強力すぎる。いろいろできすぎる。
+----
+でも最初から全部覚える必要はない。
+----
+# コメント
+----
+my $変数 = 3 +2;
+----
+my @配列 = (1, 2, 3);
+----
+my %ハッシュ = ( foo => 'bar', baz => 'boze');
+----
+my $配列リファレンス = [1,2,3];
+----
+my $ハッシュリファレンス = { foo => 'bar', baz => 'boze'};
+----
+use Module;
+----
+if ($x) { ... } else { ... }
+----
+for my $i (0..100) { print $i }
+----
+>||
+sub 関数 {
+    my ($引数１, $引数2) = @_;
+}
+||<
+----
+変数のスコープ
+my, our, local, state
+最初は my だけわかってればいい。
+----
+That's all

@@ -1,0 +1,125 @@
+HTTP::Engine とPerl における Web Application のあり方についての、愛、思想
+<div style="text-align: right">
+2008-11-26(Wed) HECon#1
+tokuhirom
+</div>
+----
+Why HTTP::Engine?
+----
+abstraction layer
+----
+HTTP Servers
+↓ ↑
+Web Applications.
+----
+というようなことは
+みんなわかってるんだろ?
+----
+思想やらについて
+雑多に話す
+----
+What's Web Application Framework?
+----
+ウェブアプリケーションの共通点
+common part of web applications.
+----
+主目的のためだけにコードをかきたい
+you can write code only for main purpose
+----
+なにが最強のフレームワークなのか、まだわからない
+We don't know about best waf.
+----
+なぜ HTTP::Engine が必要か
+Why HTTP::Engine??
+----
+??
+----
+WAF が多いのは是か非か
+----
+現時点ではいいことだ。
+Good for now!
+----
+まだだ、まだたりないよ
+----
+Web Application は多様だ。
+Web Application has many variations
+----
+多様な WAF があるべきだ
+WAF should have many variations
+----
+Catalyst
+Jifty
+Maypole
+CGI::Application
+----
+Sledge
+TripletaiL
+Egg
+Boofy
+----
+車輪の再発明?
+reinvention of the wheel?
+----
+悪いこっちゃない
+Not Bad
+----
+車輪の再発明は、なにかをうみだす
+reinvention of the wheel makes inovation.
+----
+と、私はしんじてます。
+I believe.
+----
+でも!
+But
+----
+車輪は小さいほうがいい
+Small wheel is better.
+----
+そこで HTTP::Engine ですよ
+HTTP::Engine!!!
+----
+HTTP::Engine はあなたのフレームワークを小さくします。
+HTTP::Engine makes your waf smaller.
+----
+ここまではいいかなー?
+OK?
+----
+あなたのフレームワークを小さくしたい
+I want to make small your framework.
+----
+書くコードがちいさければ
+If code is small,
+----
+毎回書くこともできる
+write framework for each application/company
+----
+パーツをかいてます
+We writing parts.
+----
+Dispatcher
+- HTTPx::Dispatcher(tokuhirom)
+- Path::Router(stevan)
+- Path::Dispatcher(sartak)
+etc
+----
+HTTPx::Dispatcher is lightweight.
+- doesn't need Moooooooooooooose
+----
+session manager
+- HTTP::Session
+fast, pluggable.
+----
+いい感じ
+feels good
+----
+自分の手で。
+DIY! DIY!
+----
+まとめ
+----
+Write your own web application
+with HTTP::Engine!
+----
+イジョウ。
+That's all
+

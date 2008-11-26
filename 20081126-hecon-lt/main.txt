@@ -1,0 +1,98 @@
+HTTP::Engine が遅すぎ & メモリくいすぎの件
+または、自由に払う代償について
+<div style="text-align: right">
+2008-11-26(Wed) HECon#1
+tokuhirom
+</div>
+----
+hello world
+0.8818994
+----
+use HTTP::Engine
+0.7473076
+----
+use Moose
+0.4386882
+----
+use Class::MOP
+0.1764539
+----
+Why Class::MOP is slow?
+----
+CGI だけだけどな。
+only cgi
+----
+問題。
+Problem.
+----
+われわれの問題
+Our Problems
+----
+Perlの問題
+Perl Problems
+----
+ロード時間がながすぎる
+Long Long Loading Time
+----
+メモリつかいすぎ
+Too much memory
+----
+依存が多すぎ
+Too Many Dependencies
+----
+Perlの3つの問題
+The Three Perl problems
+----
+Perl は言語フレームワーク
+Perl is language framework.
+----
+普通なら言語の機能なものが CPAN モジュールで構成されてる
+a lot of language features are implemented by pure perl/xs
+----
+自由、パワー、自分の足をうつ
+This makes freedom, power, shoot yourself in the foot。
+----
+そのための欠点
+defect.
+----
+一つの答えは Mojo が示してくれた
+One of the answer is Mojo
+----
+CPAN モジュールに依存しない
+don't depend to any CPAN module
+----
+全部。全部自分でかく。
+WRITE ALL PARTS.
+----
+でも、Mojo はちょっと極端じゃない?
+But, Mojo is extreeemememmememem.
+----
+適度に CPAN をつかいつつ、高速な実装を
+appropriate amount of CPAN, fast implementations.
+----
+HE ん中だと何がよくないの?
+Who cause this problem in HTTP::Engine?
+----
+Mooooooooooooooooooooose
+----
+もっといい Moose がほしい
+We need more better Moose
+----
+I don't need this
+<img src="assets/moose.jpg" />
+----
+I need this
+<img src="assets/sika.jpg" />
+----
+Solution
+----
+配布の前にコンパイル
+compile before distribute
+----
+ガンバル
+hand motion!hand motion!
+----
+anyone have some ideas?
+----
+イジョウ。
+That's all

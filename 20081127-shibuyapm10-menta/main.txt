@@ -1,0 +1,110 @@
+MENTA!
+<div style="text-align: right">
+2008-11-27(Thu) Shibuya.pm Techtalk#10
+tokuhirom
+</div>
+----
+CGI 用の軽量フレームワーク
+----
+Yacafi よりは大きめ
+----
+時代はCGIだろ
+----
+CGI をつかったら身長が3cmのびました
+----
+CGI がこれからはモテる!
+----
+なんてことはない
+----
+ロリポでうごくよ
+----
+ペパボ上場おめでとうございます!
+----
+というわけで本題。
+----
+*テンプレートエンジン完備
+----
+MENTA::Template
+----
+erb っぽいかんじ
+----
+Mojo::Template から fork
+----
+自動で html escape
+----
+テンプレートを Perl のコードにおとす
+キャッシュ
+高速
+----
+*PHP like style
+----
+>||
+<!doctype html>
+Hello to <?= param('user') ?>
+</html>
+||<
+----
+*セッション機構
+----
+with HTTP::Session
+----
+*充実の extlib/
+----
+オレセレクトのモジュール群
+----
+DateTime::Lite
+Data::Page
+Digest::SHA::PurePerl
+Email::Send
+Filter::SQL
+HTML::FillInForm
+HTTP::MobileAgent
+HTTP::Session
+List::MoreUtils
+URI
+YAML
+Cache::Cache
+Class::Accessor::Lite
+----
+Pure Perl
+Lightweight
+Fast
+----
+*すべて関数で
+----
+>||
+session_get('foo');
+param('foo');
+etc
+||<
+初心者でも安心
+----
+*とかいうのはどうでもよくて
+----
+ロリポにアップするだけでうごく
+----
+軽い
+----
+there is more than one way to do it?
+----
+ひとつだけの道を初心者にはみせる
+----
+守破離。
+----
+いいスタイルがみにつく
+----
+>||
+use strict;
+use warnings;
+use utf8;
+||<
+----
+関数ではすべて decode/encode 処理を勝手にやってくれる
+----
+初心者が、正しいスタイルをみにつけ
+そのまま職場にひっこぬける
+----
+Shika はじめました。
+----
+イジョウ。
+That's all

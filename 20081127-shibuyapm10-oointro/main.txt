@@ -1,0 +1,211 @@
+Perl OO 入門 - LL温泉報告 -
+<div style="text-align: right">
+2008-11-27(Thu) Shibuya.pm Techtalk#10
+tokuhirom
+</div>
+----
+LL温泉でやった Perl OO 入門の再演。
+初心者むけセッション
+----
+Shibuya.pm って内容こむずかしいよね
+というわけで初心者むけセッション
+----
+Perl とくいなひと?
+----
+Perl OO くわしいひと
+----
+LL温泉?
+----
+由布院でやりました。
+二泊三日。
+----
+温泉はいりながら、自分の知らない言語のこととか知ろうよの会
+----
+初心者むけ
+----
+PerlってCGIでしょ?
+Perl OO Sucks?
+Perl OO ってあとづけでしょ?
+----
+だが、それがいい
+----
+初心者むけなので、正確さよりもわかりやすさ重視
+Perl の楽しさ重視
+----
+*とりあえず Class をつくる
+----
+package Point;
+----
+>||
+sub new {
+    my ($class, %args) = @_;   # 第１引数はクラス名
+    bless({%args}, $class);    # データを bless すると、オブジェクトになる
+}
+||<
+----
+>||
+sub x {
+    my $self = shift;    # 第１引数は、インスタンス(like python)
+    $self->{x} = shift if @_;    # 引数があればセッター扱いになる
+    $self->{x};
+}
+||<
+----
+>||
+my $p = Point->new(x => 1);
+$p->x();      # ゲッター
+$p->x( 4 );   # セッター
+||<
+----
+new のよびかたはー?
+----
+>||
+my $p = new Point(x => 1, y => 2);
+||<
+----
+new は予約語じゃない
+好きな名前でいい
+----
+たしかめる
+----
+use B::Deparse;
+----
+インタプリタが解釈した結果をみれる
+----
+>||
+% perl -MO=Deparse,-P -e 'new Point()'
+'Point'->new;
+||<
+----
+もちろん new だけ特別なわけじゃない
+----
+>||
+% perl -MO=Deparse,-P -e 'foo Point()'
+'Point'->foo;
+||<
+----
+さて、さて
+----
+>||
+Point->new(x => 1, y => 2)
+
+Point::new('Point', x => 1, y => 2)
+||<
+----
+>||
+package Point;
+sub new { }
+
+sub Point::new { }
+||<
+----
+>||
+$p->x( 3 )
+
+Point::x($p, 3);
+||<
+----
+だから、実装がこうなる
+----
+>||
+sub new {
+    my ($class, %args) = @_;   # 第１引数はクラス名
+    bless({%args}, $class);    # データを bless すると、オブジェクトになる
+}
+||<
+----
+>||
+sub x {
+    my $self = shift;    # 第１引数は、インスタンス(like python)
+    $self->{x} = shift if @_;    # 引数があればセッター扱いになる
+    $self->{x};
+}
+||<
+----
+OK?
+----
+*継承
+----
+>||
+package Point3D;
+unshift @Point3D::ISA, 'Point';
+
+sub z {
+    my $self = shift;
+    $self->{z} = shift if @_;
+    $self->{z};
+}
+||<
+----
+>||
+my $p3 = Point3D->new();
+$p3->x; # parent method
+$p3->z;
+||<
+----
+$p3->x
+実際になにがおこなわれるか
+----
+$p3 は Point3D のインスタンス
+Point3D->x はない
+@Point3D::ISA をみる
+Point->x があった
+これをつかう
+----
+*そういえば
+----
+>||
+my $foo = new Foo();
+||<
+----
+って
+----
+>||
+print STDOUT "foo";
+STDOUT->print("foo");
+||<
+----
+*楽しようぜ
+----
+継承は
+>||
+use base 親クラス名
+||<
+でも可。
+----
+Class::Accessor::Fast
+----
+>||
+package Point;
+use base qw/Class::Accessor::Fast/;
+__PACKAGE__->mk_accessors('x', 'y');
+||<
+----
+Moose
+----
+>||
+package Point;
+use Moose;
+has x => (is => 'rw');
+has y => (is => 'rw');
+||<
+----
+Shika
+----
+>||
+package Point;
+use Shika;
+has 'x';
+has 'y';
+||<
+----
+*まとめ
+----
+Perl OO は素朴
+Perl OO は素材
+Perl の世界観を感じる
+Perl をつかうことはたのしい
+----
+イジョウ。
+That's all
+

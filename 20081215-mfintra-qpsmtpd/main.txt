@@ -1,0 +1,89 @@
+qpsmtpd
+<div style="text-align: right">
+2008-12-15(Mon) 社内勉強会
+tokuhirom
+</div>
+----
+qpsmtpd?
+----
+SMTP daemon
+----
+apache.org とかでつかわれてる
+----
+perl でかかれてる
+----
+mod_perl for smtpd
+
+フック！フック！
+----
+*インストール
+----
+aptitude install qpsmtpd
+----
+うごかねー
+----
+svn co ...
+----
+daemon tools 用の run もついてくる
+----
+mv config.sample/ config/
+----
+./qpsmtpd-forkserver -u $USER
+----
+>||
+% telnet localhost 2525
+220 gp.ath.cx ESMTP qpsmtpd 0.43rc1 ready; send us your mail, but not your spam.
+HELO gp.ath.cx
+250 gp.ath.cx Hi localhost [127.0.0.1]; I am so happy to meet you.
+QUIT
+221 gp.ath.cx closing connection. Have a wonderful day.
+Connection closed by foreign host.
+||<
+----
+簡単でしょ。
+----
+config/plugin の中にプラグイン名かくだけで使えるようになる。
+----
+plugin/yourapp-upload とかいう名前でプラグイン書く
+----
+>||
+sub hook_queue {
+    my ( $self, $transaction ) = @_;
+
+    for my $rcpt ( $transaction->recipients ) {
+        unless ( $rcpt->user eq $hooked_user ) {
+            next;
+        }
+
+        my $sender = $transaction->sender;
+        if ( my $user = $users->{ $sender->address } ) {
+
+            # user found
+            $self->reply_ok($transaction);
+            return OK;
+        }
+        else {
+
+            # user not found error
+            $self->reply_error($transaction);
+            return OK;
+        }
+    }
+    return DECLINED;
+}
+||<
+----
+*使いどころ
+----
+Perl module のロードは遅い
+----
+メール受信してなにか処理
+- エラーメールの処理とか
+- ヒトコト投稿とか
+- 写真投稿とか
+- etc.
+----
+スパムの処理とかにも使えます
+----
+That's all.
+Thanks.

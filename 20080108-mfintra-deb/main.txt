@@ -1,0 +1,54 @@
+deb.
+
+<div style="text-align: right">
+tokuhirom@mf 2008-01-08(tue)
+</div>
+----
+problem
+----
+memcached 1.1.12
+----
+problems
+----
+slow.
+----
+I want latest version.
+1.2.4
+----
+debian sid
+<img src="http://gyazo.com/4e74e9ecca5a6cb246ac52ea2c9f6021.png" width="640" />
+----
+install mdules.
+>||
+aptitude install dpkg-dev debhelper dh-make fakeroot
+||<
+----
+>||
+wget http://snip/memcached_1.2.2-1.dsc
+wget http://snip/memcached_1.2.2.orig.tar.gz
+wget http://snip/memcached_1.2.2-1.diff.gz
+||<
+----
+>||
+tar xzvf memcached_1.2.2.orig.tar.gz
+patch -p0 < =(zcat memcached_1.2.2-1.diff.gz)
+cd memcached-1.2.2/
+chmod +x debian/rules
+||<
+----
+>||
+fakeroot dpkg-buildpackage
+||<
+----
+>||
+dpkg -i ../memcached_1.2.2-1_i386.deb
+||<
+----
+memcached problems
+----
+session memcached
+----
+http://blog.livedoor.jp/nipotan/archives/50499687.html
+----
+that's all.
+any questions?

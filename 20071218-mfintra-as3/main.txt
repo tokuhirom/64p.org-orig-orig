@@ -1,0 +1,35 @@
+why as3?
+
+<div style="text-align: right">
+tokuhirom@mf 2007-12-10(Mon)
+</div>
+----
+What's AS3?
+----
+ActionScript3
+----
+a mutant cousin of JavaScript 2
+----
+what's difference between JavaScript?
+----
+- class base
+-- you can also use as prototype base
+- type declaration
+-- var i:int = 3;
+----
+How to development?
+----
+- Flex2SDK
+- fcsh
+- rascut
+----
+rascut is good wrapper for fcsh.
+- observe mtime
+- auto reload
+----
+demo.
+----
+see the source.
+----
+that's all.
+any questions?

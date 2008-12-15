@@ -1,0 +1,81 @@
+perl5.10
+
+<div style="text-align: right">
+tokuhirom@mf 2007-12-20(Thu)
+</div>
+----
+perl5.10 is released.
+----
+use feature;
+----
+*dor operator.
+----
+defined $a ? $a : $b
+----
+$a // $b
+----
+$c = $d unless defined $c;
+----
+$c //= $d;
+----
+*switch operator
+----
+>||
+given ($foo) {
+    when (/^abc/) { $abc = 1 }
+    when (/^def/) { $abc = 2 }
+    default { $nothing = 1 }
+}
+||<
+----
+*named capture
+----
+*\K
+----
+>||
+s/(foo)bar/$1/g
+||<
+----
+>||
+s/foo\Kbar//g
+||<
+----
+*say
+----
+>||
+say "Hello!";
+print "Hello!\n";
+||<
+----
+use mro;
+
+- DFS
+- C3
+----
+*state variables
+----
+>||
+{
+    my $i = 0;
+    sub foo {
+        $i++;
+    }
+}
+||<
+----
+>||
+sub foo {
+    state $i = 0;
+    $i++;
+}
+||<
+----
+*%^H
+----
+hint hash
+----
+- define your own lexical pragma.
+- pure perl
+----
+that's all.
+any questions?

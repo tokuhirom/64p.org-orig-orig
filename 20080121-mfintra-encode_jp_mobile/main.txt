@@ -1,0 +1,36 @@
+Encode-JP-Mobile
+
+<div style="text-align: right">
+tokuhirom@mf 2008-01-21(Mon)
+</div>
+----
+絵文字領域を意識しつつ Unicode に decode/encode
+----
+*decode
+bytes => unicode string
+----
+*encode
+unicode string => bytes
+----
+- x-sjis-kddi
+- x-sjis-kddi-auto
+----
+裏unicode/表unicode
+----
+KDDI-Auto/KDDI-CP932
+----
+- KDDI-CP932
+- 普通に仕様書にのってるやつ
+----
+- KDDI-Auto
+- SJISの文字コード + 0x0700
+----
+x-utf8-airh はない。
+----
+x-sjis-docomo <= convert <= sjis
+x-sjis-kddi <= decode <= sjis
+----
+----
+----
+that's all.
+any questions?

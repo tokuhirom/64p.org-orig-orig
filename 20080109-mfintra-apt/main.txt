@@ -1,0 +1,64 @@
+apt
+
+<div style="text-align: right">
+tokuhirom@mf 2008-01-09(wed)
+</div>
+----
+*apt-proxy
+----
+proxy server with cache
+----
+LAN is faster than WAN
+----
+fast install.
+----
+http://apt-proxy.ininin:9999/
+----
+*why deb?
+----
+easy to install
+----
+easy to uninstall
+----
+easy to management
+----
+*screen256
+----
+change version.
+----
+debian/changelog
+----
+*create *.deb by alien
+----
+usr/share/vim63/desart256.vim
+----
+>||
+tar czvf vim-colors-desart256-1.01.tgz usr
+fakeroot alien vim-colors-desart256-1.01.tgz
+||<
+----
+*deploy
+----
+http server(apache2)
+
+/var/www/debian/
+----
+>||
+apt-ftparchive packages . | gzip -9c > Packages.gz
+apt-ftparchive sources  . | gzip -9c > Source.gz
+apt-ftparchive contents . | gzip -9c > Contents.gz
+apt-ftparchive release  . > Release
+||<
+----
+>||
+[mf-sarge]
+backends = 
+  http://apt.ininin/sarge
+||<
+----
+>||
+deb http://ftp.ininin:9999/mf-sarge ./
+||<
+----
+that's all.
+any questions?

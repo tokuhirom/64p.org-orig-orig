@@ -1,0 +1,94 @@
+Text::MicroTemplate
+<div style="text-align: right">
+2008-12-18(Thu) mfintra
+tokuhirom
+</div>
+----
+Text::MicroTemplate
+- yet another template engine
+----
+why yet another one?
+- for MENTA
+- for NanoA
+- for CGI
+----
+- fast
+- lightweight
+- easy to learn
+----
+copied from Mojo::Template
+----
+- compile to perl code
+- output cacheable perl code
+----
+syntax
+- is just a 'embedded perl'
+----
+>||
+# output the result of expression with automatic escape
+<?= $expr ?>             (tag style)
+?= $expr                 (per-line)
+||<
+----
+>||
+# output the result expression without escape (tag style)
+<?=r $raw_str ?>
+?=r $raw_str
+||<
+----
+>||
+# execute perl code (tag style)
+<? foo() ?>
+? foo()
+||<
+----
+>||
+# comment (tag style)
+<?# comment ?>
+?# comment
+||<
+----
+>||
+# loops
+<ul>
+? for my $item (@list) {
+<li><?= $item ?></li>
+? }
+</ul>
+||<
+----
+>||
+? $_mt->filter(sub { s/Hello/Good bye/g })->sub({
+Hello, John!
+? })
+||<
+----
+auto escape
+- default is escaped.
+- don't escape it
+>||
+encoded_string("<h1>foo</h1>")
+||<
+----
+- short source
+- fast
+- easy to learn
+-- Filters, Plugins, etc..
+----
+*one more thing
+----
+>||
+Text::MicroTemplate->new(
+    package_name => 'YourApp::Template::Context',
+    template => '<% hello() %>',
+);
+||<
+----
+>||
+package YourApp::Template::Context;
+sub hello { 'world' }
+||<
+----
+イジョウ。
+That's all
+

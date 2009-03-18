@@ -14,9 +14,9 @@ sub main {
 
 sub files {
     my @f;
-    my $cwd = dir('.')->open;
+    my $cwd = dir('talks')->open or die $!;
     while (my $f = $cwd->read) {
-        next unless -d $f;
+        next unless -d "talks/$f";
         next unless $f =~ /^200/;
         push @f, $f;
     }
@@ -30,7 +30,7 @@ __END__
 tokuhirom's slide
 <ul>
 ? for my $file (@$files) {
-    <li><a href="<?= $file ?>"><?= $file ?></a></li>
+    <li><a href="/talks/<?= $file ?>"><?= $file ?></a></li>
 ? }
 </ul>
 </body>

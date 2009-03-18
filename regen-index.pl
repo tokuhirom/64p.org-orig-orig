@@ -20,7 +20,7 @@ sub files {
         next unless $f =~ /^200/;
         push @f, $f;
     }
-    sort { $a cmp $b } @f;
+    reverse sort { $a cmp $b } @f;
 }
 
 __END__

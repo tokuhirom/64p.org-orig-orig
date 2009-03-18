@@ -1,0 +1,122 @@
+Shakan
+<div style="text-align: right">
+2009-03-18(Wed) SoozyCon#7 (djangocon)
+tokuhirom
+</div>
+----
+Shakan?
+-Django like form generation
+- and validation
+- '左官'
+----
+similar project
+- HTML::FormFu(too heavy)
+-- i hate c3 and/or next
+- Rose::HTMLObject
+- HTML::AutoForm
+----
+Concept
+- fast
+- lightweight
+- invented here
+- less deps
+- form-validation separate from form generation
+-- FormValidator::Lite
+----
+*form validation part
+----
+FormValidator::Lite
+- useful for api
+- someone don't need form generation
+----
+>||
+my $validator = FormValidator::Lite->new($q);
+my $res       = $validator->check(
+    name      => [qw/NOT_NULL/],
+    name_kana => [qw/NOT_NULL KATAKANA/],
+    { mails => [qw/mail1 mail2/] } => ['DUPLICATE'],
+);
+$res->load_messages('ja');
+if ($res->is_error) {
+}
+||<
+----
+similar project
+- FormValidator::Simple
+- Sledge::Plugin::Validator
+- Data::FormValidator
+- assets なんたら
+----
+looks like FormValidator::Simple
+- NO! inspired from Sledge::Plugin::Validator
+----
+*HTML::Shakan
+----
+>||
+package Your::Form;
+use HTML::Shakan::Declare; # import
+form signup => (
+    TextField(
+        name => 'name',
+        label => 'YourName'
+    ),
+    EmailFeild(
+        name => 'email',
+        label => 'YourEmail'
+    ),
+);
+||<
+----
+>||
+my $form = Your::Form->get('signup', $q);
+$form->render();
+||<
+----
+>||
+$form->is_valid();
+||<
+----
+class structure
+- Shakan::Renderer(render html)
+-- jquery
+-- simple
+- Shakan::Widget(render html parts)
+-- one <input>
+-- switch textarea/input, select/radio
+----
+- Shakan::Field
+-- EmailField, TextField, etc.
+- FormValidator::Lite
+----
+YAML is not programmable
+- DRY
+----
+*Python とperl の違い
+----
+- perl
+-- Class is too heavy 
+- python
+-- space cost is nearly equal function
+----
+- perl has too many sigil
+-- we dislike sigil too :)
+-- DSL hide sigil
+----
+>||
+package Your::Form;
+use HTML::Shakan; # import
+form signup => (
+    TextField(
+        name => 'name',
+        label => 'YourName'
+    ),
+    EmailFeild(
+        name => 'email',
+        label => 'YourEmail'
+    ),
+);
+||<
+----
+イジョウ。
+That's all
+

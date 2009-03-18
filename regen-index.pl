@@ -20,7 +20,7 @@ sub files {
         next unless $f =~ /^200/;
         push @f, $f;
     }
-    @f;
+    sort { $a cmp $b } @f;
 }
 
 __END__
@@ -28,8 +28,10 @@ __END__
 <html>
 <body>
 tokuhirom's slide
+<ul>
 ? for my $file (@$files) {
-    <a href="<?= $file ?>"><?= $file ?></a>
+    <li><a href="<?= $file ?>"><?= $file ?></a></li>
 ? }
+</ul>
 </body>
 </html>

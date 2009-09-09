@@ -34,9 +34,10 @@ Catalyst/CGI app/etc.
 ||<
 ----
 Protocol is very simple
-- pass the primitive.
--- arrayref/hashref/string/integer/etc.
+- serialize request to HASHREF
+- serialize response to ARRAYREF
 ----
+**Request
 Implementer pass the $env(hashref)
 ----
 $env contains CGI vars
@@ -45,15 +46,56 @@ $env contains CGI vars
 - QUERY_STRING
 - etc.
 ----
-same as HTTP::Engine?
+and PSGI specific vars
+- psgi.input: input handle
+- psgi.version
+- psgi.url_scheme
 ----
+**Response
 ----
-NO!NO!NO!
+>||
+[
+   200,
+   ['Content-Type' => 'text/html'],
+   ['hello, world']
+]
+||<
 ----
-こっからさきはあとでかんがえる
+- status code
+- headers
+- body
+----
+body is ...
+- arrayref contains string
+- GLOB
+- file handle like object(duck type)
+----
+**simple handler is
+----
+>||
+my $app = sub {
+  my $env = $_[0];
+  return [200, [], ['hello'];
+};
+||<
 ----
 draft spec is here.
 http://github.com/miyagawa/psgi-specs/blob/master/PSGI.pod
+----
+**same as HTTP::Engine?
+----
+NO!NO!NO!
+----
+HTTP::Engine is just a *implementation*
+PSGI is spec.
+----
+and, HTTP::Engine::Interface::PSGI is available in repo.
+----
+Then, HE is working on PSGI.
+----
+details at Plack::Adapter::HTTP::Engine
+----
+HTTP::Engine will be maintenance phase...
 ----
 *Plack
 ----
@@ -66,9 +108,72 @@ Plack has
 - plackup command
 - etc.
 ----
-このへんあとでうめる
+**Request
 ----
-Finally,
+Plack::Request likes Cat::Req.
+----
+>||
+my $app = sub {
+  my $req = Plack::Request->new($_[0]);
+  ...
+};
+||<
+----
+**plackup
+----
+application loader
+----
+run your lib/MyApp.pm
+>||
+plackup MyApp
+||<
+----
+CGI should be passed a filename that ends with .cgi
+>||
+plackup foo.cgi
+||<
+----
+switch implementations
+>||
+env PLACK_IMPL=Mojo plackup MyCatApp port 9999
+plackup -i AnyEvent CgiApp
+||<
+----
+Specify framework adapter
+>||
+plackup -a Catalyst MyCatApp
+||<
+----
+adapter?
+----
+**Adapter
+----
+adapter layer to absorb the API difference
+between WAF.
+----
+- MyApp->new->run($env)
+- MyApp->run_psgi($env)
+----
+why?
+----
+- for Plack Utils.
+-- plackup
+----
+Catalyst::Engine & 
+Plack::Adapter::Catalyst
+is available!
+----
+*TODO
+----
+Spec
+- Async spec
+----
+impl
+- Impl::ModPerl
+- Impl::FCGI
+- Plack::Request's interface
+----
+*Finally,
 最後に
 ----
 PSGI is spec.
@@ -79,6 +184,12 @@ Plack は実装
 ----
 REMEMBER THIS.
 これだけはわすれないように。
+----
+*Demo
+----
+- working cat.
+- cgi
+- async
 ----
 イジョウ。
 That's all

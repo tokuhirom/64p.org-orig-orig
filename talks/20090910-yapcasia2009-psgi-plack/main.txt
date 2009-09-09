@@ -1,0 +1,85 @@
+Plack/PSGI
+<div style="text-align: right">
+2009-09-10(Thu) YAPC::Asia 2009
+tokuhirom/miyagawa
+</div>
+----
+First,
+最初に
+----
+PSGI is spec.
+PSGI は仕様
+----
+Plack is implementation.
+Plack は実装
+----
+REMEMBER THIS.
+これだけはわすれないように。
+----
+I'm tired to write same thing in two language.
+日本語かくのつかれたので、こっからさき英語だけで。
+----
+*PSGI
+----
+What's PSGI?
+----
+Perl Webserver Gateway *Protocol*
+----
+>||
+lighty/apache/H::S::S/etc.
+       ↓    ↑
+  [ PSGI Protocol ]
+       ↓    ↑
+Catalyst/CGI app/etc.
+||<
+----
+Protocol is very simple
+- pass the primitive.
+-- arrayref/hashref/string/integer/etc.
+----
+Implementer pass the $env(hashref)
+----
+$env contains CGI vars
+- SERVER_NAME
+- PATH_INFO
+- QUERY_STRING
+- etc.
+----
+same as HTTP::Engine?
+----
+----
+NO!NO!NO!
+----
+こっからさきはあとでかんがえる
+----
+draft spec is here.
+http://github.com/miyagawa/psgi-specs/blob/master/PSGI.pod
+----
+*Plack
+----
+Plack is...
+- reference implementation
+- useful library set of PSGI
+----
+Plack has
+- Request class/Response class
+- plackup command
+- etc.
+----
+このへんあとでうめる
+----
+Finally,
+最後に
+----
+PSGI is spec.
+PSGI は仕様
+----
+Plack is implementation.
+Plack は実装
+----
+REMEMBER THIS.
+これだけはわすれないように。
+----
+イジョウ。
+That's all
+

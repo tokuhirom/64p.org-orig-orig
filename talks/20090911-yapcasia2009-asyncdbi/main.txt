@@ -1,0 +1,87 @@
+Async DB Access with Perl
+<div style="text-align: right">
+2009-09-11(Fri) YAPC::Asia 2009
+tokuhirom
+</div>
+----
+Asynchronous++
+----
+*Problem
+----
+heavy multiple queries in one request...
+----
+then
+----
+>||
+Q1 =>
+Q2    =>
+Q3      =>
+||<
+----
+*Solution
+----
+Asynchronous++
+----
+>||
+Q1 =>
+Q2 =>
+Q3 =>
+||<
+----
+- send request
+- epoll(4)
+- wait until socket become a readable
+- process response
+----
+PostgreSQL
+----
+DBD::Pg can use asynchronouse request.
+----
+>||
+use DBD::Pg 'async';
+||<
+----
+>||
+$dbhs[$_] = DBI−>connect('dbi:Pg:dbname=postgres;host=slave$_', 'postgres','',{AutoCommit=>0,RaiseError=>1});
+$sths[$_] = $dbhs[$_]−>prepare($SQL, {pg_async => PG_ASYNC}) for 0..1;  # ← here
+$_−>execute() for @sths;
+||<
+----
+>||
+    my $dbh = DBI->connect('dbi:Pg:dbname=test', 'tokuhirom', undef, {AutoCommit => 1, RaiseError => 1});
+    my $sth = $dbh->prepare("SELECT 'hello', pg_sleep(?)", {pg_async => PG_ASYNC});
+    $sth->execute($i*rand); # write
+ 
+    my $fh = IO::Handle->new_from_fd($dbh->func('getfd'), 'r');
+    if (!$sth->pg_ready()) {
+        Coro::Handle::FH::readable([$fh]);
+    }
+    my $result = $sth->pg_result;
+    my $r = $sth->fetchrow_arrayref->[0];
+    say "finished $i, $result, $r";
+};
+	my $cv = AE::condvar();
+my $w = AE::io($dbh[$i]->{pg_socket}, 0,
+   sub {
+     if ($sth[$i]->pg_ready) {
+       $cv->send($sth[$i]->fetchall_arrayref);
+       $w;
+     }
+   }
+);
+||<
+----
+>||
+warn Dumper($_->recv) for @cvs;
+||<
+----
+*mysql
+----
+You can use libdrizzle
+----
+----
+----
+----
+----
+----
+That's all

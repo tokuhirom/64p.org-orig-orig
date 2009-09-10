@@ -1,0 +1,106 @@
+Test::TCP
+<div style="text-align: right">
+2009-09-10(Thu) YAPC::Asia 2009
+tokuhirom@えとらぼ
+</div>
+----
+Test is so good
+テスト、これはいいものだ。
+----
+But, test is so difficult in some scene.
+でもテストがめんどいケースもある
+----
+How to test TCP server in CPAN module?
+TCP サーバの CPAN モジュールをどうテストする?
+----
+ithread?<S>win32 fork emulation?</S>
+----
+ithreads sucks.
+----
+fork(2) ?
+----
+Test::More confused under fork(2)
+Test::More は fork するとおかしくなる。
+----
+>||
+my $pid = fork();
+if ($pid > 0) {
+    ok 1, "parent $_" for (0..10);
+    wait();
+} elsif ($pid == 0) {
+    ok 1, "child $_" for (0..10);
+}
+||<
+----
+>||
+1..8
+ok 1 - parent 0
+ok 2 - parent 1
+ok 3 - parent 2
+ok 4 - parent 3
+ok 1 - child 0
+ok 2 - child 1
+ok 3 - child 2
+ok 4 - child 3
+# Looks like you planned 8 tests but ran 4.
+||<
+----
+*Solution
+----
+use Test::SharedFork;
+----
+>||
+use Test::SharedFork;
+use Test::More tests => 8;
+||<
+----
+>||
+my $pid = Test::SharedFork->fork();
+if ($pid > 0) {
+    ok 1, "parent $_" for (0..3);
+    wait();
+} elsif ($pid == 0) {
+    ok 1, "child $_" for (0..3);
+}
+||<
+----
+>||
+1..8
+ok 1 - parent 0
+ok 2 - child 0
+ok 3 - child 1
+ok 4 - child 2
+ok 5 - child 3
+ok 6 - parent 1
+ok 7 - parent 2
+ok 8 - parent 3
+||<
+----
+*Problem
+----
+which is empty TCP port?
+空いてるポートはどこ?
+----
+*Solution
+----
+Test::TCP::empty_port()
+----
+>||
+use Test::TCP;
+test_tcp(
+  client => sub {
+    my $port = shift;
+    ...
+  },
+  server => sub {
+    my $port = shift;
+    ...
+  },
+);
+||<
+----
+Enjoy!
+----
+イジョウ。
+That's all
+

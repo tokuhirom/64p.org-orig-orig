@@ -1,8 +1,15 @@
+今日はAsync/DBIの話はしません
+Plack の話は11時からはじまるらしいです。
+ウコンの力をのんだので、二日酔いの影響はありません。
+デモもやります。
+----
 Plack/PSGI
 <div style="text-align: right">
 2009-09-10(Thu) YAPC::Asia 2009
 tokuhirom/miyagawa
 </div>
+----
+Do you know Plack/PSGI?
 ----
 First,
 最初に
@@ -193,4 +200,4 @@ REMEMBER THIS.
 ----
 イジョウ。
 That's all
-
+#http-engine@irc.perl.org

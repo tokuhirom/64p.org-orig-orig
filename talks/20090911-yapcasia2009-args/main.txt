@@ -1,0 +1,49 @@
+collllllllllloooooool argument validation for you!
+<div style="text-align: right">
+2009-09-11(Fri) YAPC::Asia 2009
+tokuhirom@えとらぼ
+</div>
+----
+Perl5's argument handler is painful!
+----
+Params::Validate?
+----
+<pre>
+use Params::Validate ':all';
+sub bar {
+   my $self = shift;
+   my %args = validate(
+      thing => SCALAR,
+   );
+    say "hello, $args{name}";
+}
+</pre>
+----
+*DRY++
+----
+Devel::Declare?
+----
+Devel::Declare is too hacky!
+DO NOT MODIFY THE SYNTAX!
+----
+Then, gfx and me wrote a new args.pm!
+----
+<pre>
+use args;
+sub bar {
+    args my $self,
+         my $name => { isa => 'Int' };
+    say "hello, $name";
+}
+</pre>
+----
+How it works?
+----
+PadWalker::var_names();
+----
+$_[0] = ...;
+----
+Yes, it's not so hacky,,,, better than D::Declare!
+hehe...
+----
+Enjoy!

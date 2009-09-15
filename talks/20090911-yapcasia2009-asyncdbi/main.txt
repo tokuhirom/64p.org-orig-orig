@@ -1,4 +1,4 @@
-Async DB Access with Perl
+Concurrent DB Access with Perl
 <div style="text-align: right">
 2009-09-11(Fri) YAPC::Asia 2009
 tokuhirom
@@ -12,24 +12,15 @@ heavy multiple queries in one request...
 ----
 then
 ----
->||
-Q1 =>
-Q2    =>
-Q3      =>
-||<
-----
-*Solution
+<img src="assets/img/concurrent.png" />
 ----
 Asynchronous++
 ----
->||
-Q1 =>
-Q2 =>
-Q3 =>
-||<
+how to work it?
 ----
 - send request
-- epoll(4)
+- make socket as O_NONBLOCK
+- polling socket...
 - wait until socket become a readable
 - process response
 ----
@@ -39,49 +30,60 @@ DBD::Pg can use asynchronouse request.
 ----
 >||
 use DBD::Pg 'async';
+use AE;
 ||<
 ----
 >||
-$dbhs[$_] = DBIâˆ’>connect('dbi:Pg:dbname=postgres;host=slave$_', 'postgres','',{AutoCommit=>0,RaiseError=>1});
-$sths[$_] = $dbhs[$_]âˆ’>prepare($SQL, {pg_async => PG_ASYNC}) for 0..1;  # â† here
-$_âˆ’>execute() for @sths;
+my $dbh = DBI->connect('dbi:Pg:dbname=postgres;host=slave$_', 'postgres','',{AutoCommit=>0,RaiseError=>1});
+$sth = $dbh->prepare($SQL, {pg_async => PG_ASYNC});  # ’¢« here
+$sth->execute();
 ||<
 ----
 >||
-    my $dbh = DBI->connect('dbi:Pg:dbname=test', 'tokuhirom', undef, {AutoCommit => 1, RaiseError => 1});
-    my $sth = $dbh->prepare("SELECT 'hello', pg_sleep(?)", {pg_async => PG_ASYNC});
-    $sth->execute($i*rand); # write
- 
-    my $fh = IO::Handle->new_from_fd($dbh->func('getfd'), 'r');
-    if (!$sth->pg_ready()) {
-        Coro::Handle::FH::readable([$fh]);
-    }
-    my $result = $sth->pg_result;
-    my $r = $sth->fetchrow_arrayref->[0];
-    say "finished $i, $result, $r";
-};
-	my $cv = AE::condvar();
-my $w = AE::io($dbh[$i]->{pg_socket}, 0,
+my $cv = AE::cv();
+my $w = AE::io($dbh->{pg_socket}, 0,
    sub {
-     if ($sth[$i]->pg_ready) {
-       $cv->send($sth[$i]->fetchall_arrayref);
-       $w;
+     if ($sth->pg_ready) {
+       warn Dumper($sth->pg_result);
+       $cv->send();
+       undef $w;
      }
    }
 );
+push @cvs, $cv;
 ||<
 ----
 >||
-warn Dumper($_->recv) for @cvs;
+$_->recv for @cvs;
 ||<
 ----
 *mysql
 ----
+unfortunately...
+----
+libmysqlclient is not supported non-blocking I/O.
+----
+But
+----
 You can use libdrizzle
 ----
+wtf?drizzle?drizzle is available?
 ----
+Yes!
 ----
+libdrizzle support drizzle/mysql protocol.
+the project is separated from drizzle project :)
 ----
+bindings
+- Net::Drizzle
+- DBD::drizzle
 ----
+Net::Drizzle is
+- my one
+- straightforward interface for libdrizzle
+----
+This works well.but, this does not works on the DBI.
+----
+DBD::drizzle doesn't support concurrent queries
 ----
 That's all

@@ -1,0 +1,150 @@
+Perl is meta language.
+----
+JPerl Advent Calendar 2009
+hacker track が15人たりてないです!
+http://atnd.org/events/2275
+ちょっとした tips とかでいいので登録してくだちい!
+----
+ああ、柔軟な言語 Perl よ。
+<div style="text-align: right">
+2009-11-30(Mon) Shibuya.pm techtalk #12
+tokuhirom
+</div>
+----
+空気よまずに Perl の話します。
+----
+KVS に興味があるだけで Perl に興味ない人おおそう。
+----
+Perl がよくわからない人にもわかるようにします。
+----
+Perlの魅力とはなにか
+----
+いろいろあるけど、柔軟性じゃないだろうか
+----
+Perl の柔軟性は異常。
+----
+Perl is meta language.
+----
+*prototype 宣言
+----
+>||
+sub foo <B>(&)</B> { }
+
+foo sub { };
+↓
+foo { };
+||<
+(ただし、第一引数にかぎる)
+----
+constants
+>||
+sub bar <B>()</B> { 3 }
+
+4 + bar;
+||<
+定数畳みこみ最適化が効く。
+----
+*ソースフィルタ
+----
+ソースを正規表現などで変更する。
+----
+Filter::SQL
+>||
+use Filter::SQL;
+
+for my $row (<B>SELECT * FROM t;</B>) {
+    print "v: $row[0]\n";
+}
+||<
+----
+>||
+use Filter::SQL;
+for my $row (<B>
+  Filter::SQL->sql_selectall(
+    undef, 'SELECT * FROM t'
+  )</B>
+) { print "v: $row[0]\n"; }
+||<
+----
+use tt;
+>||
+use tt ( fields => [qw/foo bar gorch/] );<B>
+[% FOREACH field IN fields %]
+sub [% field %] { ... }
+[% field %]
+</B>no tt;
+||<
+----
+*PL_check hack
+----
+call methods on native types
+>||
+use autobox::Core;
+say <B>4->sqrt</B>;
+||<
+----
+PL_check という配列にコールバック関数を登録。
+----
+構文木を組み立てる時にフック。
+----
+クリーンなハックといわれている。
+----
+syntax をいじらないところに美学がある。
+----
+VimColor とかでも大丈夫。
+----
+*Devel::Declare
+----
+- toke.c (lexical analyzer) をパクってる
+- source filter の機能をつかってるらしい
+----
+(詳細略)
+----
+*そして
+----
+そして、2009年。
+----
+「ここから本題です」
+----
+*PL_keyword_plugin
+PL_keyword_plugin
+----
+Perl 5.11.2 feature
+(開発版)
+----
+- キーワードに反応し、そっから先のパーズ処理をのっとる。
+- よんだデータから OP ツリーを構築し、それを返す。
+----
+>||
+use SQL::Keyword;
+for my $row (<B>SELECT * FROM table;</B>) {
+    say $row[0];
+}
+||<
+----
+>||
+op = newUNOP(
+        OP_ENTERSUB,
+        OPf_STACKED,
+        Perl_append_elem(OP_LIST,
+            Perl_prepend_elem(OP_LIST,
+                newSVOP(OP_CONST, 0, newSVpvn("SQL::Keyword", sizeof("SQL::K
+eyword")-1)),
+                newSVOP(OP_CONST, 0, buf)),
+            newUNOP(OP_METHOD, 0,
+                newSVOP(OP_CONST, 0, newSVpvn("SQL::Keyword::_run", sizeof("
+SQL::Keyword::_run")-1)))));
+||<
+----
+必要スキル
+- Perl5 OP tree のくみたてができる
+- XS が書ける
+- SV にくわしい
+----
+Perl5 はいままさに大きな一歩をふみだしている。
+----
+Syntax さえも縦横無尽に変更できる、たのしい言語になる!
+----
+Enjoy!
+----
+thanks!

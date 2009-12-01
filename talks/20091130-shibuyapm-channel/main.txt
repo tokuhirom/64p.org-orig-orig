@@ -1,0 +1,106 @@
+ああ、柔軟な言語 Perl よ。
+<div style="text-align: right">
+2009-11-30(Mon) Shibuya.pm techtalk #12
+tokuhirom
+</div>
+----
+Perlの魅力とはなにか
+----
+それは柔軟性じゃないだろうか
+----
+さて
+----
+最近、Golang が流行ってますね。
+----
+golang といえば goroutine
+>||
+ch := make(chan int);
+||<
+----
+>||
+go func() {
+    for {
+        x := <- ch;
+        fmt.Printf("%d\n", x);
+    };
+}();
+||<
+----
+>||
+ch <- 3;
+||<
+----
+*それ Coro でできるよ
+----
+>||
+my $ch = Coro::Channel->new();
+||<
+----
+>||
+async {
+    while (1) {
+        my $x = $ch->get();
+        print("$x\n");
+    }
+};
+||<
+----
+>||
+$ch->set(3);
+||<
+----
+あれ。。。チャンネルまわりダサくね?
+----
+PHP で、パーザをブッコんで、チャンネル構文をつくってる変な人がいた。
+http://d.hatena.ne.jp/moriyoshi/20091114/1258204128
+----
+>||
+[$ch] <- $i++;
+$msg = <- [$ch];
+||<
+----
+ふむ。。。
+Perl でもやりたいね。
+----
+>||
+$ch <- $i;
+||<
+----
+>||
+$ch < (-$i)
+||<
+----
+もしかして: overload
+----
+やってみた。
+----
+>||
+my $ch = Ch->new;
+my $x <- $ch;
+$ch <- 3;
+||<
+これ、できるよ。
+----
+>||
+package Ch;
+sub new { bless [Coro::Channel->new], shift }
+||<
+----
+>||
+use overload
+    '-' => sub { $_[0] },
+    '<' => sub {
+        if ($_[2]) {
+          $_[1] = - $_[0]->[0]->get()
+        } else {
+          $_[0]->[0]->put($_[1])
+        }
+    },
+;
+||<
+----
+*まとめ
+----
+Perl 便利!
+----
+Enjoy!

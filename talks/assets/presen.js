@@ -88,8 +88,10 @@ Presen.update_footer = function () {
 
     $("#current_page").html((Presen.page+1));
 
-    var rest = parseInt( (now - start_time)/1000 );
-    $('#rest_time').html('' + parseInt(rest/60.0) + '.' + parseInt(rest/60.0*100.0)/100.0);
+    var used_time = parseInt( (now - start_time)/1000 );
+    var used_min = parseInt(used_time/60.0);
+    var used_sec = parseInt( used_time - (used_min*60.0) );
+    $('#used_time').html('' + Presen.two_column(used_min) + ':' + Presen.two_column(used_sec));
 
     $("#footer").css('top', (window.innerHeight - 50) + "px");
 }
@@ -140,7 +142,7 @@ Presen.format = function(lines){
         }
         
         if (mode=="pre") {
-            context.push(v.escapeHTML().tag("span") + "\n");
+            context.push(v.escapeHTML().replace("&lt;B&gt;", "<B>").replace("&lt;/B&gt;", "</B>").tag("span") + "\n");
         } else {
             context.push(v.tag("span") + "<br>");
         }
@@ -148,8 +150,14 @@ Presen.format = function(lines){
     return context.join("");
 };
 
+Presen.two_column = function (i) {
+    var m = "" + i;
+    if (m.length == 1) { m = "0"+m; }
+    return m;
+};
+
 Date.prototype.hms = function () {
-    return '' + this.getHours() + ":" + this.getMinutes() + ":" + this.getSeconds();
+    return '' + this.getHours() + ":" + Presen.two_column(this.getMinutes()) + ":" + Presen.two_column(this.getSeconds());
 }
 
 String.prototype.tag = function(tag, classname){

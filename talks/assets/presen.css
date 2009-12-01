@@ -32,6 +32,12 @@ body * {
     background-color: #202010;
 }
 
+#topics .code {
+    padding-left: 4px;
+    font-size: 80%;
+    background-color: #202010;
+}
+
 /* ------------------------------------------------------------------------- */
 
 #footer {
@@ -51,4 +57,9 @@ body * {
 B {
     color: red;
     font-size: 150%;
+}
+
+pre B {
+    color: red;
+    font-size: 100%;
 }

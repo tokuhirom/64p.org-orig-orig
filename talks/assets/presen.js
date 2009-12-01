@@ -1,5 +1,9 @@
-var start_time = new Date();
-var Presen = {};
+(function () {
+
+var Presen = {
+    start_time: new Date()
+};
+
 Presen.init = function(data){
     this.data = data;
 
@@ -9,13 +13,10 @@ Presen.init = function(data){
     this.format_cache = new Array();
     this.rewrite();
 
-    // TODO: fix me
-    // $("#page_info").css('left', (window.innerWidth - 200) + "px");
-
     $("#total_page").html(Presen.sections.length);
 
     setInterval(
-        Presen.update_footer, 1
+        Presen.cron, 1
     );
 };
 
@@ -68,18 +69,29 @@ Presen.prev = function(){
     this.rewrite();
 };
 
-Presen.update_footer = function () {
+Presen.cron = function () {
     var now = new Date();
     $("#time").html(now.hms());
 
     $("#current_page").html((Presen.page+1));
 
-    var used_time = parseInt( (now - start_time)/1000, 10 );
+    var used_time = parseInt( (now - Presen.start_time)/1000, 10 );
     var used_min = parseInt(used_time/60.0, 10);
     var used_sec = parseInt( used_time - (used_min*60.0), 10 );
     $('#used_time').html('' + Presen.two_column(used_min) + ':' + Presen.two_column(used_sec));
 
     $("#footer").css('top', (window.innerHeight - 50) + "px");
+
+    var body = $(window);
+    var topic = $('#topics');
+    // topic.html('<h1>'+[body.width(), topic.width(), $(document).width()].join(" ")+'</h1>');
+    if (topic.width() > body.width()) {
+        topic.html(' ' +topic.width() + " " + body.width());
+    }
+
+    $("#page_info").css('left', ($('body').width() - $('#page_info').width()) + "px");
+
+    $("#topics pre").css("font-size", Presen.pre_font_size);
 }
 
 Presen.rewrite = function(){
@@ -87,13 +99,15 @@ Presen.rewrite = function(){
     if (!this.format_cache[p]) {
         this.format_cache[p] = this.format(this.sections[p]);
     }
-    $("#topics").html(this.format_cache[p]);
+    $("#topics").html(this.format_cache[p][0]);
+    this.pre_font_size = this.format_cache[p][1];
     location.hash = "#" + p;
 };
 
 Presen.format = function(lines){
     var context = [];
     var mode = "p";
+    var pre_max = 0;
     $(lines).each(function(i, v){
         if (/^----$/.test(v)) {
             return; // page separater
@@ -128,12 +142,14 @@ Presen.format = function(lines){
         }
         
         if (mode=="pre") {
+            pre_max = Math.max(v.length, pre_max);
             context.push(v.escapeHTML().replace("&lt;B&gt;", "<B>").replace("&lt;/B&gt;", "</B>").tag("span") + "\n");
         } else {
             context.push(v.tag("span") + "<br>");
         }
     });
-    return context.join("");
+    var pre_font_size = '' + parseInt($(window).width()/pre_max+10, 10) + "px";
+    return [context.join(""), pre_font_size];
 };
 
 Presen.two_column = function (i) {
@@ -153,6 +169,15 @@ String.prototype.tag = function(tag, classname){
 String.prototype.escapeHTML = function () {
     return this.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
+
+Presen.change_font_size = function (selector, factor) {
+    var px = $(selector).css('font-size');
+        px = parseInt(px.replace('px', ''), 10) + factor;
+        px = "" + px + "px";
+    $(selector).css('font-size', px);
+
+    Presen.pre_font_size = parseInt(Presen.pre_font_size, 10) + factor + "px";
+};
 
 Presen.observe_key_event = function () {
     $(document).keydown(function(e) {
@@ -175,16 +200,10 @@ Presen.observe_key_event = function () {
                 break;
 
             case 190: // > and .
-                var px = $('#topics').css('font-size');
-                    px = parseInt(px.replace('px', ''), 10) + 10;
-                    px = "" + px + "px";
-                $('#topics').css('font-size', px);
+                Presen.change_font_size('#topics', +10);
                 break;
             case 188: // < and ,
-                var px = $('#topics').css('font-size');
-                    px = parseInt(px.replace('px', ''), 10) - 10;
-                    px = "" + px + "px";
-                $('#topics').css('font-size', px);
+                Presen.change_font_size('#topics', -10);
                 break;
         }
     });
@@ -203,4 +222,6 @@ $(function (){
 
     Presen.observe_key_event();
 });
+
+})();
 

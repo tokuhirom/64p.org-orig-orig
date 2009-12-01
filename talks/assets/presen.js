@@ -74,9 +74,9 @@ Presen.update_footer = function () {
 
     $("#current_page").html((Presen.page+1));
 
-    var used_time = parseInt( (now - start_time)/1000 );
-    var used_min = parseInt(used_time/60.0);
-    var used_sec = parseInt( used_time - (used_min*60.0) );
+    var used_time = parseInt( (now - start_time)/1000, 10 );
+    var used_min = parseInt(used_time/60.0, 10);
+    var used_sec = parseInt( used_time - (used_min*60.0), 10 );
     $('#used_time').html('' + Presen.two_column(used_min) + ':' + Presen.two_column(used_sec));
 
     $("#footer").css('top', (window.innerHeight - 50) + "px");
@@ -116,12 +116,12 @@ Presen.format = function(lines){
             return;
         }
         
-        if (/^\>\|\|/.test(v)) {
+        if (/^\>\|\|/.test(v)) { // >||
             mode = "pre";
             context.push("<pre>");
             return;
         }
-        if (/^\|\|\</.test(v)) {
+        if (/^\|\|\</.test(v)) { // ||<
             mode = "p";
             context.push("</pre>");
             return;
@@ -168,6 +168,24 @@ Presen.observe_key_event = function () {
             case 78: // n
             case 74: // j
             case 40: Presen.next();e.stopPropagation();break;
+
+            case 70: // f
+                $('#footer').toggle();
+                e.stopPropagation();
+                break;
+
+            case 190: // > and .
+                var px = $('#topics').css('font-size');
+                    px = parseInt(px.replace('px', ''), 10) + 10;
+                    px = "" + px + "px";
+                $('#topics').css('font-size', px);
+                break;
+            case 188: // < and ,
+                var px = $('#topics').css('font-size');
+                    px = parseInt(px.replace('px', ''), 10) - 10;
+                    px = "" + px + "px";
+                $('#topics').css('font-size', px);
+                break;
         }
     });
 };

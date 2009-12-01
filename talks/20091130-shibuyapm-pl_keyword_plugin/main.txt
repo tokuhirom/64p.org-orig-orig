@@ -1,10 +1,3 @@
-Perl is meta language.
-----
-JPerl Advent Calendar 2009
-hacker track が15人たりてないです!
-http://atnd.org/events/2275
-ちょっとした tips とかでいいので登録してくだちい!
-----
 ああ、柔軟な言語 Perl よ。
 <div style="text-align: right">
 2009-11-30(Mon) Shibuya.pm techtalk #12

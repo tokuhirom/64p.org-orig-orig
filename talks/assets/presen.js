@@ -1,17 +1,3 @@
-var Event = {};
-Event.stop = function(e){
-    Event.stopAction(e);
-    Event.stopEvent(e);
-};
-Event.stopAction = function(e){
-    e.preventDefault ? e.preventDefault() : (e.returnValue = false)
-};
-Event.stopEvent = function(e){
-    e.stopPropagation ? e.stopPropagation() : (e.cancelBubble = true)
-};
-
-// -------------------------------------------------------------------------
-
 var start_time = new Date();
 var Presen = {};
 Presen.init = function(data){
@@ -170,7 +156,6 @@ String.prototype.escapeHTML = function () {
 
 Presen.observe_key_event = function () {
     $(document).keydown(function(e) {
-        var s = Event.stop;
         switch(e.keyCode){
             case 82: // r
                 location.reload();
@@ -178,11 +163,11 @@ Presen.observe_key_event = function () {
             
             case 80: // p
             case 75: // k
-            case 38: Presen.prev();s(e);break;
+            case 38: Presen.prev();e.stopPropagation();break;
             
             case 78: // n
             case 74: // j
-            case 40: Presen.next();s(e);break;
+            case 40: Presen.next();e.stopPropagation();break;
         }
     });
 };

@@ -80,7 +80,7 @@ Presen.cron = function () {
     var used_sec = parseInt( used_time - (used_min*60.0), 10 );
     $('#used_time').html('' + Presen.two_column(used_min) + ':' + Presen.two_column(used_sec));
 
-    $("#footer").css('top', (window.innerHeight - 50) + "px");
+    $("#footer").css('top', ($(document).height() - 50) + "px");
 
     var body = $(window);
     var topic = $('#topics');

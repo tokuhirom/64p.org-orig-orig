@@ -4,6 +4,11 @@ Internal SQL::Embedded
 tokuhirom
 </div>
 ----
+>||
+- next unless $f =~ /^200/;
++ next unless $f =~ /^20/;
+||<
+----
 これまでのあらすじ
 ----
 * source filter

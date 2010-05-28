@@ -75,6 +75,7 @@ no docs
 - use B::Terse; use B::Concise;
 - use source
 ----
+perl -MO=Concise -e 'my $x'
 >||
 4  <@> leave[1 ref] vKP/REFC ->(end)
 1     <0> enter ->2
@@ -83,6 +84,7 @@ no docs
 -e syntax OK
 ||<
 ----
+perl -MO=Concise -e 'Foo->bar(1,2,3)'
 >||
 a  <@> leave[1 ref] vKP/REFC ->(end)
 1     <0> enter ->2
@@ -96,6 +98,18 @@ a  <@> leave[1 ref] vKP/REFC ->(end)
 8        <$> method_named(PV "bar") ->9
 -e syntax OK
 ||<
+----
+>||
+op = newUNOP(
+        OP_ENTERSUB,
+        OPf_STACKED,
+        Perl_append_elem(OP_LIST,
+            args,
+            newUNOP(OP_METHOD, 0,
+                newSVOP(OP_CONST, 0, newSVpvn(executer, executer_len)))));
+||<
+----
+http://github.com/tokuhirom/p5-sql-embedded/
 ----
 Enjoy!
 ----

@@ -1,0 +1,80 @@
+Internal SQL::Embedded
+<div style="text-align: right">
+2010-05-28(Fri) Tsukuba.xs beer talks #1
+tokuhirom
+</div>
+----
+これまでのあらすじ
+----
+* source filter
+----
+(ry
+----
+* PL_check
+----
+syntax をいじらないで、op tree の操作のみで奇っ怪な挙動をさせる
+----
+- autobox
+- etc.
+----
+* Devel::Declare
+----
+- MouseX::Declare
+- Method::Signature
+...
+----
+>||
+class CheckingAccount extends BankAccount {
+    has 'overdraft_account' => ( isa => 'BankAccount', is => 'rw' );
+
+    before withdraw( Num $amount) {
+        my $overdraft_amount = $amount - $self->balance();
+            if ( $self->overdraft_account && $overdraft_amount > 0 ) {
+            $self->overdraft_account->withdraw($overdraft_amount);
+            $self->deposit($overdraft_amount);
+        }
+    };
+}
+||<
+----
+* そして 2010。PL_keyword_plugin へ。
+----
+perl5.12.0 からの新機能。
+released at 2010-04-12
+----
+- XS::APItest::KeywordRPN というのが付属
+- RPN を perl の中にうめられる
+----
+>||
+use XS::APItest::KeywordRPN qw(rpn calcrpn);
+$triangle = rpn($n $n 1 + * 2 /);
+||<
+通常は syntax error.
+----
+で、SQL::Embedded の話。
+----
+* 本題
+----
+>||
+use SQL::Embedded;
+my @h = SELECT AS HASH * FROM t;;
+is $h[0]->{v}, 12345;
+is $h[1]->{v}, 67890;
+||<
+----
+* 基本的な流れ
+----
+- キーワードがみつかると、callback される
+- 自分が気になるキーワードなら処理する。なければ DECLINED
+- op tree をつくってかえす
+----
+* op tree のつくりかた
+----
+no docs
+----
+- use B::Terse; use B::Concise;
+- use source
+----
+Enjoy!
+----
+thanks!

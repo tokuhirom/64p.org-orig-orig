@@ -75,6 +75,28 @@ no docs
 - use B::Terse; use B::Concise;
 - use source
 ----
+>||
+4  <@> leave[1 ref] vKP/REFC ->(end)
+1     <0> enter ->2
+2     <;> nextstate(main 1 -e:1) v:{ ->3
+3     <0> padsv[$x:1,2] vM/LVINTRO ->4
+-e syntax OK
+||<
+----
+>||
+a  <@> leave[1 ref] vKP/REFC ->(end)
+1     <0> enter ->2
+2     <;> nextstate(main 1 -e:1) v:{ ->3
+9     <1> entersub[t1] vKS/TARG ->a
+3        <0> pushmark s ->4
+4        <$> const(PV "Foo") sM/BARE ->5
+5        <$> const(IV 1) sM ->6
+6        <$> const(IV 2) sM ->7
+7        <$> const(IV 3) sM ->8
+8        <$> method_named(PV "bar") ->9
+-e syntax OK
+||<
+----
 Enjoy!
 ----
 thanks!

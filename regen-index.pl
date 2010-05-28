@@ -17,7 +17,7 @@ sub files {
     my $cwd = dir('talks')->open or die $!;
     while (my $f = $cwd->read) {
         next unless -d "talks/$f";
-        next unless $f =~ /^200/;
+        next unless $f =~ /^20/;
         push @f, $f;
     }
     reverse sort { $a cmp $b } @f;

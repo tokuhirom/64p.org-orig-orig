@@ -1,0 +1,206 @@
+﻿Data::MessagePack
+<div style="text-align: right">
+2010-09-30(Thu) Shibuya.pm techtalk
+徳永広夢 こと tokuhirom
+</div>
+----
+What's MessagePack?
+----
+シリアライゼーション(永続化)フォーマット
+----
+バイナリ
+----
+*特徴
+----
+ポータブル
+- PHP
+- Java
+- Perl
+- etc.
+----
+データがちいさい
+----
+>||
+say length(JSON::XS::encode_json({a=>1, b=>2}));
+# => 13
+||<
+----
+>||
+say length(Storable::nfreeze({a=>1, b=>2}));
+# => 21
+||<
+----
+>||
+say length(Data::MessagePack->pack({a=>1, b=>2}));
+# => 7
+||<
+----
+ストリーミングデシリアライザ
+- ネットワーク
+----
+>||
+$binary = Data::MessagePack->pack($perl)
+$perl=  Data::MessagePack->unpack($binary)
+||<
+----
+Storable と比較
+利点
+- 速い!(gfx++)
+- 他の言語ともつかえる
+- データサイズがちいさい
+----
+欠点
+- bless とかはつかえない
+----
+JSON::XS と比較
+利点
+- 速い(ちょっとだけ)
+- データサイズがちいさい
+----
+欠点
+- バイナリなので人間がよみづらい
+----
+*最近のアップデート
+----
+Pure Perl サポート
+(makamaka++)
+----
+高速化
+(gfx++)
+----
+*どんぐらいはやいの？
+----
+serialize
+>||
+storable  38399/s
+json     141940/s
+mp       355501/s
+||<
+----
+deserialize
+>||
+storable 114975/s
+json     179443/s
+mp       212910/s
+||<
+----
+thanks!
+----
+第二部
+----
+XMLRPC on PSGI
+<div style="text-align: right">
+2010-09-30(Thu) Shibuya.pm techtalk
+徳永広夢 こと tokuhirom
+</div>
+----
+*まとめ
+----
+RPC::XML で RPC::XML::Server::PSGI はオススメです！
+----
+2010年代にXML-RPC?
+----
+XML-RPC の利点
+- どんな言語でもバインディングがある
+- なにもかんがえないでいい
+----
+XML-RPC の欠点
+- おそい
+- (でもSOAPほどではない)
+----
+(JSONとかで適当にできる場合ならそっちのほうがいいよね)
+----
+*XML-RPC を Plack で
+----
+XMLRPC related modules on CPAN
+- XMLRPC::Lite
+- RPC::XML
+- XML::RPC
+- XML::RPC::Fast
+----
+*批評
+----
+XML::RPC
+- XML::TreePP を使用
+- ふつう
+----
+XML::RPC::Fast
+- XML::LibXML
+- なんかゴテゴテしてる
+- AnyEvent 対応とかもはいってる。。
+----
+XMLRPC::Lite
+- SOAP::Lite の一部
+- なんかでかい
+- XML::Parser(expat)
+- おそい
+----
+RPC::XML
+- 個人的には一番よさげなにおいがする
+- XML::Parser or XML::LibXML
+- はやい
+----
+ベンチマークとってみた
+----
+>||
+XMLRPC::Lite   229/s
+XML::RPC       521/s
+XML::RPC::Fast 733/s
+RPC::XML       737/s
+||<
+----
+XML::RPC::Fast と RPC::XML の差は誤差の範囲
+----
+- インターフェースが RPC::XML の方がすきなのでこっちがおすすめ
+- 型とかも明示的に指定できる
+----
+see http://gist.github.com/600085
+----
+*XMLRPC meets PSGI
+----
+PSGI 用のラッパーないのかな
+----
+なかった
+----
+かいた
+----
+- XMLRPC::Lite::Transport::HTTP::PSGI
+-- http://github.com/tokuhirom/p5-XMLRPC-Transport-HTTP-PSGI
+----
+まあ、これつかう理由ないけど。。
+----
+- RPC::XML::Server::PSGI
+-- http://github.com/tokuhirom/rpc-xml/tree/psgi-support
+----
+引数の validation とかしてくれる
+----
+>||
+XMLRPC::Lite       229/s
+XML::RPC           521/s
+XML::RPC::Fast     736/s
+RPC::XML::S::PSGI  988/s
+||<
+----
+RPC::XML::Server::PSGI はドキュメントかいたら pull request します
+----
+RPC::XML で RPC::XML::Server::PSGI はオススメです！
+----
+使い方
+----
+>||
+$s = RPC::XML::Server::PSGI->new();
+$s->add_proc({
+   name => 'sum',
+   code => sub { $_[0]+$_[1] },
+   signature => ['string int int'],
+});
+my $app = $s->to_app();
+||<
+----
+and plackup！
+----
+Enjoy!
+享受!
+----
+thanks!
+謝謝!

@@ -1,0 +1,208 @@
+Webアプリケーション開発のための分散ファイルシステム MogileFS を使う理由
+<div style="text-align: right">
+2010-03-23(Tue) hbstudy
+tokuhirom
+</div>
+----
+*自己紹介
+----
+<img src="http://a1.twimg.com/profile_images/26163472/tokuhiro.jpg" />
+http://twitter.com/tokuhirom
+http://d.hatena.ne.jp/tokuhirom/
+http://github.com/tokuhirom/
+http://tokuhirom.github.com/
+http://search.cpan.org/~tokuhirom/
+----
+Web屋さんです。
+- Perl を使用したウェブシステムの構築
+- Objective-C
+- Visual C++
+----
+株式会社えとらぼ
+Ficia <img src="http://sta.ficia.com/common/t/images/common/ficia_logo.png" />
+写真サイト
+----
+注意。
+----
+Ficia では MogileFS はつかってません!(ぇー
+----
+昔つかってたときの話をメインに。
+- podcasting 的なサイト
+- お気軽メッセージングハブ的なサイト
+- etc.
+----
+*最重要事項
+----
+mogile
+もがいる？
+もじゃいる？
+→ Mow-guy-I
+----
+*発表について
+----
+- 一般的なインフラ屋さん向けに資料かいてます
+-- Web 屋さんからするとぬるいかも
+- 随時質問してくだちい
+----
+*what is mogilefs?
+----
+L7のWebアプリ向け分散ファイルシステムです。
+----
+<img src="img/overview.png" />
+----
+ファイルシステムといっても mount してつかう感じではありません。
+(fuse でマウントすることもできますが、それが主目的ではない)
+----
+Web アプリで利用するためのものです。
+----
+つくった人
+- bradfitz
+-- livejournal, danga → 6A → google
+-- author of memcached, gearmand, etc.
+- livejournal is blogging service
+-- 画像とか
+----
+実用本位
+only for web app.
+----
+パッケージソリューションと思ってつかわない
+作者の想定してない使い方をするとひどい目にあう
+----
+ユーザー
+- digg
+- last.fm(SSD)
+- livejournal
+- sixapart
+- etc.
+----
+- mobile factory
+- p○per boy & co.
+- は○な
+- 
+----
+*インストール
+----
+>||
+# rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/i386/epel-release-5-3.noarch.rpm
+# yum -y install mogilefsd perl-MogileFS-Client perl-MogileFS-Utils
+||<
+----
+今回はインストールのこまかい話とかはあんましないです。。
+----
+*構成
+----
+- application
+- tracker
+- store node(httpd)
+- database(innodb)
+- (L7 ロードバランサ)
+----
+application
+あなたのアプリ
+----
+tracker node
+- tcp server
+- job queue
+- replication
+- どこのストレージノードにストアされてるか
+----
+store node
+Perlbal
+lighttpd
+apache1.3
+----
+database
+innodb
+----
+perl で書かれてる
+----
+各言語のバインディングもあるよ
+http://www.albany.edu/~ja6447/mogilefs.py
+http://seattlerb.rubyforge.org/mogilefs-client/
+http://projects.usrportage.de/index.fcgi/php-mogilefs
+----
+nginx を利用した httpd のゲートウェイもあります
+web api?
+http://www.grid.net.ru/nginx/mogilefs.en.html
+----
+<img src="img/store.png" />
+----
+<img src="img/fetch.png" />
+----
+<img src="img/feed.png" />
+----
+<img src="img/feed-cache.png" />
+----
+*利点
+----
+- Web 屋さんの視点でかんがえてみた。
+----
+Application Level
+
+カーネルモジュールとか必要ない
+OS ごと落ちることはありません!
+(Web 屋さんはOSごと落ちられるとこまります!)
+----
+自動レプリケーション
+自動で複数ノードに配布してあげる。
+----
+SPOF がない
+
+- storage
+- tracker
+- innodb
+すべて冗長構成にするよろし
+(サービスが停止するとこまります!)
+----
+やすい
+とりあえず普通のサーバーつかっとくという手も
+----
+リバランス
+ファイルの再配置
+----
+でっかいストレージは買いにくい
+- 予算とおしづらい
+- つぶしがきかない
+-- web service はハズれることがあります :P
+- たかいの二台かうとかムリ……
+----
+*で、とはいえ
+----
+- httpd
+- ジョブキュー
+- webdav server
+- L7 load balancer
+- innodb
+----
+それ自分でも書けるよね
+→ LD の人らは自分でかいたんだそうで。
+→ でも自分でかくとメンテだるいので素人にはオススメできない
+----
+*まとめ
+----
+mogilefs のよみかたはモガイルFS
+----
+Enjoy!
+----
+thanks!
+----
+HDFS
+→ 大量の小さなファイルにはむいてない
+→ レイテンシがちいさくなるようには最適化されてない
+→ 
+----
+>||
+mogdbsetup --dbrootpass=root
+mogilfsd --confport=7001
+mogstored --mgmtlisten=0.0.0.0:7501 --httplisten=0.0.0.0:7500 --docroot=/tmp/mog
+||<
+----
+>||
+mogadm host add localhost
+mogadm host mark localhost alive
+mogadm device add localhost 1
+mogadm device mark localhost 1 alive
+mogadm class add mytest normal --mindevcount=2
+mkdir /tmp/mogdata/dev{1,2,3}
+mogadm check
+||<

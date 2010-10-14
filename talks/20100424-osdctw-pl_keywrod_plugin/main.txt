@@ -1,0 +1,196 @@
+﻿most minor Perl5.12's new feature - PL_keyword_plugin *hack*
+<div style="text-align: right">
+2010-04-24(Sat) Shibuya.pm techtalk in Taipei
+tokuhirom
+</div>
+----
+I'm tokuhirom
+----
+I'll present the Shibuya.pm's craziness.
+----
+I'll introduce about PL_keyword_plugin
+PL_keyword_plugin紹介
+----
+This is most
+- *hacky*
+- *scary*
+- *minor*
+new feature in the Perl 5.12.
+----
+This feature is very cool for perl *hackers*.
+此功能是非常酷的perl的*黑客*.
+----
+not for users.
+----
+*What's PL_keyword_plugin?
+----
+PL_keyword_plugin provides hook point for extending Perl5 syntax.
+
+PL_keyword_plugin提供掛鉤點
+延長的perl5語法。
+----
+Perl5 Stack
+>||
+Source Filter
+Lexer          <- hook here
+Parser
+Optimizer
+VM
+||<
+----
+You can embed completely different syntax in Perl5 code.
+以嵌入完全不同的語法
+----
+such as:
+- RPN
+- SQL
+- ruby
+- PHP
+- Perl6
+- and more...
+----
+I've implemented embedded SQL with PL_keyword_plugin.
+I'll introduce about this.
+我已經實現嵌入式SQL與 PL_keyword_plugin。
+我將介紹這個問題。
+----
+*Embedded SQL
+埋込SQL
+----
+How to create embedded SQL syntax for Perl5 with PL_keyword_plugin.
+如何創建嵌入的SQL語法與 PL_keyword_plugin的perl5。
+----
+look, first, simple code with DBI.
+看，首先，簡單的代碼 DBI的。
+----
+>||
+for my $row (@{$dbh->selectall_arrayref(
+	q{SELECT * FROM user},
+)}) {
+	say $row->[0];
+}
+||<
+Yes, it's good enough.
+是的，這不?好。
+----
+But, I need more human readable code!
+但是，我需要更多的人類可讀的代碼！
+----
+I'm lazy...
+我很懶 ...
+----
+<B>SQL::Keyword</B>
+(not released to CPAN. only on github)
+----
+>||
+<B>use SQL::Keyword;</B>
+for my $row (<B>SELECT * FROM table;</B>) {
+    say $row[0];
+}
+||<
+
+write SQL directly in the perl code!
+寫 SQL直接在Perl代碼！
+----
+This is valid perl5 code with perl 5.12.0 or later.
+這是有效的代碼後的perl5 perl的5.12.0。
+----
+What?
+----
+*How it works?
+----
+register my function to hook point.
+----
+replace function pointer in the perl interpreter.
+>||
+// save old one
+next_keyword_plugin = PL_keyword_plugin;
+// replaced by new one
+PL_keyword_plugin = my_keyword_plugin;
+||<
+----
+- hook keyword
+-- (SELECT, INSERT, UPDATE, DELETE, etc.)
+----
+>||
+static int <B>my_keyword_plugin</B>(pTHX_
+	char *keyword_ptr, STRLEN keyword_len, OP **op_ptr)
+  if (keyword_len == 6
+    && strnEQ(keyword_ptr, <B>"SELECT"</B>, 6) && hint_active(hintkey_sv)) {
+      *op_ptr = do_parse_sql(); // parse and construct op tree.
+      return KEYWORD_PLUGIN_EXPR;
+  }
+  ...
+  return <B>next_keyword_plugin</B>(aTHX_ keyword_ptr, keyword_len, op_ptr);
+}
+||<
+----
+Perl5 interpreter detect <B>keyword</B>, then callback PL_keyword_plugin.
+檢測的perl5翻譯一下<B>關鍵字</B>，然後回調 PL_keyword_plugin。
+----
+>||
+<B>use SQL::Keyword;
+for my $row (</B>SELECT * FROM table;) {
+    say $row[0];
+}
+||<
+----
+and, found keyword, then call PL_keyword_plugin function pointer.
+----
+>||
+use SQL::Keyword;
+for my $row (<B>SELECT</B> * FROM table;) {
+    say $row[0];
+}
+||<
+----
+parse sql part.
+解析SQL語句組成部分。
+----
+>||
+use SQL::Keyword;
+for my $row (<B>SELECT * FROM table;</B>) {
+    say $row[0];
+}
+||<
+----
+generate op tree such as ...
+----
+>||
+op = newUNOP(
+        OP_ENTERSUB,
+        OPf_STACKED,
+        Perl_append_elem(OP_LIST,
+            Perl_prepend_elem(OP_LIST,
+                newSVOP(OP_CONST, 0, newSVpvn("SQL::Keyword", sizeof("SQL::K
+eyword")-1)),
+                newSVOP(OP_CONST, 0, buf)),
+            newUNOP(OP_METHOD, 0,
+                newSVOP(OP_CONST, 0, newSVpvn("SQL::Keyword::_run", sizeof("
+SQL::Keyword::_run")-1)))));
+||<
+----
+and back to the perl5 lexer.
+並回的perl5詞法。
+----
+>||
+use SQL::Keyword;
+for my $row (SELECT * FROM table;<B>) {
+    say $row[0];
+}</B>
+||<
+----
+yes, very simple.
+It's easy!
+是的，非常簡單。
+這很容易！
+----
+repository of SQL::Keyword is here:
+http://github.com/tokuhirom/p5-sql-keyword
+庫中的“SQL::Keyword”就在這裡
+----
+Enjoy!
+享受!
+----
+thanks!
+謝謝!

@@ -1,0 +1,111 @@
+write C++ extensin with Devel::BindPP.
+<div style="text-align: right">
+2009-04-21(Wed) Shibuya.pm#11
+tokuhirom
+</div>
+----
+XS is too difficult!
+----
+XS is external DSL
+typemap is external DSL
+----
+XS requires indent!
+We are not Pythonista!
+----
+>||
+MODULE = Devel::SafeEval  PACKAGE = Devel::SafeEval::Defender
+PROTOTYPES: DISABLE
+void
+setup(HV* _c)
+CODE:
+    SvREFCNT_inc(_c);
+    orig_unpack = PL_ppaddr[OP_UNPACK];
+    PL_ppaddr[OP_UNPACK] = safeeval_unpack_wrapper;
+    c = _c;
+||<
+is this crypted?
+----
+too much learning cost!
+----
+we need casual C(?:\+\+)? binding
+<img src="assets/img/naoya.gif" width="100%" />
+----
+I want to write binding for C library.
+I don't want to use the learning time.
+----
+XS uses C + too much macros
+----
+C macro is cryptic.
+----
+if you got a this error:
+>||
+yourown.c:33: error: ‘my_perl’ undeclared (first use in this function)
+||<
+----
+how to solve it?
+----
+you should write this line
+>||
+dTHX;
+||<
+or pass aTHX_.
+----
+do you understand? =)
+----
+newSVpv('hoge', 4)
+SvREFCNT_inc_simple_void(sv)
+sv_len(sv)
+etc.
+----
+>||
+PerlIO_printf(PerlIO_stderr(), "Hello, world");
+||<
+you can remember this?
+----
+BTW, v8's extension library is easy to write.
+v8 uses C++.
+----
+C++ is good.
+>||
+#include "bindpp.h"
+XS(boot_Acme__XSHello) {
+    pl::BootstrapCtx bc;
+    pl::Package b("Acme::XSHello", __FILE__);
+    b.add_method("new", xs_new);
+    b.add_method("DESTROY", xs_destroy);
+}
+||<
+----
+>||
+XS(xs_new) {
+    pl::Ctx c(1);
+    LibRaw * obj = new LibRaw();
+    pl::Pointer self((void*)obj, "Image::LibRaw");
+    c.ret(&self);
+}
+||<
+----
+>||
+XS(xs_hello) {
+    pl::Ctx c(0);
+    pl::IO::printf("Hello, world!\n");
+    c.return_true();
+}
+||<
+----
+>||
+XS(xs_destroy) {
+    pl::Ctx c(1);
+    pl::Pointer * p = c.arg(0)->as_pointer();
+    LibRaw * img = p->extract<LibRaw*>();
+    delete img;
+    c.return_true();
+}
+||<
+----
+easy to write. easy to read =)
+----
+and good docs.
+----
+That's all. Enjoy!
+

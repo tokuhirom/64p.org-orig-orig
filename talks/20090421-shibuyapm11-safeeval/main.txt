@@ -1,0 +1,239 @@
+The Perl Sandbox
+<div style="text-align: right">
+2009-04-21(Wed) Shibuya.pm#11
+tokuhirom
+</div>
+----
+lleval is cool
+but, not portable.
+I love linux =)
+----
+I need portable Perl Sandbox.
+----
+Sys::Protect?
+- Sys::Protect is unsecure =(
+- talking abount reason later.
+----
+mainly, for IRC bot
+----
+>||
+!eval print "hello, world\n"
+||<
+eval your code
+----
+*Sandbox Plan
+----
+**how to protect?
+fork()
+system()
+write(2)
+epoll(4)
+etc.
+
+mask some syscalls.
+----
+segv is ok.
+----
+** create new process
+----
+split from bot process.
+- fork()
+- IPC::Open3
+- alarm()
+----
+**mask vm opcode
+----
+- OP_system
+- OP_exec
+- etc...
+how to mask? 
+----
+syscall is mapped to PerlVM opcode.
+----
+PL_op_mask
+or
+PL_ppaddr
+----
+>||
+perl -M-ops=system
+||<
+----
+ops.pm is standard module
+ops.pm is wrapper for Opcode.pm
+Opcode.pm masks 'PL_op_mask'
+----
+**mask DynaLoader
+----
+DynaLoader is XS/DLL loader for Perl
+----
+***Problem
+----
+XS can call any syscalls
+DynaLoader is dangerous
+----
+DynaLoader is embedded to Perl itself.
+DynaLoader::boot_DynaLoader() is bootstrap.
+- dl_install_xsub
+- dl_find_symbol
+----
+DYNALOADER IS DANGEROUS!!
+----
+>||
+DynaLoader::boot_DynaLoader();
+DynaLoader::dl_install_xsub(
+    "myfork",
+    DynaLoader::dl_find_symbol(
+        undef,
+        'fork'
+    ),
+);
+myfork();
+warn "OK";
+||<
+----
+DynaLoader is dangerous(x86 linux)
+>||
+DynaLoader::boot_DynaLoader();
+my $s = "\x31\xc0\xb0\x02\xcd\x80\xc3";
+DynaLoader::dl_install_xsub(
+'myfork', unpack("L",pack("P*",$s))
+);
+&myfork;
+||<
+----
+I want to load trusted XS modules.
+- DynaLoader::boostrap('Data::Dumper', $version)
+- XSLoader::load('Data::Dumper', $version)
+----
+trusted:
+- JSON::XS
+- autobox
+- etc.
+----
+I don't want to dangerous modules
+- PadWalker
+- yuval's evil modules
+- rafl's evil modules
+- etc.
+----
+**implementation
+----
+we should hide dl_install_xsub etc.
+but used from DynaLoader itself.
+----
+>||
+XSLoader::load('Devel::SafeEval');
+# get dl_install_xsub
+my $wrapper = \&Devel::SafeEval::Defender::load;
+undef *XSLoader::load;      undef *DynaLoader::boostrap;
+*XSLoader::load = $wrapper; *DynaLoader::boostrap = $wrapper;
+||<
+----
+>||
+my $fake = sub { };
+for (grep !/^bootstrap$/, %DynaLoader::) {
+    *{"DynaLoader::$_"} = $fake;
+}
+||<
+----
+how to hide dl_install_xsub from users code?
+----
+hide by lexical variables?
+----
+NO! NO! NO!
+----
+PP is unsecure. You know?
+----
+>||
+my $orig = *{MyPkg::code}{CODE};
+*MyPkg::code = sub {
+    validation_code(@_); # check @INC, etc.
+    $orig->();
+};
+||<
+----
+Perl has a magical power!
+----
+- DB::DB
+- tie
+- overload
+----
+*DB::DB hack
+----
+>||
+package DB;
+sub f { eval q{print "$c$/"} }
+
+package C;
+my $c = "secret"; ## <= 秘密
+sub { goto &DB::f }->()
+||<
+----
+*overload hack
+----
+Stringify is dangerous.
+----
+>||
+package F;
+use overload q{""} => sub { goto &DB::foo };
+XSLoader::load(bless({}, 'F'));
+||<
+----
+how to check it?
+----
+>||
+if (Scalar::Util::blessed($_[0])) {
+    die;
+}
+||<
+----
+NO! NO! NO!
+----
+remember Perl's boolean rule:
+- undef
+- 0
+- 0.0
+- ''
+- '0'
+----
+>||
+use overload;
+overload::OVERLOAD(0, q{""} => sub { goto &DB::foo });
+$c = bless {}, '0';
+||<
+----
+>||
+use overload;
+overload::OVERLOAD("UNIVERSAL",'""',sub { goto &DB::foo });
+$c = bless {}, "";
+||<
+----
+orz
+----
+tie @INC,          'My::Magical'; # @INC
+tie $INC[0],       'My::Magical'; # @INC
+tie %SIG,          'My::Magical'; # %SIG
+tie $SIG{__DIE__}, 'My::Magical'; # %SIG
+----
+check by tied()
+- all variables from external
+-- global variables
+----
+Class::OutsideIn
+http://d.hatena.ne.jp/tokuhirom/20090319/1237428528
+----
+But I digress.
+〔脱線した話を元に戻すときの形式的な表現。〕
+----
+no PP; use XS;
+- XS can ignore the magick
+----
+add-up
+----
+- mask opcode
+- mask DynaLoader
+-- Pure XS
+----
+イジョウ。
+That's all
+

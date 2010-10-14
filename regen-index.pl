@@ -24,8 +24,12 @@ sub files {
 }
 
 __END__
+<!doctype html>
 ? my $files = shift;
 <html>
+<head>
+    <title>tokuhirom's slides</title>
+</head>
 <body>
 tokuhirom's slide
 <ul>

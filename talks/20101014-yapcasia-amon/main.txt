@@ -25,7 +25,22 @@ Amon 2.0 でました
 ----
 Sledge っぽいかんじ
 ----
+変なモジュールをつかわない
+みんながしってるモジュールだけつかう
+(ただし、俺がかいたものをのぞく)
+----
+変なことをしない
+----
+うすく
+ミニマムに
+----
+758 lines of code.
+----
+XS をつかわない
+----
 ある程度しっかりしたエンジニア用
+----
+no mo[ou]se
 ----
 コードは全部よんでつかう
 ----
@@ -63,30 +78,6 @@ bootstrap time > 1.0 seconds
 use eval;
 ----
 マイナーバージョンアップするたびにアプリをかきかえないといけない
-----
-*じゃあAmon2は？
-----
-758 lines of code.
-----
-no Mo[ou]se;
-----
-no xs
-----
-no 黒魔術
-----
-no overhead
-----
-readable code
-----
-customizable
-----
-hackable
-----
-thin layer
-----
-minimalistic
-----
-simple
 ----
 詳細は外で酒のみながらはなそうぜ!
 ----

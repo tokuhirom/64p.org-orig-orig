@@ -1,14 +1,14 @@
 use strict;
 use warnings;
-use Plack::Server::Standalone;
 use Plack::Builder;
 use Plack::App::File;
+use HTTP::Server::PSGI;
 use Path::Class;
 
 my $ROOT = '.';
 
 my $file = Plack::App::File->new({ root => '.' });
-my $server = Plack::Server::Standalone->new;
+my $server = HTTP::Server::PSGI->new();
 $server->run(sub {
     my $env = shift;
     my $path = $env->{PATH_INFO};

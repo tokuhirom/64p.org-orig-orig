@@ -1,0 +1,93 @@
+﻿Amon2
+<div style="text-align:right">
+YAPC::Asia 2010 前夜祭
+徳永広夢 ないし tokuhirom
+</div>
+----
+*おしらせ
+----
+Amon 2.0 でました
+----
+*そもそも WAF ってなにが目的なの？
+----
+楽にWeb Applicationを書きたい
+----
+はやく web application を書きたい
+----
+考えなくてもいいことを考えないでいいように
+考えたいことを考えられるように
+----
+同じことを何度もかきたくない
+----
+コードのスタイルをあわせる
+----
+*Amon2の基本コンセプト
+----
+Sledge っぽいかんじ
+----
+ある程度しっかりしたエンジニア用
+----
+コードは全部よんでつかう
+----
+フレームワークの使い方にやたらこったりさせない
+----
+コアコンポーネント
+----
+- Plack
+- Xslate
+- DBIx::Skinny
+----
+- Router::Simple
+- Tiffany
+- Log::Dispatch
+- .pl as configuration
+----
+*こんなフレームワークは嫌だ
+----
+コードがよみづらい
+----
+なにをどこでやってるのかよくわからない
+----
+依存がおおい
+<img src="cat-deps.png" />
+----
+実行時にオーバーヘッドがある
+----
+急にMooseに依存しはじめる。
+----
+えぐいXS hackをつかってるモジュールに依存してる
+----
+bootstrap time > 1.0 seconds
+→ overhead on development
+----
+use eval;
+----
+マイナーバージョンアップするたびにアプリをかきかえないといけない
+----
+*じゃあAmon2は？
+----
+758 lines of code.
+----
+no Mo[ou]se;
+----
+no xs
+----
+no 黒魔術
+----
+no overhead
+----
+readable code
+----
+customizable
+----
+hackable
+----
+thin layer
+----
+minimalistic
+----
+simple
+----
+詳細は外で酒のみながらはなそうぜ!
+----
+Enjoy!

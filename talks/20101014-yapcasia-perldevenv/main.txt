@@ -46,7 +46,7 @@ Perl5 をつかったウェブアプリの開発についてがメイン
 system perl sucks
 ----
 ithreads sucks
--Dusethreads
+no "-Dusethreads"
 ----
 スレッド有効だと15%ぐらい速度が劣化
 ----

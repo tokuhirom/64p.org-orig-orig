@@ -41,7 +41,7 @@ Perl5 をつかったウェブアプリの開発についてがメイン
 - pm-uninstall
 - deployment
 ----
-* perl5 version
+*perl5 version
 ----
 system perl sucks
 ----
@@ -207,6 +207,14 @@ pm-uninstall Acme::Damn
 >||
 pm-uninstall -l extlib/ Acme::Damn
 ||<
+----
+*deployment
+----
+Perl5 のディレクトリをそのまま rsync するのがオススメ
+----
+アプリケーション特有なやつは extlib/ にいれておいて rsync しよう
+----
+no rpm; no deb;
 ----
 *CPANモジュールのえらびかた
 ----

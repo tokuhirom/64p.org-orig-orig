@@ -1,0 +1,275 @@
+﻿モダンな Perl5 開発環境について - Modern Perl5 Development Environment - 2010年代を生きのびる Perl5 活用術
+<div style="text-align:right">
+YAPC::Asia 2010 1st day
+徳永広夢 ないし tokuhirom
+</div>
+----
+*自己紹介
+----
+tokuhirom
+etolabo, inc.
+----
+perl monger
+perl/c/c++
+ruby, python,php,javascript
+----
+最近かいたもの
+Tiffany
+Amon2
+Cache::KyotoTycoon←New!
+Data::MessagePack
+----
+Router::Simple
+Test::TCP
+----
+*abstract
+----
+Perl5 をつかったウェブアプリの開発についてがメイン
+----
+ウェブアプリ以外でもそれなりにつかえるはず
+----
+割と極論的な部分があるとおもいますし、自分がこういう風にやったらいいとおもってることを話します
+----
+異論あるときは dankogai ばりに唐突に質問してください。
+----
+- perl5 バージョン
+- perlbrew
+- cpanm
+- cpan-outdated
+- local::lib
+- cpanf
+- pm-uninstall
+- deployment
+----
+* perl5 version
+----
+system perl sucks
+----
+ithreads sucks
+-Dusethreads
+----
+スレッド有効だと15%ぐらい速度が劣化
+----
+perl 5.10.0 is not good
+- memory leaks
+- bugs
+----
+perl 5.x.0 はクオリティがたかくない
+----
+今だと 5.12.2 をつかうのが吉
+----
+安定指向なら 5.8.9 でもよし
+----
+- given/when
+- say
+- smart match
+- defined or(//)
+- named capture
+----
+*好きなバージョンのperlをつかうには
+----
+perlbrew
+----
+自分のホームに好きなバージョンのperl5をいれられる
+----
+>||
+% curl -LO http://xrl.us/perlbrew
+% perl perlbrew install
+% rm perlbrew
+% ~/perl5/perlbrew/bin/perlbrew init
+||<
+----
+add 'source ~/perl5/perlbrew/etc/bashrc' to .zshrc
+>||
+export PATH=/home/tokuhirom/perl5/perlbrew/bin:/home/tokuhirom/perl5/perlbrew/perls/current/bin:${PATH}
+||<
+----
+>||
+% perlbrew install perl-5.12.2
+% perlbrew switch perl-5.12.2
+||<
+----
+installed at ~/perl5/perlbrew/perls/perl-5.12.2/bin/perl
+----
+- 簡単にインストールできる
+- なにもかんがえなくていい
+----
+BUT
+----
+>||
+wget ...
+tar xzvf ...
+cd ...
+||<
+----
+>||
+./Configure -des --prefix=/path/to/per-5.12.2/
+make
+make install
+||<
+----
+CPAN モジュールは perl-5.12.2/lib/site_perl/ 以下にはいります
+- local::lib とかつかう必要なし
+----
+local::lib で ~/perl5/lib/perl5/ とかにライブラリをいれてる人はいったん消すのが吉
+----
+こうやってつくった perl5 を rsync でばらまくとよい
+----
+git で管理するのもアリ。
+- revert したり
+----
+*cpanmの話
+----
+From cpan to cpanm
+----
+>||
+vps で CPAN shell がうごかない
+↓
+軽量版つくろうぜ！
+||<
+----
+使わない理由がない。
+- no reloading index
+- no configuration
+- no deps
+----
+install
+>||
+curl -L http://cpanmin.us | perl - App::cpanminus
+||<
+----
+>||
+cpanm Acme::Damn
+||<
+----
+それだけじゃないよ
+----
+依存モジュールをインストール
+>||
+cpanm --installdeps .
+||<
+useful for application
+----
+>||
+cpanm -l extlib/ Acme::Damn
+||<
+----
+>||
+cpanm -l extlib/ --installdeps .
+||<
+----
+*cpan-outdated
+----
+バージョンアップされたモジュールをさがす
+----
+>||
+cpanm App::cpanoutdated
+||<
+----
+>||
+% cpan-outdated
+C/CO/CORNELIUS/App-gh-0.20.tar.gz
+D/DR/DROLSKY/DateTime-0.63.tar.gz
+T/TY/TYPESTER/Object-Container-0.11.tar.gz
+||<
+----
+>||
+% cpan-outdated | cpanm
+||<
+----
+>||
+% cpan-outdated -l extlib/ | cpanm -l extlib/
+||<
+----
+cron で、貢献する
+>||
+cpan-outdated | cpanm
+||<
+----
+*cpanf
+----
+CPAN モジュール、なおしてもらったけど、ミラーに反映されないよう
+----
+>||
+cpanm App::CPAN::Fresh
+||<
+----
+>||
+cpanf -m Acme::Damn
+||<
+----
+*pm-uninstall
+----
+>||
+pm-uninstall Acme::Damn
+||<
+----
+>||
+pm-uninstall -l extlib/ Acme::Damn
+||<
+----
+*CPANモジュールのえらびかた
+----
+86,436 modules in CPAN
+----
+どうやってえらんだらいいの！
+----
+日付の処理をしよう → 'Date' で検索 → 3,537 packages..
+----
+どれがいいのかさっぱりわからん。。
+----
+答え「みんながつかってるモジュールをつかう」
+----
+「おいら、ともだちがいないから、だれにきいたらいいのかわからないよ。。」
+----
+#perl-casual@irc.freenode.org
+----
+Twitter @perlism by @lestrrat
+----
+答え「有名Perl Hackerがつかってるモジュールをつかう」
+----
+- Task::BeLike::BINGOS
+- Task::BeLike::RJBS
+- Task::BeLike::FLORA
+- Task::BeLike::DOY
+- <a href="http://github.com/tokuhirom/task-belike-tokuhirom">Task::BeLike::Tokuhirom</a>
+----
+要は、自分でえらばないですむなら、その方がいい。
+----
+でも、自分でえらばなきゃいけないときもあるよね
+----
+そんなときは
+----
+CPANソムリエになる方法 [192users]
+http://d.hatena.ne.jp/tokuhirom/20080520/1211292598
+----
+あたらしいものをつかう
+<img src="timestamp.png" />
+。。。のがいいとは一概にはいえないけれど。
+----
+2004年より前とかは危険なかおり
+----
+<img src="testers.png" />
+----
+see t/
+<img src="tests-dir.png" />
+----
+<img src="rt.png" />
+----
+<img src="deps-1.png" />
+----
+<img src="deps-2.png" />
+----
+<img src="deps-3.png" />
+----
+<img src="author.png" />
+----
+それでもまよったら、やっぱり人にきくのがいちばん。
+----
+*まとめ
+----
+みんながんばって、Perl5 をつかいやすくしようとおもってがんばってるので、どんどんその恩恵をうけましょう
+----
+Perl is undead!
+----
+Enjoy!

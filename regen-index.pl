@@ -1,29 +1,11 @@
 #!/usr/bin/perl
+package TGP;
 use strict;
 use warnings;
 use Path::Class;
 use Text::MicroTemplate ':all';
 
-&main;exit;
-
-sub main {
-    my @files = files();
-    my $tmpl = join '', <DATA>;
-    print render_mt($tmpl, \@files)->as_string;
-}
-
-sub files {
-    my @f;
-    my $cwd = dir('talks')->open or die $!;
-    while (my $f = $cwd->read) {
-        next unless -d "talks/$f";
-        next unless $f =~ /^20/;
-        push @f, $f;
-    }
-    reverse sort { $a cmp $b } @f;
-}
-
-__END__
+my $tmpl = <<'...';
 <!doctype html>
 ? my $files = shift;
 <html>
@@ -39,3 +21,31 @@ tokuhirom's slide
 </ul>
 </body>
 </html>
+...
+
+sub main {
+    my @files = files();
+    my $result = render_mt($tmpl, \@files)->as_string;
+    open my $fh, '>', 'index.html';
+    print {$fh} $result;
+    close $fh;
+}
+
+sub files {
+    my @f;
+    my $cwd = dir('talks')->open or die $!;
+    while (my $f = $cwd->read) {
+        next unless -d "talks/$f";
+        next unless $f =~ /^20/;
+        push @f, $f;
+    }
+    reverse sort { $a cmp $b } @f;
+}
+
+if ($0 eq __FILE__) {
+    TGP->main();
+}
+
+
+1;
+

@@ -1,0 +1,127 @@
+﻿テスト
+----
+How to become a CPAN Sommelier
+<div style="text-align:right">
+Shibuya.pm
+徳永広夢 ないし tokuhim
+</div>
+----
+* Self Introduction
+----
+tokuhim
+<img src="tokuhim.png" />
+----
+perl monger
+perl/c
+ruby, python,php,javascript
+----
+*Recent Modules
+----
+Tiffany
+Amon2(WAF)
+Cache::KyotoTycoon
+Data::MessagePack
+----
+Router::Simple
+Test::TCP
+Proc::Guard
+----
+Furl ← New!
+SQL::Builder ← New!
+DBIx::Yakinny(ORM) ←New!
+----
+*abstract
+----
+- perl5 versioning
+- perlbrew
+- cpanm
+- cpan-outdated
+----
+- local::lib
+- cpanf
+- pm-uninstall
+- deployment
+----
+ARE NOT TODAY'S TOPIC
+----
+*How do you choose module from CPAN?
+----
+<S>86,436</S>
+88,145 modules in CPAN
+----
+TOO MANY MODULES...
+----
+One day,
+----
+"hmm... I want to manipulate `Dates'."
+----
+Search by word 'Date'
+----
+<img src="date.png" />
+----
+WHAT????? WHICH ONE IS THE BEST PRACTICAL MODULE?
+----
+*Answer.
+----
+Use major module. Ask your friends!
+----
+"But! I don't have any friends using Perl5!"
+「おいら、非コミュだから、友達いなくてきけないよ。。」
+----
+join #perl-casual@irc.freenode.org !!!
+----
+Twitter @perlism by @lestrrat
+----
+*Another Answer
+----
+Use Modules, used by major perl hackers
+----
+- Task::BeLike::BINGOS
+- Task::BeLike::RJBS
+- Task::BeLike::FLORA
+- Task::BeLike::DOY
+- <a href="http://github.com/tokuhirom/task-belike-tokuhirom">Task::BeLike::Tokuhirom</a>
+----
+Best Practice: Do not choose by yourself.
+----
+But, at some case, you should choose by yourself...
+でも、自分でえらばなきゃいけないときもあるよね
+----
+Then...
+----
+How to become a CPAN Sommelier
+CPANソムリエになる方法
+http://d.hatena.ne.jp/tokuhirom/20080520/1211292598 <img src="194users.png" />
+----
+*POINTS
+----
+Use Fresh Module
+<img src="timestamp.png?v=1" />
+----
+BEFORE 2004 IS BAD SMELL!
+<img src="mikan.png" />
+----
+SEE TESTERS SCORE
+<img src="testers.png" />
+----
+see t/
+<img src="tests-dir.png" />
+----
+(The one not tested easily is excluded.)
+----
+SEE BUG REPORTS
+<img src="rt.png" />
+----
+<img src="deps-1.png" />
+----
+<img src="deps-2.png" />
+----
+<img src="deps-3.png" />
+----
+<img src="author.png" />
+----
+*Conclusion
+----
+Enjoy CPAN!
+----
+Enjoy!

@@ -1,0 +1,150 @@
+﻿Minimalistic approach for DB related modules
+<div style="text-align:right">
+SoozyCon
+徳永広夢 ないし tokuhim
+</div>
+----
+*よいライブラリとは
+----
+ロード時間がみじかい
+----
+互換性をうしなう変更をいきなりしない
+----
+コードがよみやすい
+----
+不必要に抽象化しない
+(悪い例: 検閲ed)
+----
+オレカッコイイに走らない
+----
+インターフェイスに統一感がある
+----
+よくテストされている
+----
+わけりゃいいものはわける
+----
+よく assertion されている
+----
+悪い例: 検閲ed
+----
+というわけで、いろいろかきなおした。
+
+以後本編。
+----
+*DBIx::Inspector
+----
+DB の構造をみるための機構
+<img src="inspector.jpg" />
+----
+DBI has introspection methods:
+- table_info
+- column_info
+- foreign_key_info
+----
+でもなんか微妙に DBD ごとになんかちがう
+----
+- かえってくるデータが Object じゃない
+- Data::Dumper しないとよくわからん
+----
+→ 抽象化レイヤの必要性
+----
+DBIx::Skinny::Schema::Loader と DBIx::Class::Schema::Loader
+でおなじことやってんじゃん。
+----
+というか、Skinny の Loader はだいぶコピペ。
+----
+>||
+my $inspector = DBIx::Inspector->new(
+    dbh => $dbh
+);
+my @tables = $inspector->tables;
+||<
+----
+>||
+for my $table (@tables) {
+    say $_->name for $table->primary_key;
+    say $_->name for $table->columns;
+}
+||<
+----
+Schema::Loader とか、超簡単にかける
+----
+*SQL::Maker
+----
+先行事例: SQL::Abstract
+----
+なんでも hashref でやろうとしすぎてて、破綻している
+----
+引数をみても、どんな SQL がでるか想像できない
+----
+ハッシュベースの処理は、typo によわい
+----
+コードがなにやってんのかよくわからん
+----
+拡張性がない: SQL::Abstract::Plugin::InsertMulti を見よ
+----
+先行事例: Data::ObjectDriver::SQL
+----
+単体のライブラリではない
+----
+Data::ObjectDriver::SQL をコピペしすぎですよ
+例: Skinny, Data::Model
+----
+SQL::Maker ならどうなるか
+----
+>||
+$sql = SQL::Maker::Select->new()
+                           ->add_select('foo')
+                           ->add_select('bar')
+                           ->add_select('baz')
+                           ->add_from('table_name');
+||<
+----
+>||
+my $sql  = $sql->as_sql();
+my @bind = $sql->bind();
+# SELECT foo, bar, baz FROM table_name
+||<
+----
+More complex condition
+>||
+$s1 = SQL::Maker::Condition->new()->add('foo_id' => 3);
+$s2 = SQL::Maker::Condition->new()->add('bar_id' => 4);
+$s1 | $s2;
+# foo_id=3 OR bar_id 4
+||<
+----
+UNION support(by makamaka)
+>||
+union( $s1, $s2 )->as_sql;
+intersect_all( $s1, $s2 )->as_sql;
+||<
+----
+OO をつかえばいいじゃない
+----
+FAQ: 遅くね?
+----
+速度が気になるような場面でこんなもんつかうな! 手で SQL かけや!
+----
+*DBIx::Kohada
+----
+わたくしの ORM 遍歴
+- CDBI
+- DBIC
+- Skinny ← イマココ
+----
+Skinny の問題点
+- Meta APIがよわい
+- ^^ によって、内部をさわりまくるプラグインたち
+----
+Cont.
+- クラスメソッドとしてもインスタンスメソッドとしてもよべる謎機構
+- ^^ によってよみづらいコード
+----
+というわけでかきなおした。
+----
+けど、なんか Skinny2 やるっていうので、これは開発終了です!
+----
+というわけで、次は、その Skinny2 のはなし、かな?
+----
+Enjoy!

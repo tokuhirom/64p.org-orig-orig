@@ -1,0 +1,138 @@
+﻿FrePAN - Freshness CPAN mirror
+<div style="text-align:right">
+OSDC.tw@20110325
+tokuhirom from Tokyo, Japan.
+</div>
+<div class="note">(Press 'j' to display next page)</div>
+----
+<div style="width: 100%; text-align: center; vertical-align: center;">
+    <div style="text-align: center; font-size: 200%; width: 100%;">你好<br />台灣!</div>
+</div>
+----
+<div style="text-align: center;"><B>Sad News</B></div>
+<div style="float:right"><a href="http://www.flickr.com/photos/kalexanderson/5421517469/" title="sad by Kalexanderson, on Flickr"><img src="5421517469_d0d2997eec_m.jpg" width="240" height="159" alt="sad" /></a></div>
+----
+<B><a href="http://frepan.org/">frepan.org</a></B> server is broken at yesterday.
+There is only demo on my Macbook Air.
+I will fix the issue ASAP.
+----
+orz
+<img src="orz4.jpg" />
+----
+* Abstract
+- Self Introduction
+- What's FrePAN?
+- Why FrePAN?
+----
+* Who is <B>@tokuhirom</B>?
+<img src="tokuhirom.jpg" style="float:right" width="400" />
+----
+tokuhirom have
+- 258 followers
+- 262 repositories
+on Github.
+<img src="gh1.png" style="float:right" />
+----
+Tokuhirom wrotes some CPAN modules ...
+- HTTP::Session - session management library for Perl5
+- Furl - Yet another very fast HTTP client library for Perl5.
+- Data::MessagePack
+- etc...
+----
+And <B>FrePAN</B>!
+----
+<div style="text-align: center; "><img src="frepan.png" style="width: 80%;" /></div>
+----
+* What's <B>FrePAN?</B>?
+----
+<B>FrePAN</B> is yet another CPAN mirror site.
+(CPAN is most bigger software library archive)
+----
+* What's difference with <I style="color: #cc0000">search.cpan.org</I> and <B>FrePAN</B>?
+----
+<div style="float: left">Yes, it is <div style="text-align: center; v-align: middle; font-size: 170%; color: red;">Fresh!!</div></div>
+<div style="float: right"><a href="http://www.flickr.com/photos/nikonvscanon/4065263809/" title="Fresh juicy pears by david.nikonvscanon, on Flickr"><img src="4065263809_7a8cb5a59e.jpg" height="300" alt="Fresh juicy pears" /></a></div>
+----
+search.cpan.org delays to publish new modules, after few hours.
+----
+It's TOO SLOW...
+<div style="float: right"><a href="http://www.flickr.com/photos/kompuder_dude/2571092877/" title="Snapping Turtle by kompuder_dude, on Flickr"><img src="2571092877_d22e2e251a_m.jpg" width="240" height="180" alt="Snapping Turtle" /></a></div>
+----
+I'M BUSY!!!!
+<div style="float:right"><a href="http://www.flickr.com/photos/mytudut/5188623761/" title="businessman with a cup of coffee by MyTudut, on Flickr"><img src="5188623761_353deb48d5_m.jpg" width="240" height="160" alt="businessman with a cup of coffee" /></a></div>
+----
+HURRY! HURRY!
+<div style="float:right"><a href="http://www.flickr.com/photos/bobloo17/72024097/" title="Harry Potter by Pixelsior, on Flickr"><img src="72024097_d9a61a223c.jpg" width="382" height="303" alt="Harry Potter" /></a></div>
+----
+Since I SHOULD WATCH MORE ANIMATION!
+<div style="float:right"><img src="qb.jpg" /></div>
+----
+Then, you should use FrePAN.
+It provides very fresh module information <B>ASAP</B>.
+----
+You can get the module information after <B>few minutes</B>.
+----
+FrePAN provides <B>RSS</B>.
+<div style="float: right"><img src="2958f9f55d5a4a83d026bdd5cbac0e04.png" /></div>
+----
+And Twitter bot is available: <a href="http://twitter.com/cpan_new">@cpan_new</a>.
+<img src="ca05a385a6ef1f58523998f317113138.png" style="float:right" />
+<div class="note">Provided by punytan</div>
+----
+*How it works
+----
+FrePAN fetches fresh feed from <B>miyagawa</B>-san's friendfeed.
+(So, it's for <B>cpan::fresh</B>)
+----
+miyagawa-san's bot aggregates information from fastest cpan mirror.
+
+(It's for <B>cpantesters</B>).
+----
+<img src="1e62b7e87b7ffc0fd142a54ee2a9c6e3.png" />
+----
+FrePAN's crawler watches friendfeed's streaming API, get tar ball, and index it.
+----
+*Experimental Features
+----
+FrePAN provides some <B>experimental features</B> for CPAN search site.
+----
+*I use this
+----
+<B>search.cpan.org</B> provides CPAN ratings, but it's totally filled by <B>FLAMEs</B>.
+(Yes, there is some useful comments)
+----
+Negative review is not useful for programming libraries.
+----
+I seem "I Use This" is even better.
+----
+You can post new "I use this" entry after <B>github auth</B>.
+----
+Users can check the <B>trustiness</B> on github.
+----
+github's user page is one of the good scouter for <B>OSS contributions</B>.
+----
+*More better search scoring
+----
+Some person says:
+<B>I know what CPAN contains a lot of libraries</B>
+----
+<B>but so, I can't find useful module from trash mountain.</B>
+<img src="pb050007.jpg" style="float:right" width="400" />
+----
+One of the biggest issue in CPAN is a
+<big>'HOW CAN I FIND USEFUL MODULES IN CPAN'</big>
+----
+Then, FrePAN provides better scoring.
+----
+increase score by
+- the number of i use this
+- and <B>freshness</B>
+----
+Older modules are not maintained well...
+<img src="P1040450.jpg" style="text-align: right" />
+----
+<div style="text-align: center; font-size: 400%;"><a href="http://localhost:9011/">DEMO</a></div>
+----
+Thanks!
+(Any questions?)
+<div class="note">I will upload full slides to <a href="http://tokuhirom.github.com/">tokuhirom.github.com</a></div>

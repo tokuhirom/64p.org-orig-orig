@@ -39,6 +39,25 @@ body * {
     background-color: #202010;
 }
 
+#topics .list {
+    font-size: 70%;
+}
+
+#topics .note {
+    text-align: right;
+    color: #cccccc;
+    font-size: small;
+}
+#topics a {
+    color: #ccee00;
+}
+#topics a:hover {
+    color: #eeee00;
+}
+#topics img {
+    float:right;
+}
+
 /* ------------------------------------------------------------------------- */
 
 #footer {

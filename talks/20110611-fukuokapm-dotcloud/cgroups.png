@@ -1,0 +1,309 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/"
+     xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="/public/css/view.css?1307666913" rel="stylesheet" type="text/css">
+<meta name="robots" content="noindex">
+<title>e6949647e19974136d267252b5402a90.png</title>
+<meta name="viewport" content="width=380" />
+<meta name="description" content="Gyazo lets you instantly grab the screen and upload the image to the web. You can easily share them on Chat, Twitter, Blog, Tumblr, etc. Available for Windows, Mac and Linux.">
+<meta name="keywords" content="Screenshot, Gyazo, Upload, Print Screen,  Tool,  Free">
+
+<meta property="og:title" content="e6949647e19974136d267252b5402a90.png"/>
+<meta property="og:type" content="image"/>
+<meta property="og:url" content="http://gyazo.com/e6949647e19974136d267252b5402a90.png"/>
+<meta property="og:image" content="http://gyazo.com/e6949647e19974136d267252b5402a90.png"/>
+<meta property="fb:page_id" content="227979433880197" />
+<meta property="og:site_name" content="Gyazo"/>
+<meta property="og:description"
+	  content="Gyazo lets you instantly grab the screen and upload the image to the web."/>
+
+        
+    <script type="text/javascript">
+    
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-2827501-10']);
+      _gaq.push(['_setDomainName', '.gyazo.com']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    
+    </script>
+    
+	<script type="text/javascript">
+	var _sf_async_config={uid:24838,domain:"gyazo.com"};
+	(function(){
+	  function loadChartbeat() {
+	    window._sf_endpt=(new Date()).getTime();
+	    var e = document.createElement('script');
+	    e.setAttribute('language', 'javascript');
+	    e.setAttribute('type', 'text/javascript');
+	    e.setAttribute('src',
+	       (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+	       "js/chartbeat.js");
+	    document.body.appendChild(e);
+	  }
+	  var oldonload = window.onload;
+	  window.onload = (typeof window.onload != 'function') ?
+	     loadChartbeat : function() { oldonload(); loadChartbeat(); };
+	})();
+
+	</script>
+    
+</head>
+
+<body>
+
+<div id="header" style="display: block;">
+        		<div class="back leftmenu">
+		<a href="/history">
+			« See My Images		</a>
+		</div>
+
+		
+		<ul id="menu">
+			<li id="twitter_btn">
+				<span class="tabbutton" title="Twitter" onclick="toggleTwitter()"><img alt="Twitter" src="/public/img/twitter.png"></span>
+			</li>
+			<!-- <li id="tumblr_btn">
+				<span class="tabbutton" title="Tumblr" onclick="toggleTumblr()"><img alt="Tumblr" src="/public/img/tumblr.gif"></span>
+			</li> -->
+			<li id="flickr_btn">
+				<span class="tabbutton" title="Flickr" onclick="toggleFlickr();"><img  alt="Flickr" src="/public/img/flickr.png"></span>
+			</li>
+			<li id="evernote_btn">
+				<span class="tabbutton" title="Evernote"><script type="text/javascript" src="http://static.evernote.com/noteit.js"></script>
+				<a href="#" onclick="Evernote.doClip({providerName:'Gyazo',contentId:'gyazo_img'}); return false;"><img src="http://static.evernote.com/site-mem-16.png" alt="Clip to Evernote" /></a></span>
+			</li>
+			<li id="about_btn">
+				<span class="tabbutton" title="Info" onclick="toggleAbout();"><img  alt="Help" src="/public/img/info.png"></span>
+			</li>
+		</ul>
+		
+		
+				<p class="plus back">
+			<a href="/premium/">
+			Upgrade Now!			</a>
+		</p>
+								<p class="ad">
+				</p>
+		</div>
+
+
+
+<!-- Twitter Dialog -->
+<div id="twitter" style="display:none;" class="dialog">
+	<h4><img align="absmiddle" src="/public/img/twitter.png"/> Share on Twitter</h4>
+	<form name="posttwitter" onsubmit="toggleTwitter()" id="posttwitter" action="/post/twitter_redirect" method="POST" target="_blank">
+		<div class="postbody">
+			<div class="row">
+				<label for="twitter_status">Tweet <small>(Optional)</small></label>
+				<textarea name="status" id="twitter_status" rows="2" cols="30"></textarea>
+			</div>
+			<input type="hidden" name="filename" value="e6949647e19974136d267252b5402a90">
+			<input type="hidden" name="gyazo_url" value="http://gyazo.com/e6949647e19974136d267252b5402a90.png">
+		</div>
+		<div class="submit">
+			<input type="submit" value="Post">
+			<input type="button" value="Cancel" onclick="toggleTwitter()">
+		</div>
+	</form>
+</div>
+
+<!-- Tumblr Dialog -->
+<div id="tumblr" style="display:none;" class="dialog">
+	<h4><img align="absmiddle" src="/public/img/tumblr.gif"/> Share on Tumblr</h4>
+
+	<div id="tumblr_result" class="success" style="display:none">
+		<span>Successfully posted on Tumblr! <br>
+		<a href="http://www.tumblr.com/dashboard" target="_blank">See Tumblr?</a></span>
+	</div>
+
+
+	<form name="posttumblr" id="posttumblr" action="/post/tumblr" method="POST" target="postframe">
+		
+		<div class="postbody">
+		<div id="tumblr_error" style="display:none" class="error"></div>
+		
+		<div id="tumblr_login" style="display:block">
+			<div class="row">
+				<label for="tumblr_email">Email</label>
+				<input type="text" size="30" name="email" id="tumblr_email">
+			</div>
+			<div class="row">
+				<label for="tumblr_pass">Password</label>
+				<input type="password" size="20" name="password" id="tumblr_pass">
+			</div>
+		</div>
+		<div id="tumblr_user" style="display:none">
+			<div class="row">
+				<label for="tumblr_email">Account</label><span class="nt"> <small><a href="javascript:;" onclick="hide_tumblr_post();">not you?</a></small></span>
+			</div>
+		</div>
+		<div class="row">
+			<label for="tumblr_caption">Caption <small>(Optional)</small></label>
+			<input type="text" size="30" name="caption" id="tumblr_caption">
+		</div>
+		<input type="hidden" name="usesession" value="0">
+		<input type="hidden" name="filename" value="e6949647e19974136d267252b5402a90">
+		<input type="hidden" name="gyazo_url" value="http://gyazo.com/e6949647e19974136d267252b5402a90.png">
+		<div class="buttons" id="tumblr_login_option" style="display:block">
+			<input type="checkbox" style="margin-left:0" name="remember" id="tumblr_remember" value="1"><label for="tumblr_remember">Stay signed in</lable><br>
+		</div>
+		
+		</div>
+		
+		<div class="submit">
+			<input type="submit" value="Post">
+			<input type="button" value="Cancel" onclick="toggleTumblr()">
+		</div>
+	</form>
+</div>
+
+<!-- Flickr Dialog -->
+<div id="flickr" style="display:none;" class="dialog">
+	<h4><img align="absmiddle" src="/public/img/flickr.png"/> Share on Flickr</h4>
+
+	<div id="flickr_result" style="display:none">
+		<p>Successfully posted on Flickr! <a href="http://flickr.com" target="_blank">
+		See Flickr?</a></p>
+	</div>
+
+	<form name="postflickr" id="postflickr" onsubmit="toggleFlickr()" action="/post/flickr_auth" method="POST" target="_blank">
+		<div class="postbody">
+			<div class="row">
+				<label for="flickr_title">Title <small>(Optional)</small></label>
+				<input type="text" size="30" name="title" id="flickr_title">
+			</div>
+			<div class="row">
+				<label for="flickr_tags">Tags <small>(Optional)</small></label>
+				<input type="text" size="30" name="tags" id="flickr_tags" value="gyazo, ">
+			</div>
+			<input type="hidden" name="usesession" value="0">
+			<input type="hidden" name="filename" value="e6949647e19974136d267252b5402a90">
+			<input type="hidden" name="gyazo_url" value="http://gyazo.com/e6949647e19974136d267252b5402a90.png">
+		
+		</div>
+		<div class="submit">
+			<input type="submit" value="Post">
+			<input type="button" value="Cancel" onclick="toggleFlickr()">
+		</div>
+	</form>
+</div>
+
+<!-- About Dialog -->
+<div id="about" style="display:none;" class="dialog">
+	<h4><img align="absmiddle" src="/public/img/info.png"/> Info</h4>
+
+	<form name="postflickr" id="" action="/" method="GET" target="_blank">
+		<div class="postbody">
+		<div class="row">
+			<label for="embed">Image URL</label>
+			<input type="text" value="http://gyazo.com/e6949647e19974136d267252b5402a90.png" size="26" onfocus="copyEmbed()" id="embed">
+		</div>
+		
+		<p style="width:210px;">
+				You can paste and share this URL anywhere. The URL is copied to the clipboard automatically when uploaded.
+				</p>
+
+		</div>
+		<div class="submit">
+			<input type="submit" value="Visit Gyazo.com">
+			<input type="button" value="Cancel" onclick="toggleAbout()">
+		</div>
+	</form>
+</div>
+
+<!-- Version Up Dialog -->
+<div id="versionup" style="display:none;left:50%;top:150px;margin-left:-150px;width:300px;" class="dialog">
+	<h4><img align="absmiddle" src="/public/img/news.png"/> Version Up</h4>
+
+	<form name="postflickr" id="" action="http://gyazo.s3.amazonaws.com/setup/Gyazo_1.0.dmg" method="GET" target="">
+		<div class="postbody">
+		
+		<p class="prefix">
+        <img widht="83" height="81" src="http://gyazo.com/d2bc03ec2cecf88718d8be909cce6be7.png" align="left">
+
+		   		Gyazo 1.0 has been released!<br />
+        Please upgrade your Gyazo app.
+				<br />
+		<a target="_blank" href="http://gyazo.blogspot.com/2010/09/all-new-look-gyazo-10-is-here.html">Release Notes</a>
+		</p>
+
+		</div>
+		<div class="submit">
+			<input type="submit" value="Download">
+			<input type="button" value="Not Now" onclick="toggleVersionup()">
+		</div>
+	</form>
+</div>
+
+<!-- Gyazo Pro Dialog -->
+<div id="gyazopro" style="display:none;left:50%;top:150px;margin-left:-150px;width:300px;" class="dialog">
+	<h4><img align="absmiddle" src="/public/img/news.png"/> News</h4>
+
+	<form name="postflickr" id="" action="/premium/" method="GET" target="">
+		<div class="postbody" style="background-image:url(http://gyazo.com/2f31d4b81813d0a907a6b00c11012403.png);background-repeat:no-repeat;">
+		
+		<div class="prefix" style="margin-left:110px;">
+                        <p style="margin-top:0;font-size:14px;"><b>Gyazo Pro Released!</b></p>
+            <p>Now you can see the history of your images.
+            You can also delete and manage images.
+            </p><p>
+            <a target="_blank" href="/history">See My Images</a>
+            <br />
+            <a target="_blank" href="http://blog.gyazo.com/2010/10/introducing-gyazo-pro.html">Release Notes</a>
+            </p>
+            		</div>
+
+		</div>
+		<div class="submit">
+			<input type="submit" value="Upgrade Now!">
+			<input type="button" value="Remind Me Later" onclick="toggleGyazopro()">
+		</div>
+	</form>
+</div>
+
+<div id="content">
+	<div id="gyazo">
+		<img src="/e6949647e19974136d267252b5402a90.png" id="gyazo_img" />
+		<ul id="buttons" class="prefix">
+			<li style="margin-right:0;">
+				<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Screenshot:" data-via="gyazo">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+			</li>
+			<li>
+				<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=176828049042806&amp;xfbml=1"></script><fb:like href="" send="false" layout="button_count" width="100" show_faces="false" font=""></fb:like>
+			</li>
+					</ul>
+			</div>
+</div>
+
+
+
+<iframe name="postframe" width="1" height="1" frameborder="0" style="visibility:hidden"></iframe>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+
+
+<script type="text/javascript" charset="utf-8">
+	var isPremium = 0;
+	var image_id = 'e6949647e19974136d267252b5402a90';
+	var messages = {
+		"delete_premium": "You need to be a Pro user to delete images.\nDo you want to see the details?",
+		"delete_alert" : "Are you sure to delete the selected image?\nThere is NO undo!",
+		"delete_fail": "Failed to delete.",
+		"server_error" : "Can not connect to servers. Please reload this page and try again."
+	}
+</script>
+<script type="text/javascript" src="/public/js/view.js?1306896550"></script>
+
+</body>
+</html>

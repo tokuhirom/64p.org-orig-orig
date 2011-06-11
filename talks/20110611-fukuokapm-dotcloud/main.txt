@@ -1,0 +1,294 @@
+﻿How can I create dotcloud like environment on Sakrua VPS?
+<div style="text-align:right">
+Fukuoka.pm@20110611
+徳永広夢ことtokuhirom
+from Tokyo, Japan.
+</div>
+<div class="note">(Press 'j' to display next page)</div>
+----
+まず最初に、JPA さんに感謝の意を表したいとおもいます。
+<img src="lestrrat.jpg" />
+----
+<B>注意事項</B>
+----
+かなり丁寧に説明していくつもりですが、なにかご不明な点などあれば随時質問してください。
+<img src="dankogai.jpg" />
+----
+時間もあることですし、東京でやるときはすっとばすようなことも丁寧に説明しています。
+----
+まどろっこしいなあとおもったらいってください。
+----
+今回のスライドで紹介する技術の目的は『ゆるふわにサーバー運用したいけど、自由はほしい』といったところです。
+----
+なお、以後のスライドはすべて英語です。
+----
+Agenda
+- About me
+- About dotcloud
+- But...
+- Analyze dotcloud
+- Build dotcloud like environment on Sakura VPS.
+----
+<pre>
+% whoami
+tokuhirom
+</pre>
+----
+http://twitter.com/tokuhirom
+http://github.com/tokuhirom
+http://search.cpan.org/~tokuhirom/
+----
+Employee of...
+Etolabo corp. but ...
+----
+The author of...
+- Daiku
+- Amon2
+- mobirc
+- Furl
+- HTTP::Session
+- and other a lot of modules...
+----
+goto \&amp;<B>main_subject</B>;
+----
+<B>dotcloud</B> is awesome!
+----
+<div class="center"><B>Why?</B></div>
+----
+Easy to setup.
+- install depended modules very easy
+- cpanm --installdeps .
+----
+start mysql instance by one command!
+>||
+dotcloud deploy -t mysql myapp.db
+||<
+----
+Easy to learn.
+- deploy
+- push
+----
+<B>But...</B>
+----
+It's in beta state...
+----
+API server is <B>unstable</B>.
+----
+There is no <B>root account</B>.
+----
+Users cannot install programs/libraries by <B>aptitude</B>.
+----
+It's inconvinience <B>for me</B>.
+----
+Then... I want to create <B>my own environment</B>.
+<blockquote style="font-size: 60%">
+「暇なんでdotcloudみたいだけどハカー向きのPerl用コンテナつーのを作って
+みるわ．もちろんVPSネイティブな．少しまちなー．」
+</blockquote>
+----
+<B>Analyze dotcloud environment...</B>
+----
+I analyzed 'perl' type instance.
+----
+- Built top on EC2
+- And using virtual environment
+- Every processes run on 'dotcloud' user.
+- User's code exists in /home/dotcloud/
+----
+>||
+% ps aux
+||<
+- nginx
+- supervisord
+- uwsgi
+----
+<B>nginx</B>
+----
+Very fast web server from russia.
+- clean configuration file format
+- There is no reason to use lighty(笑)
+- apache2ェ……
+----
+- It works as reverse proxy.
+- and serve static files.
+- www.myapp.dotcloud.com/static/ → ~/current/static/
+----
+<B>uWSGI</B>
+----
+uWSGI
+- not only WSGI
+- It's like a fcgi-manager process.
+- support PSGI, etc.
+----
+uWSGI(cont)
+- UNIX socket support
+- graceful restart
+- multiprotocol support (uwsgi, http, fastcgi and mongrel2 available out of the box)
+- Automatically reload workers when a specific memory usage is reached
+----
+Why uWSGI?
+- Pretty cool process management.
+- There is no perl process if it's not busy.
+----
+<B>supervisord</B>
+----
+supervisord?
+- supervisor daemon
+- manage processes
+- restart process when it's down.
+----
+supervisord?(cont)
+- like daemontools
+- human friendly configuration file
+- stable
+----
+>||
+[program:plackup]
+directory=<HOME>/code
+command=perl -Mlib=<HOME>/perl5/lib/perl5 <HOME>/perl5/bin/plackup -s Starlet -p <PORT> -E deployment <HOME>/code/app.psgi
+autostart=true
+autorestart=true
+stdout_logfile=<HOME>/log/plackup.log
+stderr_logfile=<HOME>/log/plackup.log
+stopsignal=TERM
+||<
+----
+>||
+[include]
+files = /usr/local/webapp/code/supervisord.conf
+||<
+----
+supervisord(cont)
+- /etc/supervisord/supervisord.conf
+- includes ~dotcloud/current/supervisord.conf
+- You can run your own process on supervisord.
+----
+daemontools is not newbie friendly...
+- hard to logging it by multilog
+- operation is bit hard.
+----
+grsecurity
+- linux kernel patch set
+----
+Following slides includes speculation from
+https://github.com/dotcloud/
+----
+It uses cgroups.
+<a href="http://support.dotcloud.com/entries/20039567-what-types-of-ec2-instances-are-used"><img src="cgroups.png" /></a>
+----
+cgroups?
+- resource management for linux
+- Limit system resource per process group
+- Limit CPU, Disk, etc.
+- merged to kernel mainline
+----
+It may use <B>lxc</B>[要出典]
+https://github.com/dotcloud/lxc
+----
+lxc?
+- Linux containers
+- "chroot on steroids"
+- kernel mainline
+- easy to use
+- merged to kernel mainline
+- less overhead
+----
+aufs[要出典]
+- au file system
+- supports <B>Copy on Write</B> feature.
+- save disk resource.
+----
+Conclusion
+- nginx(httpd)
+- supervisord(process management)
+- uwsgi
+- aufs(file system)
+- lxc(resource management, jail)
+----
+OK.
+Any questions?
+----
+<B>Built my own environment</B>
+----
+Build it on ubuntu linux.
+----
+Support <B>same</B> project structure.
+- postinstall
+- Makefile.PL/Build.PL ← cpanm --installdeps .
+- cron
+- supervisord.conf
+----
+I seems lxc and aufs is overspec for me.
+- I want to split environment per user.
+- Since administrator and user is same person.
+- [future plan]use cgroups.
+- There is no cracker in my machine...
+----
+Using middlewares
+- ○  unix user permission
+- ○ cron
+- ○ supervisord
+- ○ perl
+- × aufs
+- × cgroups
+- × lxc
+----
+Run supervisorctl per user
+- nest supervisord
+----
+Install required programs.
+>||
+sudo aptitude install -y nginx build-essential curl git-core python-setuptools  sudo aptitude install -y libxml2-dev libperl-dev libdb-dev
+
+sudo easy_install supervisor
+||<
+----
+>||
+sudo curl -o /usr/local/bin/cpanm -L http://cpanmin.us/
+sudo chmod +x /usr/local/bin/cpanm
+||<
+----
+>||
+sudo cp nginx.conf /etc/nginx/nginx.conf
+sudo /etc/init.d/nginx restart
+||<
+----
+>||
+include /etc/nginx/sites-enabled/*.conf;
+||<
+----
+build and install uwsgi by source code.
+>||
+curl http://projects.unbit.it/downloads/uwsgi-0.9.8.tar.gz | tar xvf
+cd uwsgi-0.9.8/; python uwsgiconfig.py --build psgi
+cp uwsgi /usr/local/bin/
+||<
+----
+Okay, setup server was finished. Let's deploy project to the server!
+----
+>||
+sudo useradd --create-home --skel `pwd`/home/ --password `perl -le 'use Time::HiRes qw/gettimeofday/;use Digest::MD5 qw/md5_hex/; print md5_hex(rand().gettimeofday())'` --shell /bin/zsh $USER
+||<
+----
+install dotfiles to ~/
+- .bashrc
+- .screenrc
+----
+.bashrc
+>||
+export PERL5OPT="-Mlib=$HOME/perl5/lib/perl5/"
+export PATH="$HOME/perl5/bin/:$PATH"
+||<
+----
+Do not use local::lib. use lib; instead.
+- local::lib is not a standard library
+----
+<div style="text-align: center; font-size: 400%;"><a href="http://localhost:9011/">DEMO</a></div>
+- create project on server side
+- deploy to the server
+----
+Normally, use dotcloud!
+----
+Thanks!
+(Any questions?)
+<div class="note">I will upload full slides to <a href="http://tokuhirom.github.com/">tokuhirom.github.com</a></div>

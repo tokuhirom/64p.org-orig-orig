@@ -1,6 +1,8 @@
 body {
     color: #ffffff;
     background-color: #000000;
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    margin: auto;
 }
 
 body * {
@@ -31,6 +33,7 @@ body * {
     padding-left: 4px;
     font-size: 80%;
     background-color: #202010;
+    word-break: break-all;
 }
 
 #topics .code {
@@ -82,4 +85,8 @@ B {
 pre B {
     color: red;
     font-size: 100%;
+}
+
+.center {
+    text-align: center;
 }

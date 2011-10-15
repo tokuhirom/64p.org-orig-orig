@@ -1,0 +1,115 @@
+﻿Amon2 3.0
+<div style="text-align:right">
+東工大 20111014
+tokuhirom
+from Tokyo, Japan.
+</div>
+<div class="note">(Press 'j' to display next page)</div>
+----
+Amon2?
+----
+Amon2 is...
+- web application framework
+- minimalistic
+- stable
+- scalable
+----
+ぼくの
+かんがえた
+さいきょうの
+ふれーむわーく
+----
+I released Amon2 3.04!
+----
+
+diff -u Amon2-2.56 Amon2-3.04
+----
+>||
+  Minimalistic core
++ Fat flavors
++ (setup script stuff)
+||<
+----
+<B>Bootstrap</B> is
+most important part
+for <B>lazy programmer</B>.
+----
+Write code
+for
+<B>main purpose</B>
+----
+Amon2 3.xx seriese focus to...
+<B>Bootstrapping</B>
+----
+
+*Flavors
+----
+Lite Flavor
+- Sinatraish
+- Sinatra厨用
+----
+Basic Flavor
+- for small sites
+- 基本的にはこれを
+----
+Large Flavor
+- for enterprise scale
+- お仕事でつかうのに丁度いいようにセットアップしてます
+----
+DotCloud flavor
+- Optimized for dotcloud
+- write dotcloud.yml
+- for demo
+----
+Minimalistic Flavor
+- few deps
+- 依存が多いんですけど厨対策
+----
+*Amon2::MobileJP
+ガラケー対応
+----
+Pictograms
+絵文字
+----
+Character Encoding
+文字エンコーディング
+cp932 or utf-8
+----
+カタカナ →ｶﾀｶﾅ
+----
+GUID Session Support
+$ALLOW_INSECURE_SESSION = 1;
+<img src="tokumaru.png" />
+----
+Supported phone detection
+3G+, DoCoMo Browser 2.0+, etc.
+----
+*Amon2::Auth
+----
+Easy authentication with SNSes.
+----
+**supported <br />SNSes
+----
+Facebook
+Twitter
+Github
+loctouch
+----
+>||
+__PACKAGE__->load_plugin('Web::Auth', {
+    module => 'Facebook',
+    on_finished => sub {
+        my ($c, $token, $user) = @_;
+        my $name = $user->{id} || die;
+        $c->session->set('facebook_id' => $id);
+        $c->session->set('facebook_token' => $token);
+        return $c->redirect('/');
+    }
+});
+||<
+----
+etc.
+----
+Thanks!
+(Any questions?)
+<div class="note">I will upload full slides to <a href="http://tokuhirom.github.com/">tokuhirom.github.com</a></div>

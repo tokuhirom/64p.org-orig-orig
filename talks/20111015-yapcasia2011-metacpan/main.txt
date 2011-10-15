@@ -1,0 +1,179 @@
+﻿Hacking with metacpan
+<div style="text-align:right">
+YAPC::Asia 2011 20111015
+tokuhirom
+from Tokyo, Japan.
+</div>
+<div class="note">(Press 'j' to display next page)</div>
+----
+途中でdankogaiばりに発言してもいいですよ!
+<img src="dankogai.jpeg" />
+----
+*Conclusion
+----
+- You can modify metacpan very easy.
+- You hack CPAN with metacpan APIs.
+----
+You may have any ideas to hack CPAN!
+----
+You can hack it.
+Or, just say the idea in question time.
+----
+*selfintro
+----
+- tokuhirom
+- Amon2
+- Ukigumo
+- Furl
+- Daiku
+- etc.
+----
+Agenda
+- What's metacpan?
+- metacpan APIs?
+- introduce my hacks
+----
+
+*metacpan?
+----
+search.cpan.org 2.0
+like Web 2.0
+----
+metacpan is great! because...
+- metacpan is fresh
+- metacpan is hackable
+- metacpan provides APIs
+----
+* fresh?
+----
+You can read a docs
+<B>in a minute</B>
+after the release.
+----
+* Hackable?
+----
+- built on PSGI stack
+- only run "cpanm --installdeps . && plackup *.psgi"
+- It's on the Corona(iirc)(TODO)
+----
+- It's on github
+- You can just send a pull-req!
+----
+Web frontend <B>calls APIs</B>.
+- on AnyEvent based PSGI engine
+- You <B>don't need to build DB</B>
+- You can hack UI very easily!
+----
+* APIs?
+----
+You can use
+<B>all of features</B>
+via API.
+----
+What APIs are available?
+----
+module search/information
+----
+distribution search/information
+----
+author search/information
+----
+you can fetch histories...
+----
+*My hacks
+----
+MetaCPAN Explorer
+<a href="http://explorer.metacpan.org/">http://explorer.metacpan.org/</a>
+
+API explorer for metacpan
+----
+*Demo
+<a href="http://explorer.metacpan.org/">http://explorer.metacpan.org/</a>
+----
+cpanm --metacpan
+- fetch latest modules ASAP
+----
+FrePAN
+- informations for recent modules
+http://frepan.org
+----
+FrePAN
+<img src="frepan.jpg" />
+----
+FrePAN workflow
+<img src="frepan-flow.jpg" />
+----
+*Conclusion
+----
+- You can modify metacpan very easy.
+- You hack CPAN with metacpan APIs.
+----
+You may have any ideas to hack CPAN!
+----
+You can hack it.
+Or, just say the idea in question time.
+----
+Thanks!
+(Any questions?)
+<div class="note">I will upload full slides to <a href="http://tokuhirom.github.com/">tokuhirom.github.com</a></div>
+----
+時間があまったので
+----
+One more thing
+----
+超LT
+----
+*Ukigumo
+----
+CI Tool
+----
+cron + prove
+----
+thin
+----
+client side: fat
+server side: thin
+----
+Jenkins
+→
+run the code on <B>server side</B>
+----
+Jenkins のサーバーに
+アプリの開発者が
+はいらないといけない
+らしい
+----
+特定の
+プロジェクトで
+しかつかわない
+ライブラリ
+----
+<B>ダルい</B>
+----
+自分でやろう
+----
+cron
+prove
+cronlog
++
+Plack::App::File
+----
+一覧とかないとさすがに。。
+----
+もうちょいリッチに
+----
+ukigumo-client.pl
+Ukigumo-Server/app.psgi
+----
+server side
+- provides JSON APIs
+----
+>||
+ukigumo-client.pl
+    --server_url=http://localhost:9044/
+    --repo=git://github.com/tokuhirom/Acme-Failing.git
+    --branch=master
+||<
+----
+http://0.0.0.0:9044/
+http://ukigumo-4z7a3pfx.dotcloud.com/

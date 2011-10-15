@@ -23,11 +23,12 @@ body * {
 }
 
 #topics h3 {
-    padding : 5px;
+    padding : 15px;
     font-size : 220%;
     line-height : 1;
     background-color : #ff0000;
     color: black;
+    border-radius: 10px;
 }
 
 #topics pre {

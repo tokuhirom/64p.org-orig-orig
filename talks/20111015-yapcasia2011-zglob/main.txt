@@ -1,0 +1,204 @@
+﻿File::Zglob
+<div style="text-align:right">
+YAPC::Asia 2011 20111015
+tokuhirom
+from Tokyo, Japan.
+</div>
+<div class="note">(Press 'j' to display next page)</div>
+----
+how can i find "lib/**/*.pm"
+----
+use <B>File::Find</B>?
+----
+>||
+my @files;
+find({ no_chdir => 1, wanted => sub {
+    push @files, $_ if $_ =~ /\.pm$/;
+}}, 'lib');
+||<
+----
+hmm..
+----
+use <B>File::Find::Rule</B>;
+----
+>||
+File::Find::Rule->file()
+    ->name('*.pm')
+    ->in('lib');
+||<
+----
+Three lines...
+----
+use <B>File::Zglob</B>;
+----
+>||
+use File::Zglob;
+my @files = zglob('lib/**/*.pm');
+||<
+----
+>||
+grep { -f $_ } zglob('lib/**/*.pm');
+||<
+----
+very Perl-ish!
+----
+Cute.
+----
+No Dora?
+----
+20 more things.
+----
+20 modules didn't talked yet
+----
+*FCGI::Client
+----
+FCGI client
+----
+FCGI *client*
+----
+You can run php-fcgi on Plack!
+----
+*DBIx::Inspector
+----
+>||
+my $inspector = DBIx::Inspector−>new(dbh => $dbh);
+my @tables = $inspector−>tables;
+for my $table (@tables) {
+    print "  pk:\n";
+    for my $pk ($table−>primary_key) {
+        print "    ", $pk−>name, "\n";
+    }
+    print "  columns:\n";
+    for my $column ($table−>columns) {
+        print "    ", $column−>name, "\n";
+    }
+}
+||<
+----
+*Daiku
+----
+Rake for perl
+----
+>||
+#! perl
+use Daiku;
+use autodie ':all';
+
+task 'all' => 'foo';
+file 'foo' => 'foo.o' => sub {
+    system "gcc −c foo foo.o";
+};
+rule '.o' => '.c' => sub {
+    system "gcc −c foo.o foo.c";
+};
+
+build shift @ARGV || 'all';
+||<
+----
+*App::watcher
+----
+ファイルがアップデートされてたらなんか実行する
+----
+*autobox::Encode
+----
+>||
+use Encode;
+encode('cp932', "ほげ");
+||<
+----
+>||
+use autobox::Encode;
+"ほげ"->encode('cp932');
+||<
+----
+*cpan-outdated
+----
+list a outdated modules in my env
+----
+>||
+cpan-outdated -p | cpanm
+||<
+----
+*Cache::KyotoTycoon
+----
+client library for kyoto tyconn
+----
+*Data::Recursive::Encode
+----
+encode strings in deep data structure
+----
+*Furl
+----
+talked it in past year
+used in number one japanese game sns
+- maintained by xaicron
+----
+*HTML::TreeBuilder::LibXML
+----
+- using LibXML for Web::Scraper
+----
+*Image::Epeg
+----
+- terrible thumbnail generator
+----
+*Lingua::JA::Regular::Unicode
+----
+- カタカナ → ｶﾀｶﾅ
+- ａｉｕ　→ aiu
+----
+*OrePAN
+----
+- create your own cpan repository
+- download a dist to my repo
+- maintained by kazeburo san
+----
+*Proc::Guard
+----
+>||
+my $guard = Proc::Guard->new(
+    command => '/usr/bin/memcached',
+);
+||<
+----
+*Router::Simple
+----
+>||
+my $router = Router::Simple−>new();
+$router−>connect('/', {controller => 'Root', action => 'show'});
+$router−>connect('/blog/{year}/{month}', {controller => 'Blog', action => 'monthly'});
+||<
+----
+*RPC::XML::LibXML
+----
+Fast libxml integration for RPC::XML
+----
+*Smart::Args
+----
+>||
+sub foo {
+    args my $self,
+         my $foo;
+    ...
+}
+||<
+----
+*Test::Requires
+----
+>||
+use Test::Requires 'JSON';
+||<
+----
+*Web::Query
+----
+jQuery-ish scraping with 
+----
+>||
+wq('http://google.com/search?q=foobar')
+        −>find('h2')
+        −>each(sub {
+            my $i = shift;
+            printf("%d) %s\n", $i+1, $_−>text
+        });
+||<
+----
+We're hiring!

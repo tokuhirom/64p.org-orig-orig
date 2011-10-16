@@ -53,8 +53,8 @@ after the release.
 * Hackable?
 ----
 - built on PSGI stack
-- only run "cpanm --installdeps . && plackup *.psgi"
-- It's on the Corona(iirc)(TODO)
+- only run "plackup *.psgi"
+- It's on the AnyEvent
 ----
 - It's on github
 - You can just send a pull-req!

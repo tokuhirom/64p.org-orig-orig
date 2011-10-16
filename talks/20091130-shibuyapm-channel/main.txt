@@ -1,4 +1,4 @@
-ああ、柔軟な言語 Perl よ。
+ああ、柔軟な言語 Perl よ。(overload編)
 <div style="text-align: right">
 2009-11-30(Mon) Shibuya.pm techtalk #12
 tokuhirom

@@ -2,8 +2,8 @@
 package TGP;
 use strict;
 use warnings;
-use Path::Class;
 use Text::MicroTemplate ':all';
+use File::Basename;
 
 my $tmpl = <<'...';
 <!doctype html>
@@ -33,11 +33,8 @@ sub main {
 
 sub files {
     my @f;
-    my $cwd = dir('talks')->open or die $!;
-    while (my $f = $cwd->read) {
-        next unless -d "talks/$f";
-        next unless $f =~ /^20/;
-        push @f, $f;
+    while (my $f = glob('talks/20*')) {
+        push @f, basename($f);
     }
     reverse sort { $a cmp $b } @f;
 }

@@ -10,18 +10,37 @@ binmode STDOUT, ':utf8';
 
 my $tmpl = <<'...';
 <!doctype html>
-? my $files = shift;
+? my $data = shift;
+? my $titles = shift;
 <html>
 <head>
+    <meta charset="utf-8" />
     <title>tokuhirom's slides</title>
+    <link rel="stylesheet" href="static/bootstrap.min.css" />
+    <style>
+        body {
+            margin-left: 20px;
+            margin-top: 60px;
+        }
+    </style>
 </head>
 <body>
-tokuhirom's slide
+<div class="container">
+<h1>tokuhirom's slide</h1>
+? for my $year (@$data) {
+    <h2><?= $year->{year} ?></h2>
 <ul>
-? for my $file (@$files) {
-    <li><a href="/talks/<?= $file ?>"><?= $file ?></a></li>
-? }
+?   for my $file (@{$year->{files}}) {
+    <li>
+        <a href="/talks/<?= $file ?>">
+            <span class="date"><?= substr($file, 0, 8) ?></span>
+            <span class="title"><?= $titles->{$file} || $file ?></span>
+        </a>
+    </li>
+?   }
 </ul>
+? }
+</div>
 </body>
 </html>
 ...
@@ -29,6 +48,7 @@ tokuhirom's slide
 sub main {
     my @files = files();
 
+    my %titles;
     for my $file (@files) {
         my $htmlfile = "talks/$file/index.html";
         next unless -f $htmlfile;
@@ -42,9 +62,17 @@ sub main {
         $title =~ s/^\x{FEFF}//;
         print "$title talks/$file\n";
         replace_title($htmlfile, $title);
+        $titles{$file} = $title;
     }
 
-    my $result = render_mt($tmpl, \@files)->as_string;
+    my %data;
+    for my $file (@files) {
+        my $year = substr($file, 0, 4);
+        push @{$data{$year}}, $file;
+    }
+
+    my $dat = [ map { +{ year => $_, files => $data{$_} } } reverse sort keys %data ];
+    my $result = render_mt( $tmpl, $dat, \%titles )->as_string;
     open my $fh, '>', 'index.html';
     print {$fh} $result;
     close $fh;

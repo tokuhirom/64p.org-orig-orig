@@ -1,0 +1,68 @@
+﻿Ukigumo
+<div style="text-align:right">
+YAPC::Asia 2011 20111015
+tokuhirom
+from Tokyo, Japan.
+</div>
+<div class="note">(Press 'j' to display next page)</div>
+----
+時間があまったので
+----
+One more thing
+----
+超LT
+----
+*Ukigumo
+----
+CI Tool
+----
+cron + prove
+----
+thin
+----
+client side: fat
+server side: thin
+----
+Jenkins
+→
+run the code on <B>server side</B>
+----
+Jenkins のサーバーに
+アプリの開発者が
+はいらないといけない
+らしい
+----
+特定の
+プロジェクトで
+しかつかわない
+ライブラリ
+----
+<B>ダルい</B>
+----
+自分でやろう
+----
+cron
+prove
+cronlog
++
+Plack::App::File
+----
+一覧とかないとさすがに。。
+----
+もうちょいリッチに
+----
+ukigumo-client.pl
+Ukigumo-Server/app.psgi
+----
+server side
+- provides JSON APIs
+----
+>||
+ukigumo-client.pl
+    --server_url=http://localhost:9044/
+    --repo=git://github.com/tokuhirom/Acme-Failing.git
+    --branch=master
+||<
+----
+http://0.0.0.0:9044/
+http://ukigumo-4z7a3pfx.dotcloud.com/

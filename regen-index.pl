@@ -22,23 +22,51 @@ my $tmpl = <<'...';
             margin-left: 20px;
             margin-top: 60px;
         }
+
+        .clearfix {zoom:1;}
+        .clearfix:after{
+            content: "";
+                display: block;
+                    clear: both;}
+        a:hover {
+            text-decoration: none;
+        }
+        li {
+            list-style: none;
+            width: 200px;
+            float: right;
+            padding: 8px;
+            border: #eeeeee 1px solid;
+            margin: 2px;
+            border-radius: 8px;
+        }
+        .title {
+            font-size: 20px;
+            line-height: 24px;
+            word-break: break-all;
+            color: black;
+            height: 72px;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
 <div class="container">
 <h1>tokuhirom's slide</h1>
 ? for my $year (@$data) {
+    <div class="year clearfix">
     <h2><?= $year->{year} ?></h2>
 <ul>
 ?   for my $file (@{$year->{files}}) {
     <li>
         <a href="/talks/<?= $file ?>">
-            <span class="date"><?= substr($file, 0, 8) ?></span>
-            <span class="title"><?= $titles->{$file} || $file ?></span>
+            <div class="title"><?= $titles->{$file} || $file ?></div>
+            <div class="date"><?= substr($file, 0, 8) ?></div>
         </a>
     </li>
 ?   }
 </ul>
+    </div>
 ? }
 </div>
 </body>

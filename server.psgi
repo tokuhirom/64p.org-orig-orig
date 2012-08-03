@@ -6,7 +6,7 @@ use Plack::Loader;
 
 my $ROOT = '.';
 
-do 'regen-index.pl';
+do 'regen-index.pl' or die $@;
 my $file = Plack::App::File->new({ root => '.' });
 
 my $app = sub {

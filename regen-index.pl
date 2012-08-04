@@ -2,6 +2,7 @@
 package TGP;
 use strict;
 use warnings;
+use lib 'lib';
 use Text::MicroTemplate ':all';
 use File::Basename;
 

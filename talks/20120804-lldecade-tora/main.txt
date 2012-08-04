@@ -1,0 +1,178 @@
+next Perl5 処理系　tora の設計と実装。
+<div style="text-align:right; font-size: 70%;">
+LL Decade/ 20120804/Ginza Blosxom
+とくながひろむ aka. tokuhirom
+</div>
+<div class="note">(Press 'j' to display next page)</div>
+----
+* Background
+----
+Perl5 を普段使っています。
+１０年ぐらい。
+LL の staff もやってました。DN とかのころ。
+----
+I used <B>Perl</B>, Python, Ruby, PHP, Java, C, C++, Objective-C, JavaScript, ...
+----
+* History/かんがえかた
+----
+さて
+----
+Perl6 の開発が宣言されてから10年以上の歳月がたち、いまだ実用的な実装はあらわれません。
+----
+LLイベントが First Time のころから Language Update
+----
+現状の、Perl6の実装は遅くて使い物にならない。
+----
+% time perl6 -e 'my $i=0; for (1..10_000) { $i++ };'
+<B>6.97s</B> user 0.11s system 98% cpu 7.199 total
+----
+It's too slow.
+----
+もう待つのに疲れたよ！！
+----
+待つのに疲れたので、俺が考えた最強のPerl5の子孫をつくった。
+----
+tokuhirom loves <B>fork</B>.
+----
+<div style="text-align: left">
+HTTP::MobileAgent
+→HTTP::MobileAttribute
+→はいし。
+</div>
+----
+<div style="text-align: left">
+Moose
+→ Mouse
+→Moo
+</div>
+----
+<div style="text-align: left">
+Catalyst
+→HTTP::Engine
+→Plack
+</div>
+----
+<B>fork</B>はせかいをよくする。
+----
+(こともある)
+----
+それ自体がいい感じになるかどうかはまあよし。
+Perl[56]の開発がいいかんじに進むというのもまあよし。
+----
+* げんごのこと
+----
+Perl5 の問題点は？
+----
+- 学習コスト。。
+- ふくざつなシヨウ。
+- You can't ポート。
+----
+Perl5 - ふくざつさ + Perl6-ish syntax.
+----
+けしたこと。
+- context
+- @ary, %hash
+- ;
+----
+たしたこと。
+- autoboxing
+- Moose 的なものの組み込み
+- ハックしやすいVM
+- 組み込みライブラリの実装しやすさ
+----
+のこしたこと
+- $
+----
+Two Implementations
+- tora
+- nana
+----
+tora
+- C++ impl.
+- stack machine
+- re2c/lemon
+----
+nana
+- Translator for Perl5
+----
+* language specs.
+----
+>||
+my $num = 1;
+my $num = 1.234;
+||<
+----
+>||
+my $join2 = ['aaa', 'bbb', 'ccc'].join(' ');
+my $substr = 'abcd'.substr(0, 2); # ab
+my $array_num = $array.size();
+||<
+----
+>||
+my $hash;
+$hash = {a => 1, b => 2};
+$values = $hash.values();
+$hash[a] = 5;
+||<
+----
+>||
+my $t = Time.now();
+$t.year()
+$t.month();
+$t.epoch();
+||<
+----
+>||
+my $i = 0;
+while $i < 5 {
+    $i++;
+}
+||<
+----
+>||
+for (my $i = 0; $i < 5; $i++) {
+}
+||<
+----
+>||
+for $fields -> $field {
+    ...
+}
+||<
+----
+>||
+sub sum_foo($num1, $num2) {
+    my $total = $num1 + $num2;
+    return $total;
+}
+||<
+----
+>||
+my $fh = open($filename);
+print($fh.slurp);
+$fh.close();
+||<
+----
+>||
+$array.grep(-> $x { $x.match(/cat/) })
+||<
+----
+>||
+my ($err, $orig) = try {
+    die "FAIL";
+};
+||<
+----
+じかんぎれ
+----
+* #ステマ
+----
+Submitted talks about nana/tora for YAPC.
+----
+続きは YAPC で。
+----
+<img src="miyagawa.jpg">
+----
+<img src="talks.jpg">
+----
+That's all.

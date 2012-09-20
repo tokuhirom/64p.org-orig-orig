@@ -1,0 +1,53 @@
+node.js meets mruby
+<div style="text-align:right; font-size: 70%;">
+Tokyo Node Gakuen/ 20120918
+とくながひろむ aka. tokuhirom
+</div>
+<div class="note">(Press 'j' to display next page)</div>
+----
+One day,
+----
+I want to write a 
+<B>non-blocking</B>
+style code in Ruby.
+----
+instead of node.js
+----
+Why?
+----
+<b>Ruby</b> is pretty.
+----
+- you can use node.js <B>libraries</B> for nonblocking stuff.
+- socket.io, etc.
+----
+mruby?
+----
+lightweight impl.
+of the Ruby language
+----
+Architecture
+- make mruby as node.js library
+----
+- call Ruby code from node.js
+- call node.js libs from mruby
+----
+You can use ruby's <B>block</B>.
+----
+>||
+fs = NodeJS.require('fs')
+fs.readFile('/etc/passwd', 'utf-8') {|err, data|
+    p data
+}
+||<
+----
+>||
+http = NodeJS.require('http')
+
+http.createServer {|req, res|
+    res.end("Oh!\n")
+}.listen(8124, '127.0.0.1')
+||<
+----
+*Demo
+----
+Thanks for your listening.

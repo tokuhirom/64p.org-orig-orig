@@ -1,0 +1,119 @@
+Furl
+<div style="text-align:right; font-size: 50%;">
+YAPC Asia 2012@20120926
+とくながひろむ
+</div>
+----
+HTTP Client library for Perl5
+----
+Extremely fast
+>||
+            Rate       lwp http_lite furl_high  furl_low      curl
+lwp        800/s        --      -24%      -79%      -84%      -91%
+http_lite 1056/s       32%        --      -72%      -79%      -88%
+furl_high 3759/s      370%      256%        --      -24%      -57%
+furl_low  4978/s      522%      372%       32%        --      -43%
+||<
+----
+Last YAPC,
+I talked in LT.
+----
+contributed by
+tokuhirom
+xaicron / kazuhooku
+Audrey Tang
+walf443 / gfx
+kazeburo / syohex
+bayashi / lestrrat / mattn
+----
+Used in
+- DeNA
+- NHN Japan
+- and others.
+----
+Flexible,
+- low level interface
+- inet_aton
+- Net::DNS::Lite
+----
+Usage
+>||
+my $furl = Furl->new(agent => 'Madoka-Magica/chu-2');
+my $res = $furl->get('http://example.com/');
+say $res->is_success;
+say $res->code;
+||<
+----
+>||
+# request method
+my $furl = Furl->new(agent => 'Madoka-Magica/chu-2');
+my $res = $furl->request(
+    method => 'GET',
+    url    => 'http://example.com',
+);
+||<
+----
+>||
+# use with HTTP::Request
+my $req = HTTP::Request->new(GET => 'http://example.com');
+my $res2 = $furl->request($req);
+||<
+----
+>||
+$res2->as_http_response
+||<
+----
+>||
+# write to file
+$furl->request(
+    method     => 'GET',
+    url        => 'http://example.com',
+    write_file => $fh,
+);
+||<
+----
+>||
+# in callback
+$furl->request(
+    method     => 'GET',
+    url        => 'http://example.com',
+    write_code => sub {
+        my ($status, $message, $headers, $chunk) = @_;
+        $content .= $chunk;
+    }
+);
+||<
+----
+>||
+# low level APIs
+my $furl = Furl::HTTP->new(agent => 'Madoka-Magica/chu-2');
+my ($minor_version, $status, $message, $headers, $content) = $furl->request(
+    method => 'GET',
+    url    => 'http://example.com',
+);
+
+say "HTTP/1.$minor_version";
+say $status;
+say $message;
+||<
+----
+>||
+# caching DNS
+$Net::DNS::Lite::CACHE = Cache::LRU->new(
+    size => 256,
+);
+||<
+----
+>||
+# and use it
+my $furl = Furl::HTTP->new(
+    inet_aton => \&Net::DNS::Lite::inet_aton,
+    timeout   => $timeout_in_seconds,
+    ...
+||<
+----
+*Conclusion
+----
+Fast, stable, useful!
+----
+Enjoy!

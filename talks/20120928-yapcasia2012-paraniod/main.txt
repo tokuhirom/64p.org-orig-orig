@@ -1,0 +1,50 @@
+Make LWP as Paranoid
+<span style="font-size: 80%">language after Perl5.</span>
+<div style="text-align:right; font-size: 50%;">
+YAPC Asia 2012@20120926
+とくながひろむ aka. tokuhirom
+</div>
+----
+<img src="input.jpg">
+----
+<img src="vul.jpg">
+----
+>||
+my $dns = Net::DNS::Paranoid->new();
+$dns->blocked_hosts([
+    qr{\.dev\.example\.com$},
+]);
+$dns->whitelisted_hosts([
+    'twitter.com',
+]);
+||<
+----
+>||
+my ($addrs, $errmsg) = $dns->resolve('mixi.jp');
+||<
+----
+>||
+my $furl = Furl->new(
+    inet_aton => sub {
+        my ($host, $errmsg) = $resolver->resolve($_[0], time(), $_[1]);
+        die $errmsg unless $host;
+        Socket::inet_aton($host->[0]);
+    }
+);
+||<
+----
+use LWP?
+----
+>||
+use LWPx::ParanoidHandler;
+my $ua = LWP::UserAgent->new();
+make_paranoid($ua);
+||<
+----
+LWPx::ParanoidAgent?
+----
+<img src="paranoidagent.jpg">
+----
+<img src="bugs.jpg">
+----
+Enjoy!

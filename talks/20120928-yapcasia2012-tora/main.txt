@@ -1,0 +1,359 @@
+tora - DSL for...
+<span style="font-size: 80%">language after Perl5.</span>
+<div style="text-align:right; font-size: 50%;">
+YAPC Asia 2012@20120926
+とくながひろむ aka. tokuhirom
+</div>
+<div class="note">(Press 'j' to display next page)</div>
+----
+Hi,
+----
+*Agenda
+----
+- Perl5 Cons./Pros.
+- Perl6?
+- about tora
+----
+*Self Introduction
+----
+CPAN Author
+- Furl<span style="color: red">NEW!</span>
+- Net::DNS::Paranoid<span style="color: red">NEW!</span>
+- mRuby.pm<span style="color: red">NEW!</span>
+- Amon2
+- Test::TCP
+- DBIx::Inspector
+- File::Zglob
+- etc.
+----
+I'm using Perl5 in <B>8</B> years.
+----
+And I used
+- python
+- php
+- ruby
+- java
+- c
+- C++
+- Objective-C
+----
+*Popularity?
+----
+Perl5 is not popular..?
+----
+*Bad points in Perl5
+----
+context.
+>||
+my @a = func();
+my $a = func();
+||<
+----
+It's not works in...
+>||
++{
+    foo => func(),
+    bar => 4,
+}
+||<
+----
+>||
++{
+    a => (split /,/, "")[0],
+    b => 1
+}
+||<
+----
+Function prototypes
+is ugly.
+>||
+sub foo (&) { }
+||<
+----
+Not works!
+>||
+my $func = sub { };
+foo($func);
+||<
+----
+Function arguments...
+>||
+sub foo {
+    my ($x, $y) = @_;
+    ...
+}
+||<
+----
+refs.
+>||
+$x->{x}->[3]->{y}
+@{${%{x}}}
+||<
+----
+Writing <B>XS</B> module
+is too hard.
+----
+>||
+CODE:
+    RETVAL = (input % 2 == 0);
+||<
+----
+And,
+----
+bless is..
+----
+<div style="font-size: 180%;">&hearts;</div>
+----
+Mo[uo]se is also good.
+----
+Aghhh.
+----
+But, but...
+----
+I'm using perl5.
+----
+Why??
+----
+<div style="text-align: left">Programming Language
+is not
+<B>most</B> important thing.
+</div>
+----
+Platform is <B>most</B> important.
+----
+Perl5 is a DSL for
+<B>CPAN</B>.
+----
+CPAN is great.
+----
+CPAN is awesome.
+----
+CPAN has
+a lot of
+modules.
+----
+<B>I</B> know what
+modules are <B>better</B>.
+----
+<img src="486267108X.jpg">
+----
+I don't want to study
+module knowledges often.
+----
+*And Perl6?
+----
+Perl6??
+----
+It's <B>not</B> compatible
+with Perl5.
+----
+Incompatible regexp
+syntax
+----
+rx/^^ ¥> <sp> (¥N* ¥n) /;
+----
+recent rakudo is
+very slow...
+----
+When can I use it???
+----
+Perl6
+>||
+10_000 loops : 0.59s
+||<
+----
+Perl5
+>||
+10_000 loops : 0.01s
+||<
+----
+*tora
+----
+Yet another programming language
+----
+Perl<B>5</B>-ish syntax
+----
+>||
+my $num = 1;
+my $num = 1.234;
+||<
+----
+>||
+my $join2 = ['aaa', 'bbb', 'ccc'].join(' ');
+my $substr = 'abcd'.substr(0, 2); # ab
+my $array_num = $array.size();
+||<
+----
+>||
+my $hash;
+$hash = {a => 1, b => 2};
+$values = $hash.values();
+$hash[a] = 5;
+||<
+----
+>||
+my $t = Time.now();
+$t.year()
+$t.month();
+$t.epoch();
+||<
+----
+>||
+my $i = 0;
+while $i < 5 {
+    $i++;
+}
+||<
+----
+>||
+for (my $i = 0; $i < 5; $i++) {
+}
+||<
+----
+>||
+for $fields -> $field {
+    ...
+}
+||<
+----
+>||
+sub sum_foo($num1, $num2) {
+    my $total = $num1 + $num2;
+    return $total;
+}
+||<
+----
+>||
+my $fh = open($filename);
+print($fh.slurp);
+$fh.close();
+||<
+----
+>||
+$array.grep(-> $x { $x.match(/cat/) })
+||<
+----
+>||
+$array.grep(-> { $_.match(/cat/) })
+||<
+----
+*tora impl
+----
+2 implementations
+available
+----
+- Tora(C++ impl)
+- Nana
+----
+Tora - C++ Impl
+----
+It's works.
+----
+There is no libs
+----
+Nana - perl5 impl
+----
+translate tora
+code to perl5
+----
+issue => <B>types</B>.
+string/integer
+----
+*node.js
+----
+<img src="monjudoh.jpg">
+----
+Best v8 installer.
+- I don't care about events
+----
+Have a <B>npm</B>
+----
+npm?
+----
+CPAN for node.js
+----
+* NPM is Good
+----
+directory structure
+----
+dependency management
+----
+>||
+tap@0.3.1 /Users/tokuhirom/dev/node-perl/node_modules/tap
+├─┬ difflet@0.2.3
+│ ├── charm@0.0.8
+│ └── traverse@0.6.3 <=
+├─┬ runforcover@0.0.2
+   └─┬ bunker@0.1.2
+     └─┬ burrito@0.2.12
+       ├── traverse@0.5.2 <=
+       └── uglify-js@1.1.1
+||<
+----
+semantic versioning
+>||
+"traverse": "~0.5.1",
+"traverse": "0.6.x",
+||<
+----
+C++ binding
+Very easy
+----
+>||
+extern "C"
+void init(v8::Handle<v8::Object> target) {
+  target->Set(v8::String::NewSymbol("hello"),
+      v8::FunctionTemplate::New(Hello)->GetFunction());
+}
+NODE_MODULE(hello, init)
+||<
+----
+>||
+v8::Handle<v8::Value> Hello(const v8::Arguments& args) {
+    v8::HandleScope scope;
+    return scope.Close(v8::String::New("world"));
+}
+||<
+----
+DSL for npm...
+----
+JS is ugly.
+----
+Other...
+<a href="https://github.com/santoshrajan/lispyscript">lispyscript</a>
+<a href="http://coffeescript.org/">coffee</a>
+----
+<div style="color:black; background-color: red">One more
+implementation</div>
+----
+kuma - tora impl for node.js
+----
+translate tora language to node.js.
+----
+kuma is DSL for npm
+----
+*Demo
+----
+<a href="https://github.com/tokuhirom/node-perl/">node-perl</a>
+----
+gateway library
+node.js <=> perl5
+----
+Using CPAN modules
+from node.js
+----
+You can switch
+from Perl5!
+----
+<a href="https://github.com/tokuhirom/node-mruby">node-mruby</a>
+----
+embed mruby for node.js
+- embeddable ruby library
+----
+*Conclusion
+----
+kuma is DSL for npm!
+----
+Thanks for your listening.
+----
+Any questions?

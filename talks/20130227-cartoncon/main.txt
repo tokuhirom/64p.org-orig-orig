@@ -1,0 +1,73 @@
+Cartonとわたし
+<div style="text-align:right; font-size: 50%;">
+CartonCon@20130227
+とくながひろむ aka. tokuhirom
+</div>
+----
+*こまってること
+----
+carton upgrade がなくてこまる
+→ carton.lock けして carton install すればいいらしい
+----
+>||
+carton exec -Ilib --
+            ↑↑
+||<
+----
+Bundler.setup() ほしいかも
+スクリプトの中から carton のセットアップしてくれるんだっけ?これ。
+----
+Puer perl オンリーにしたい
+>||
+PERL_ONLY=1 carton install
+||<
+----
+- tar ball 全部を repository にいれる派の人
+- carton.lock を repository にいれる派
+----
+*やりたいこと
+----
+Request For Comments
+----
+plenv で carton をサポートしたい。
+----
+plenv の仕組み
+----
+~/.plenv/shims/*
+(shell script)
+ここに PATH をとおす
+----
+>||
+#!/usr/bin/env bash
+set -e
+[ -n "$PLENV_DEBUG" ] && set -x
+
+program="${0##*/}"
+
+export PLENV_ROOT="/Users/tokuhirom/.plenv"
+exec "/usr/local/bin/plenv" exec "$program" "$@"
+||<
+----
+plenv exec は。。
+- pwd から .perl-version をさがす
+- なければ ~/.plenv/version をつかう
+- なければ system perl
+----
+ここまでが普通の挙動
+----
+- pwd とその上から carton.lock をさがす
+----
+あれば
+>||
+PERL5OPT="-Mlib=$path/local/lib/perl5/ $PERL5OPT"
+||<
+----
+- local/bin/perldoc とかあれば開く(普通ないな)
+----
+*まとめ
+----
+なんか怪しい感じする。
+----
+carton install --exec
+----
+Enjoy!

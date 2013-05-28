@@ -17,7 +17,7 @@ my $tmpl = <<'...';
 <head>
     <meta charset="utf-8" />
     <title>tokuhirom's slides</title>
-    <link rel="stylesheet" href="static/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/bootstrap.min.css" />
     <style>
         body {
             margin-left: 20px;

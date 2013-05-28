@@ -1,0 +1,128 @@
+Recent Testing Libraries
+<div style="text-align:right; font-size: 50%;">
+とくながひろむ aka. tokuhirom
+</div>
+<div class="note">(Press 'j' to display next page)</div>
+----
+tokuhirom
+----
+テストの枠組みをつくったりなんだりしている。
+----
+その中でなんかつくったものとかをいくつか紹介します。
+----
+*Test::Base::Less
+----
+Test::Base 便利。
+<img src="ingy.png">
+----
+Data Driven Testing
+でーた どりぶん てすてぃんぐ
+----
+>||
+ === test 1                  
+ --- input
+ 1
+ --- expected
+ [1]
+||<
+----
+>||
+ === test 4                       
+ --- input
+ 4
+ --- expected
+ [4]
+||<
+----
+こういうのを __DATA__ の後にかく。
+----
+>||
+use Test::Base;
+run {
+    my $block = shift;
+    is(NabeAtzz->shout($block->input), $block->expected);
+};
+||<
+----
+なんか変なことをいろいろやってて、ときどき超はまる。
+----
+Test::Base::Less は Test::Base からマジックをとりのぞいたもの。
+----
+テキスト処理をするライブラリなんかのテストによい。
+----
+*Test::Pretty
+----
+subtest の結果がみづらい
+----
+<img src="more.png">
+----
+エラーがおきたらもっとみづらい
+----
+<img src="more-fail.png">
+----
+でも Test::Pretty をつかえば、、、
+----
+<img src="pretty.png">
+----
+<img src="pretty-fail.png">
+----
+導入方法は簡単。
+----
+.proverc に
+----
+"-Pretty" と書くだけ。
+----
+subtest つかいまくってる方はぜひおためしあれ。
+----
+*ThaiSchema
+----
+スキーマバリデータ
+----
+JSON API のテストを主に想定。
+----
+Perl には型がないので、なんかめんどくさいことになりがち
+----
+サーバーサイドでは数字としてあつかわれてるのになんかのアレで文字列として JSON ででてる
+----
+→ クライアントサイドではそのパラメータが文字列としてあつかわれてることを期待してる。
+----
+→ あきらかにまちがってるんだけど、サーバーサイドをもうかえられない
+----
+→ 乙
+----
+というのがあって
+----
+ThaiSchema というのを書いてみた。
+----
+t::Util::Mech is-a Test::WWW::Mechanize
+----
+>||
+$mech->get_json_ok('http://.../api/v1/foo.json');
+$mech->schema_ok({
+   result => {
+       rows => type_array({
+          id  => type_str,
+          cnt => type_int,
+       })
+   },
+});
+||<
+----
+こまかいロジックは model のテストで十分テストされてる
+----
+この段階では schema があってるかどうかだけみれば十分っぽい
+----
+ちなみにちなむと
+----
+>||
+use JSON::Types;
+$c->render_json({
+   id => string($obj->id)
+});
+||<
+----
+とするのがよいです。
+----
+Thanks for your listening.
+----
+Any questions?

@@ -102,7 +102,7 @@ sub main {
 
     my $dat = [ map { +{ year => $_, files => $data{$_} } } reverse sort keys %data ];
     my $result = render_mt( $tmpl, $dat, \%titles )->as_string;
-    open my $fh, '>', 'index.html';
+    open my $fh, '>', 'talks/index.html';
     print {$fh} $result;
     close $fh;
 }

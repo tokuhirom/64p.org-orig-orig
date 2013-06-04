@@ -191,6 +191,18 @@ Provide support for specifying <B>application-specific Perl versions</B>.
 ----
 Allow you to override the Perl version with an <B>environment variable</B>.
 ----
+*Demo again
+----
+*Misc. features
+----
+Display installed modules
+`% plenv list-modules`
+----
+Migrate modules
+>||
+% plenv migrate-module 5.16.3 5.18.0
+||<
+----
 That's all!
 ----
 Thank you for your listening!

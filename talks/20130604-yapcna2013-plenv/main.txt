@@ -1,0 +1,201 @@
+plenv
+<div style="text-align:right; font-size: 50%;">
+YAPC::NA@20130604(Tue)
+tokuhirom
+</div>
+----
+Hi!
+----
+I'm tokuhirom, from Japan, Tokyo.
+<img src="tokyo-japan-crossing-stock1141.jpg">
+----
+<B>I'm author of</B>:
+cpan-outdated, Test::Pretty, Test::TCP, Spellunker, Minilla, Module::Build::Pluggable, scan-prereqs-cpanfile, FormValidator::Lite, OrePAN2, SQL::Maker,  Data::MessagePack, etc.
+----
+tokuhirom loves:
+- software built on small modules
+- CPAN :)
+----
+Today's talk is about plenv
+----
+plenv?
+----
+plenv is a tool for managing <B>multiple version of Perl installer</B> on <B>one computer</B>
+----
+Oh, its perlbrew??
+----
+No!
+----
+plenv is a yet another implentation!
+----
+plenv is written in <B>bash script</B>.
+----
+- No magic
+- Simple implementation
+----
+* Installation
+----
+>||
+% git clone \
+    git://github.com/tokuhirom/plenv.git \
+    ~/.plenv
+||<
+----
+>||
+% git clone \
+    git://github.com/tokuhirom/Perl-Build.git \
+    ~/.plenv/plugins/perl-build/
+||<
+----
+Perl-Build
+- Perl5 builder/installer
+----
+>||
+% perl-build 5.18.0 /opt/perl-5.18/
+||<
+----
+perl-build includes `plenv-install` and `plenv-uninstall`
+----
+And put following line to your shell profile
+>||
+export PATH="$HOME/.plenv/bin/:$PATH"
+eval "$(plenv init -)";
+||<
+----
+It's all done!
+----
+You can use plenv!
+----
+And...
+----
+Install latest Perl5!
+>||
+% plenv install 5.18.0
+||<
+----
+And you can install very old perls!
+>||
+% plenv install 5.8.1
+||<
+----
+*Demo
+----
+Use it globally.
+>||
+% plenv global 5.18.0
+||<
+----
+And then
+>||
+% perl -v
+This is perl 5, version 18, subversion 0 (v5.18.0) built for x86_64-linux
+
+Copyright 1987-2013, Larry Wall
+
+...
+||<
+----
+>||
+% cd ~/my/project/
+% plenv local 5.8.1
+||<
+----
+Then,
+>||
+% perl -v
+This is perl, v5.8.1 built for x86_64-linux
+
+Copyright 1987-2003, Larry Wall
+
+...
+||<
+----
+>||
+% cat ./.perl-version
+5.8.1
+||<
+----
+And you can do
+>||
+% PLENV_VERSION=5.19.0 perl -v
+This is perl 5, version 19, subversion 0 (v5.19.0) built for x86_64-linux
+
+Copyright 1987-2013, Larry Wall
+
+...
+||<
+----
+It's so useful for detecting issues <B>around perl version</B>.
+----
+When got CPAN testers failing at 5.8.x, then use it.
+>||
+% PLENV_VERSION=5.8.1 prove -lr t
+....
+||<
+----
+* How it works??
+----
+It creates shell scripts in `~/.plenv/shims/` directory.
+----
+`~/.plenv/shims/` is added to your $PATH by `plenv init`
+----
+`~/.plenv/shims/perl` is:
+>||
+#!/usr/bin/env bash
+set -e
+[ -n "$PLENV_DEBUG" ] && set -x
+
+program="${0##*/}"
+if [ "$program" = "perl" ]; then
+  for arg; do
+    case "$arg" in
+    -e* | -- ) break ;;
+    */* )
+      if [ -f "$arg" ]; then
+        export PLENV_DIR="${arg%/*}"
+        break
+      fi
+      ;;
+    esac
+  done
+fi
+
+export PLENV_ROOT="/Users/tokuhirom/.plenv"
+exec "/usr/local/Cellar/plenv/2.0.1/libexec/plenv" exec "$program" "$@"
+||<
+----
+Yes, it choooooooose perl version dynamically!
+----
+* Choosing the Perl Version
+----
+<code>PLENV_VERSION</code> environment variable.
+----
+`.perl-version` file in current or upper directory.
+(Put by <code>plenv local</code>)
+----
+`~/.plenv/version` file.
+(Put by <code>plenv global</code>)
+----
+Or system perl.
+----
+*Why plenv?
+----
+I'm user of perlbrew
+until create plenv.
+----
+But I need to write it.
+----
+Because...
+----
+Provide support for specifying <B>application-specific Perl versions</B>.
+----
+Allow you to override the Perl version with an <B>environment variable</B>.
+----
+That's all!
+----
+Thank you for your listening!
+----
+My english is poor, if you have a question, please send me a mention for @tokuhirom on twitter.
+<img src="twitter.png">
+----
+<img src="translate.png">

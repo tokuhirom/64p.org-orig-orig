@@ -1,0 +1,136 @@
+body {
+    margin: auto;
+    font-family:"Lora",Georgia,"Times New Roman",Times,serif;
+    font-size:17px;
+    color:#333;
+    background-color:#f6f6f6;
+}
+
+body * {
+    margin: 0;
+    padding : 0;
+    /* word-break: break-all; */
+}
+
+#topics {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 60px;
+    margin-bottom: 5px;
+    text-align : left;
+    font-size : 400%;
+    font-weight: bold;
+    text-align: center;
+}
+
+#topics h2 {
+    font-style: italic;
+}
+
+#topics h3 {
+    padding : 15px;
+    font-size : 220%;
+    line-height : 1;
+    font-style: italic;
+}
+
+#topics pre {
+    padding-left: 4px;
+    font-size: 80%;
+    background-color: #eceeee;
+    word-break: break-all;
+    text-align: left;
+    padding:0 3px 2px;
+    font-family:Monaco,Menlo,Consolas,"Courier New",monospace;
+    -webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;
+    color: black;
+}
+
+#topics ul {
+    text-align: left;
+}
+#topics ul li {
+    text-align: left;
+}
+
+#topics .code {
+    padding-left: 4px;
+    font-size: 80%;
+    background-color: #202010;
+    text-align: left;
+}
+
+#topics .list {
+    font-size: 90%;
+    text-align: left;
+}
+#topics .list::before {
+    content: '●'
+}
+
+#topics .note {
+    text-align: right;
+    color: #cccccc;
+    font-size: small;
+}
+#topics a {
+    color: #ccee00;
+}
+#topics a:hover {
+    color: #eeee00;
+}
+#topics img {
+}
+#topics code {
+    background-color: #eceeee;
+    word-break: none;
+    border: 1px solid #ddd;
+}
+
+/* ------------------------------------------------------------------------- */
+
+#header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid #ffffff;
+    font-family:Monaco,Menlo,Consolas,"Courier New",monospace;
+    padding-top: 7px;
+    padding-bottom: 1px;
+    margin: 0;
+}
+
+#header #title {
+    padding-left: 20px;
+    float: left;
+}
+#header #page_info {
+    padding-right: 20px;
+    float: right;
+}
+
+B {
+    font-size: 150%;
+    color:#511;
+}
+
+pre B {
+    color: red;
+    font-size: 100%;
+}
+
+.center {
+    text-align: center;
+}
+
+.clearfix:after {
+    content: ""; 
+    display: block; 
+    clear: both;
+}
+
+.takahashi #topics {
+    vertical-align: middle;
+    height: 100%;
+}

@@ -1,80 +1,44 @@
 #!/usr/bin/perl
-package TGP;
 use strict;
 use warnings;
 use lib 'lib';
-use Text::MicroTemplate ':all';
 use File::Basename;
 
 $|++;
 binmode STDOUT, ':utf8';
 
-my $tmpl = <<'...';
-<!doctype html>
-? my $data = shift;
-? my $titles = shift;
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>tokuhirom's slides</title>
-    <link rel="stylesheet" href="/static/bootstrap.min.css" />
-    <style>
-        body {
-            margin-left: 20px;
-            margin-top: 60px;
-        }
+package TGP;
 
-        .clearfix {zoom:1;}
-        .clearfix:after{
-            content: "";
-                display: block;
-                    clear: both;}
-        a:hover {
-            text-decoration: none;
-        }
-        li {
-            list-style: none;
-            width: 200px;
-            float: right;
-            padding: 8px;
-            border: #eeeeee 1px solid;
-            margin: 2px;
-            border-radius: 8px;
-        }
-        .title {
-            font-size: 20px;
-            line-height: 24px;
-            word-break: break-all;
-            color: black;
-            height: 72px;
-            overflow: hidden;
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-<h1>tokuhirom's slide</h1>
-? for my $year (@$data) {
-    <div class="year clearfix">
-    <h2><?= $year->{year} ?></h2>
-<ul>
-?   for my $file (@{$year->{files}}) {
-    <li>
-        <a href="/talks/<?= $file ?>">
-            <div class="title"><?= $titles->{$file} || $file ?></div>
-            <div class="date"><?= substr($file, 0, 8) ?></div>
-        </a>
-    </li>
-?   }
-</ul>
-    </div>
-? }
-</div>
-</body>
-</html>
-...
+use Text::Xslate;
 
-sub main {
+sub regen {
+    my $talks = TGP::Talks->regen();
+    my @notes = TGP::Notes->regen();
+    my $xslate = Text::Xslate->new(
+        syntax => 'TTerse',
+        path => ['tmpl'],
+    );
+    my $dat = $xslate->render(
+        'index.tt' => {
+            talks => $talks,
+            notes => \@notes,
+        },
+    );
+    spew('index.html', $dat);
+}
+
+sub spew {
+    my $fname = shift;
+    open my $fh, '>', $fname
+        or Carp::croak("Can't open '$fname' for writing: '$!'");
+    print {$fh} $_[0];
+}
+
+package TGP::Talks;
+
+use File::Basename;
+
+sub regen {
     my @files = files();
 
     my %titles;
@@ -101,10 +65,8 @@ sub main {
     }
 
     my $dat = [ map { +{ year => $_, files => $data{$_} } } reverse sort keys %data ];
-    my $result = render_mt( $tmpl, $dat, \%titles )->as_string;
-    open my $fh, '>', 'talks/index.html';
-    print {$fh} $result;
-    close $fh;
+
+    return $dat;
 }
 
 sub files {
@@ -127,8 +89,61 @@ sub replace_title {
     close $ofh;
 }
 
+package TGP::Notes;
+use Text::Markdown qw(markdown);
+
+sub regen {
+    my @src = glob('notes/src/*.md');
+    my @results;
+    for my $src (@src) {
+        open my $fh, '<', $src;
+        my $mkdn = join('', <$fh>);
+        my ($title) = ($mkdn =~ /\A(.*)\n/);
+        my $html = markdown($mkdn);
+        my $xslate = Text::Xslate->new(
+            syntax => 'TTerse',
+            path => ['tmpl'],
+        );
+        my $res = $xslate->render(
+            'note.tt' => {
+                title => $title,
+                body => $html,
+            },
+        );
+        (my $dst = $src) =~ s!src/!!;
+        $dst =~ s/\.md$/\.html/;
+        spew($dst, $res);
+        push @results, {
+            link => "/$dst",
+            title => $title,
+        };
+    }
+    return @results;
+}
+
+sub spew {
+    my $fname = shift;
+    open my $fh, '>', $fname
+        or Carp::croak("Can't open '$fname' for writing: '$!'");
+    print {$fh} $_[0];
+}
+
+sub slurp {
+    my $fname = shift;
+    open my $fh, '<', $fname
+        or Carp::croak("Can't open '$fname' for reading: '$!'");
+    scalar do { local $/; <$fh> }
+}
+
+sub spew {
+    my $fname = shift;
+    open my $fh, '>', $fname
+        or Carp::croak("Can't open '$fname' for writing: '$!'");
+    print {$fh} $_[0];
+}
+
 if ($0 eq __FILE__) {
-    TGP->main();
+    TGP->regen();
 }
 
 

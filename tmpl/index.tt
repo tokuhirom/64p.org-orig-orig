@@ -54,9 +54,9 @@
                 <div class="span4">
                     <h2>Notes</h2>
                     <ul>
-                    
-                        <li><a href="/notes/perl6.html">Perl6</a></li>
-                    
+                    [% FOR note IN notes %]
+                        <li><a href="[% note.link %]">[% note.title %]</a></li>
+                    [% END %]
                 </ul>
                 </div>
             </div>

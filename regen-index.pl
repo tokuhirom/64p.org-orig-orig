@@ -90,7 +90,8 @@ sub replace_title {
 }
 
 package TGP::Notes;
-use Text::Markdown qw(markdown);
+# use Text::Markdown qw(markdown);
+use Text::Markdown::Discount qw(markdown);
 
 sub regen {
     my @src = glob('notes/src/*.md');

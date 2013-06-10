@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.3.1/cyborg/bootstrap.min.css">
+    <title>XS</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/spacelab/bootstrap.min.css">
     <style>
         .container {
             margin-top: 40px;
@@ -23,13 +23,21 @@
 
         <header class="subhead jumbotron" id="overview">
             <div class="row">
-                <h1 class="title">tokuhirom.github.io</h1>
+                <h1 class="title">XS - <a href="http://tokuhirom.github.io">tokuhirom.github.io</a></h1>
             </div>
         </header>
 
             <div class="row">
                 <div class="span12">
-                    <p>
+                    <p><h1>XS</h1>
+
+<h2>Define constant variables</h2>
+
+<pre><code>BOOT:
+    HV* stash = gv_stashpvn("Net::Drizzle", strlen("Net::Drizzle"), TRUE);
+    newCONSTSUB(stash, "DRIZZLE_DEFAULT_TCP_HOST", newSVpv(DRIZZLE_DEFAULT_TCP_HOST, strlen(DRIZZLE_DEFAULT_TCP_HOST)));
+</code></pre>
+
                 </div>
             </div>
     </div>

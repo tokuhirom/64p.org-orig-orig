@@ -32,6 +32,10 @@
                     <p>[% body | raw %]
                 </div>
             </div>
+            <hr />
+            <footer>
+                This is random notes by <a href="http://github.com/tokuhirom">tokuhirom</a>.
+            </footer>
     </div>
 </body>
 </html>

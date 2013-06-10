@@ -100,7 +100,7 @@ sub regen {
         open my $fh, '<', $src;
         my $mkdn = join('', <$fh>);
         my ($title) = ($mkdn =~ /\A(.*)\n/);
-        my $html = markdown($mkdn);
+        my $html = markdown($mkdn, Text::Markdown::Discount::MKD_AUTOLINK);
         my $xslate = Text::Xslate->new(
             syntax => 'TTerse',
             path => ['tmpl'],

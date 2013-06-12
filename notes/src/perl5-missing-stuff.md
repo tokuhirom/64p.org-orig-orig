@@ -20,3 +20,7 @@ is same as
 
     sub { my $x = shift; ... }
 
+## slurp/spew
+
+I really need `slurp` and `spew`
+

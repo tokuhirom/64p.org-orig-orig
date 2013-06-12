@@ -5,3 +5,6 @@ Golang
 
 Use 'path/filepath'.
 
+## Samples
+
+https://github.com/golang-samples

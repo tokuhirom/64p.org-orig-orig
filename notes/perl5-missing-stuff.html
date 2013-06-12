@@ -21,15 +21,22 @@
 <body>
     <div class="container">
 
-        <header class="subhead jumbotron" id="overview">
             <div class="row">
-                <h1 class="title">Perl5 missing stuff - <a href="http://tokuhirom.github.io">tokuhirom.github.io</a></h1>
-            </div>
-        </header>
-
-            <div class="row">
-                <div class="span12">
-                    <p><h1>Perl5 missing stuff</h1>
+                <div class="span2 sidebar">
+                    <h2>Notes</h2>
+                    <ul>
+                                            <li><a href="/notes/go.html">Golang</a></li>
+                                            <li><a href="/notes/perl5-missing-stuff.html">Perl5 missing stuff</a></li>
+                                            <li><a href="/notes/parser.html">Parser</a></li>
+                                            <li><a href="/notes/xs.html">XS</a></li>
+                                            <li><a href="/notes/perl6.html">Perl6</a></li>
+                    
+                    </ul>
+                </div>
+                <div class="span10">
+                    <div class="entry">
+                        <div class="entry-body">
+                            <h1>Perl5 missing stuff</h1>
 
 <h2>boolean value</h2>
 
@@ -53,12 +60,29 @@ false()
 <pre><code>sub { my $x = shift; ... }
 </code></pre>
 
+                        </div>
+                        <div class="entry-footer">
+                            <a class="timestamp" href="/notes/perl5-missing-stuff.html">2013-06-12(Wed)</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr />
             <footer>
                 This is random notes by <a href="http://github.com/tokuhirom">tokuhirom</a>.
             </footer>
+            <style>
+                .entry-body {
+                    min-height: 300px;
+                }
+                .entry-footer {
+                    margin-top: 30px;
+                    text-align: right;
+                }
+                .sidebar h2 {
+                    color: #555555;
+                }
+            </style>
     </div>
 </body>
 </html>

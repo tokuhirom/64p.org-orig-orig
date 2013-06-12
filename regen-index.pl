@@ -6,6 +6,7 @@ use File::Basename;
 use Time::Piece;
 
 $|++;
+
 binmode STDOUT, ':utf8';
 
 package TGP;
@@ -31,7 +32,7 @@ sub regen {
 
 sub spew {
     my $fname = shift;
-    open my $fh, '>', $fname
+    open my $fh, '>:utf8', $fname
         or Carp::croak("Can't open '$fname' for writing: '$!'");
     print {$fh} $_[0];
 }
@@ -58,7 +59,7 @@ sub regen {
         $title =~ s{^TITLE::}{};
         $title =~ s/\n$//;
         $title =~ s/^\x{FEFF}//;
-        print "$title talks/$file\n";
+        # print "$title talks/$file\n";
         replace_title($htmlfile, $title);
         $titles{$file} = $title || '-';
         $dates{$file} = scalar(localtime->strptime(substr($file, 0, 8), '%Y%m%d'));
@@ -97,7 +98,7 @@ sub regen {
 
 sub spew {
     my $fname = shift;
-    open my $fh, '>', $fname
+    open my $fh, '>:utf8', $fname
         or Carp::croak("Can't open '$fname' for writing: '$!'");
     print {$fh} $_[0];
 }
@@ -125,34 +126,41 @@ sub replace_title {
 package TGP::Notes;
 # use Text::Markdown qw(markdown);
 use Text::Markdown::Discount qw(markdown);
+use File::stat;
+use Time::Piece;
 
 sub regen {
-    my @src = glob('notes/src/*.md');
-    my @results;
-    for my $src (@src) {
-        open my $fh, '<', $src;
+    my @src = map {
+        open my $fh, '<', $_;
         my $mkdn = join('', <$fh>);
         my ($title) = ($mkdn =~ /\A(.*)\n/);
         my $html = markdown($mkdn, Text::Markdown::Discount::MKD_AUTOLINK);
+        (my $link = $_) =~ s!src/!!;
+        $link =~ s/\.md$/\.html/;
+        +{
+            title => $title,
+            body  => $html,
+            link  => "/$link",
+            file  => $_,
+            mtime => scalar(localtime(stat($_)->mtime)),
+        }
+    } reverse sort { stat($a)->mtime <=> stat($b)->mtime } glob('notes/src/*.md');
+    for my $src (@src) {
         my $xslate = Text::Xslate->new(
             syntax => 'TTerse',
             path => ['tmpl'],
         );
         my $res = $xslate->render(
-            'note.tt' => {
-                title => $title,
-                body => $html,
+            'note.tt' => +{
+                %$src,
+                notes => \@src,
             },
         );
-        (my $dst = $src) =~ s!src/!!;
+        (my $dst = $src->{file}) =~ s!src/!!;
         $dst =~ s/\.md$/\.html/;
         spew($dst, $res);
-        push @results, {
-            link => "/$dst",
-            title => $title,
-        };
     }
-    return @results;
+    return @src;
 }
 
 sub spew {

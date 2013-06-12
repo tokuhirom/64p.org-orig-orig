@@ -21,21 +21,42 @@
 <body>
     <div class="container">
 
-        <header class="subhead jumbotron" id="overview">
             <div class="row">
-                <h1 class="title">[% title %] - <a href="http://tokuhirom.github.io">tokuhirom.github.io</a></h1>
-            </div>
-        </header>
-
-            <div class="row">
-                <div class="span12">
-                    <p>[% body | raw %]
+                <div class="span2 sidebar">
+                    <h2>Notes</h2>
+                    <ul>
+                    [% FOR note IN notes -%]
+                        <li><a href="[% note.link %]">[% note.title %]</a></li>
+                    [% END %]
+                    </ul>
+                </div>
+                <div class="span10">
+                    <div class="entry">
+                        <div class="entry-body">
+                            [% body | raw %]
+                        </div>
+                        <div class="entry-footer">
+                            <a class="timestamp" href="[% link %]">[% mtime.strftime('%Y-%m-%d(%a)') %]</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr />
             <footer>
                 This is random notes by <a href="http://github.com/tokuhirom">tokuhirom</a>.
             </footer>
+            <style>
+                .entry-body {
+                    min-height: 300px;
+                }
+                .entry-footer {
+                    margin-top: 30px;
+                    text-align: right;
+                }
+                .sidebar h2 {
+                    color: #555555;
+                }
+            </style>
     </div>
 </body>
 </html>

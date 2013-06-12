@@ -54,7 +54,7 @@
                 <div class="span4">
                     <h2>Notes</h2>
                     <ul>
-                    [% FOR note IN notes %]
+                    [% FOR note IN notes -%]
                         <li><a href="[% note.link %]">[% note.title %]</a></li>
                     [% END %]
                     </ul>

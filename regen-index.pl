@@ -13,7 +13,7 @@ package TGP;
 use Text::Xslate;
 
 sub regen {
-    my $talks = TGP::Talks->regen();
+    my @talks = TGP::Talks->regen();
     my @notes = TGP::Notes->regen();
     my $xslate = Text::Xslate->new(
         syntax => 'TTerse',
@@ -21,7 +21,7 @@ sub regen {
     );
     my $dat = $xslate->render(
         'index.tt' => {
-            talks => $talks,
+            talks => [@talks[0..7]],
             notes => \@notes,
             now   => scalar(localtime),
         },
@@ -92,7 +92,7 @@ sub regen {
     );
     spew('talks/index.html', $html);
 
-    return \@talks;
+    return @talks;
 }
 
 sub spew {

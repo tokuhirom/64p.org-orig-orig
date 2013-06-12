@@ -65,6 +65,7 @@
                     [% FOR talk IN talks -%]
                         <li><a href="[% talk.link %]">[% talk.date.strftime('%Y-%m-%d') %] [% talk.title %]</a></li>
                     [% END %]
+                        <li><a href="/talks/index.html">more.</a></li>
                     </ul>
                 </div>
             </div>

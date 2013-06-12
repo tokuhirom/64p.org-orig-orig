@@ -1,6 +1,17 @@
 XS
 ==
 
+## How to write?
+
+    perldoc perlxstut
+    perldoc perlxs
+    perldoc perlguts
+    perldoc perlapi
+
+## How can I use Minilla for writing XS?
+
+    minil new -p XS Acme::FooXS
+
 ## Define constant variables
 
     BOOT:

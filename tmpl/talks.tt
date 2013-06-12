@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>tokuhirom.github.io</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/spacelab/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 40px;
+        }
+        .subhead {
+            padding-bottom: 0;
+            margin-bottom: 90px;
+        }
+
+        .subhead h1 {
+            font-size: 54px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <header class="subhead jumbotron" id="overview">
+            <div class="row">
+                <h1 class="title">tokuhirom's talks</h1>
+            </div>
+        </header>
+
+            <div class="row">
+                <div class="span12">
+                    <ul>
+                    [% FOR talk IN talks -%]
+                        <li><a href="[% talk.link %]">[% talk.date.strftime('%Y-%m-%d') %] [% talk.title %]</a></li>
+                    [% END %]
+                    </ul>
+                </div>
+            </div>
+            <hr />
+            <footer>
+                Copyright (C) tokuhirom
+            </footer>
+    </div>
+    <style>
+        li {
+            text-overflow: ellipsis;
+            list-style-position:inside;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;    
+        }
+    </style>
+</body>
+</html>

@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use lib 'lib';
 use File::Basename;
+use Time::Piece;
 
 $|++;
 binmode STDOUT, ':utf8';
@@ -22,6 +23,7 @@ sub regen {
         'index.tt' => {
             talks => $talks,
             notes => \@notes,
+            now   => scalar(localtime),
         },
     );
     spew('index.html', $dat);
@@ -37,11 +39,13 @@ sub spew {
 package TGP::Talks;
 
 use File::Basename;
+use Time::Piece;
 
 sub regen {
     my @files = files();
 
     my %titles;
+    my %dates;
     for my $file (@files) {
         my $htmlfile = "talks/$file/index.html";
         next unless -f $htmlfile;
@@ -50,12 +54,14 @@ sub regen {
         $fname or die "Missing txt file in $file";
         open my $fh, '<:utf8', $fname or die "Cannot open file $fname: $!";
         my $title = <$fh>;
+        $title = <$fh> if $title =~ /Format:/;
         $title =~ s{^TITLE::}{};
         $title =~ s/\n$//;
         $title =~ s/^\x{FEFF}//;
         print "$title talks/$file\n";
         replace_title($htmlfile, $title);
-        $titles{$file} = $title;
+        $titles{$file} = $title || '-';
+        $dates{$file} = scalar(localtime->strptime(substr($file, 0, 8), '%Y%m%d'));
     }
 
     my %data;
@@ -65,8 +71,35 @@ sub regen {
     }
 
     my $dat = [ map { +{ year => $_, files => $data{$_} } } reverse sort keys %data ];
+    my @talks = (
+        map { +{
+            link => "/talks/$_/index.html",
+            title => $titles{$_},
+            date => $dates{$_},
+        } }
+        grep { $titles{$_} }
+        @files
+    );
 
-    return $dat;
+    my $xslate = Text::Xslate->new(
+        syntax => 'TTerse',
+        path => ['tmpl'],
+    );
+    my $html = $xslate->render(
+        'talks.tt' => {
+            talks => \@talks,
+        },
+    );
+    spew('talks/index.html', $html);
+
+    return \@talks;
+}
+
+sub spew {
+    my $fname = shift;
+    open my $fh, '>', $fname
+        or Carp::croak("Can't open '$fname' for writing: '$!'");
+    print {$fh} $_[0];
 }
 
 sub files {
@@ -134,13 +167,6 @@ sub slurp {
     open my $fh, '<', $fname
         or Carp::croak("Can't open '$fname' for reading: '$!'");
     scalar do { local $/; <$fh> }
-}
-
-sub spew {
-    my $fname = shift;
-    open my $fh, '>', $fname
-        or Carp::croak("Can't open '$fname' for writing: '$!'");
-    print {$fh} $_[0];
 }
 
 if ($0 eq __FILE__) {

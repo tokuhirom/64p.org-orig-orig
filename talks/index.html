@@ -2,570 +2,127 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>tokuhirom's slides</title>
-    <link rel="stylesheet" href="/static/bootstrap.min.css" />
+    <title>tokuhirom.github.io</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/spacelab/bootstrap.min.css">
     <style>
-        body {
-            margin-left: 20px;
-            margin-top: 60px;
+        .container {
+            margin-top: 40px;
+        }
+        .subhead {
+            padding-bottom: 0;
+            margin-bottom: 90px;
         }
 
-        .clearfix {zoom:1;}
-        .clearfix:after{
-            content: "";
-                display: block;
-                    clear: both;}
-        a:hover {
-            text-decoration: none;
-        }
-        li {
-            list-style: none;
-            width: 200px;
-            float: right;
-            padding: 8px;
-            border: #eeeeee 1px solid;
-            margin: 2px;
-            border-radius: 8px;
-        }
-        .title {
-            font-size: 20px;
-            line-height: 24px;
-            word-break: break-all;
-            color: black;
-            height: 72px;
-            overflow: hidden;
+        .subhead h1 {
+            font-size: 54px;
         }
     </style>
 </head>
 <body>
-<div class="container">
-<h1>tokuhirom's slide</h1>
-    <div class="year clearfix">
-    <h2>2013</h2>
-<ul>
-    <li>
-        <a href="/talks/20130604-yapcna2013-plenv">
-            <div class="title">plenv</div>
-            <div class="date">20130604</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20130604-yapcna2013-lt-spellunker">
-            <div class="title">Spellunker</div>
-            <div class="date">20130604</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20130227-cartoncon">
-            <div class="title">Cartonとわたし</div>
-            <div class="date">20130227</div>
-        </a>
-    </li>
-</ul>
+    <div class="container">
+
+        <header class="subhead jumbotron" id="overview">
+            <div class="row">
+                <h1 class="title">tokuhirom's talks</h1>
+            </div>
+        </header>
+
+            <div class="row">
+                <div class="span12">
+                    <ul>
+                                            <li><a href="/talks/20130604-yapcna2013-plenv/index.html">2013-06-04 plenv</a></li>
+                                            <li><a href="/talks/20130604-yapcna2013-lt-spellunker/index.html">2013-06-04 Spellunker</a></li>
+                                            <li><a href="/talks/20130227-cartoncon/index.html">2013-02-27 Cartonとわたし</a></li>
+                                            <li><a href="/talks/20121121-intra-testing/index.html">2012-11-21 Recent Testing Libraries</a></li>
+                                            <li><a href="/talks/20120928-yapcasia2012-tora/index.html">2012-09-28 tora - DSL for...</a></li>
+                                            <li><a href="/talks/20120928-yapcasia2012-paraniod/index.html">2012-09-28 Make LWP as Paranoid</a></li>
+                                            <li><a href="/talks/20120928-yapcasia2012-furl/index.html">2012-09-28 Furl</a></li>
+                                            <li><a href="/talks/20120918-nodegakuen-node-mruby/index.html">2012-09-18 node.js meets mruby</a></li>
+                                            <li><a href="/talks/20120804-lldecade-tora/index.html">2012-08-04 next Perl5 処理系　tora の設計と実装。</a></li>
+                                            <li><a href="/talks/20111015-yapcasia2011-zglob/index.html">2011-10-15 File::Zglob</a></li>
+                                            <li><a href="/talks/20111015-yapcasia2011-ukigumo/index.html">2011-10-15 Ukigumo</a></li>
+                                            <li><a href="/talks/20111015-yapcasia2011-metacpan/index.html">2011-10-15 Hacking with metacpan</a></li>
+                                            <li><a href="/talks/20111014-yapcasia2011-amon2/index.html">2011-10-14 Amon2 3.0</a></li>
+                                            <li><a href="/talks/20110611-fukuokapm-dotcloud/index.html">2011-06-11 How can I create dotcloud like environment on Sakrua VPS?</a></li>
+                                            <li><a href="/talks/20110325-osdctw-frepan/index.html">2011-03-25 FrePAN - Freshness CPAN mirror</a></li>
+                                            <li><a href="/talks/20110121-soozycon-dbi/index.html">2011-01-21 Minimalistic approach for DB related modules</a></li>
+                                            <li><a href="/talks/20101209-shibuyapm-cpan/index.html">2010-12-09 テスト</a></li>
+                                            <li><a href="/talks/20101014-yapcasia-perldevenv/index.html">2010-10-14 モダンな Perl5 開発環境について - Modern Perl5 Development Environment - 2010年代を生きのびる Perl5 活用術</a></li>
+                                            <li><a href="/talks/20101014-yapcasia-amon/index.html">2010-10-14 Amon2</a></li>
+                                            <li><a href="/talks/20100930-shibuyapm-msgpack/index.html">2010-09-30 Data::MessagePack</a></li>
+                                            <li><a href="/talks/20100528-tsukubaxs-sql-embedded/index.html">2010-05-28 Internal SQL::Embedded</a></li>
+                                            <li><a href="/talks/20100424-osdctw-pl_keywrod_plugin/index.html">2010-04-24 most minor Perl5.12&#39;s new feature - PL_keyword_plugin *hack*</a></li>
+                                            <li><a href="/talks/20100323-hbstudy-mogilefs/index.html">2010-03-23 Webアプリケーション開発のための分散ファイルシステム MogileFS を使う理由</a></li>
+                                            <li><a href="/talks/20091130-shibuyapm-pl_keyword_plugin/index.html">2009-11-30 ああ、柔軟な言語 Perl よ。(PL_keyword_plugin編)</a></li>
+                                            <li><a href="/talks/20091130-shibuyapm-channel/index.html">2009-11-30 ああ、柔軟な言語 Perl よ。(overload編)</a></li>
+                                            <li><a href="/talks/20090911-yapcasia2009-asyncdbi/index.html">2009-09-11 Concurrent DB Access with Perl</a></li>
+                                            <li><a href="/talks/20090911-yapcasia2009-args/index.html">2009-09-11 collllllllllloooooool argument validation for you!</a></li>
+                                            <li><a href="/talks/20090910-yapcasia2009-test-tcp/index.html">2009-09-10 Test::TCP</a></li>
+                                            <li><a href="/talks/20090910-yapcasia2009-psgi-plack/index.html">2009-09-10 今日はAsync/DBIの話はしません</a></li>
+                                            <li><a href="/talks/20090421-shibuyapm11-safeeval/index.html">2009-04-21 The Perl Sandbox</a></li>
+                                            <li><a href="/talks/20090421-shibuyapm11-bindpp/index.html">2009-04-21 write C++ extensin with Devel::BindPP.</a></li>
+                                            <li><a href="/talks/20090318-soozy7-shakan/index.html">2009-03-18 Shakan</a></li>
+                                            <li><a href="/talks/20081218-mfintra-tmt/index.html">2008-12-18 Text::MicroTemplate</a></li>
+                                            <li><a href="/talks/20081215-mfintra-qpsmtpd/index.html">2008-12-15 qpsmtpd</a></li>
+                                            <li><a href="/talks/20081127-shibuyapm10-oointro/index.html">2008-11-27 Perl OO 入門 - LL温泉報告 -</a></li>
+                                            <li><a href="/talks/20081127-shibuyapm10-menta/index.html">2008-11-27 MENTA!</a></li>
+                                            <li><a href="/talks/20081126-hecon-lt/index.html">2008-11-26 HTTP::Engine が遅すぎ &amp; メモリくいすぎの件</a></li>
+                                            <li><a href="/talks/20081126-hecon/index.html">2008-11-26 HTTP::Engine とPerl における Web Application のあり方についての、愛、思想</a></li>
+                                            <li><a href="/talks/20081115-llonsen-lt/index.html">2008-11-15 PerlがもっともLightweightな件</a></li>
+                                            <li><a href="/talks/20081114-llonsen-tut1/index.html">2008-11-14 Perl 入門</a></li>
+                                            <li><a href="/talks/20080917-memcachedcon/index.html">2008-09-17 memcachedに最適な言語はなにか</a></li>
+                                            <li><a href="/talks/20080905-itprochallenge-nite/index.html">2008-09-05 llv8call</a></li>
+                                            <li><a href="/talks/20080829-llfuture-codegolf/index.html">2008-08-29 きみならどう書く?</a></li>
+                                            <li><a href="/talks/20080827-microblogcon-jobqueue/index.html">2008-08-27 Queueueueueue</a></li>
+                                            <li><a href="/talks/20080625-xsnite-vmgolf/index.html">2008-06-25 Perl5VM Golf</a></li>
+                                            <li><a href="/talks/20080625-xsnite-autobox/index.html">2008-06-25 autobox internals</a></li>
+                                            <li><a href="/talks/20080515-yapc-perl510/index.html">2008-05-15 Perl5.10をつかうべき510の理由</a></li>
+                                            <li><a href="/talks/20080514-soozycon5-yapc/index.html">2008-05-14 Write your own WAF in 3 hours.</a></li>
+                                            <li><a href="/talks/20080422-catalystcon1/index.html">2008-04-22 Sledgeと私</a></li>
+                                            <li><a href="/talks/20080214-devsum-tkskhour/index.html">2008-02-14 コミュニケーションを加速するコミュニティサイト Wassr を高速に開発するためのコミュニケーション技法</a></li>
+                                            <li><a href="/talks/20080127-soozycon4-mobilecarrierjp/index.html">2008-01-27 WWW::MobileCarrierJP</a></li>
+                                            <li><a href="/talks/20080121-mfintra-encode_jp_mobile/index.html">2008-01-21 Encode-JP-Mobile</a></li>
+                                            <li><a href="/talks/20080115-mfintra-geogeo/index.html">2008-01-15 adlocal</a></li>
+                                            <li><a href="/talks/20080109-mfintra-apt/index.html">2008-01-09 apt</a></li>
+                                            <li><a href="/talks/20080108-mfintra-deb/index.html">2008-01-08 deb.</a></li>
+                                            <li><a href="/talks/20071220-mfintra-perl510/index.html">2007-12-20 perl5.10</a></li>
+                                            <li><a href="/talks/20071218-mfintra-as3/index.html">2007-12-18 why as3?</a></li>
+                                            <li><a href="/talks/20071211-mfintra-whysvk/index.html">2007-12-11 SVK</a></li>
+                                            <li><a href="/talks/20071210-mfintra-readable_test_code/index.html">2007-12-10 readable test code with DSL.</a></li>
+                                            <li><a href="/talks/20071130-soozycon-brad/index.html">2007-11-30 life with brad</a></li>
+                                            <li><a href="/talks/20071126-mfintra-pictogram2/index.html">2007-11-26 Life with Pictogram 2</a></li>
+                                            <li><a href="/talks/20071112-mfintra-prism/index.html">2007-11-12 Prism</a></li>
+                                            <li><a href="/talks/20071107-mfintra-mobirc/index.html">2007-11-07 mobirc</a></li>
+                                            <li><a href="/talks/20071022-mfintra-djabberd/index.html">2007-10-22 DJabberdについて</a></li>
+                                            <li><a href="/talks/20071001-shibuyapm-gopher/index.html">2007-10-01 人はなぜ Gopher に飽きるのか</a></li>
+                                            <li><a href="/talks/20070917-mobaben2-moxy/index.html">2007-09-17 Mobile web development with Moxy</a></li>
+                                            <li><a href="/talks/20070917-mobaben2-docomocss/index.html">2007-09-17 docomo css hack.</a></li>
+                                            <li><a href="/talks/20070914-mfintra-gopher/index.html">2007-09-14 What&#39;s gopher</a></li>
+                                            <li><a href="/talks/20070817-mfintra-javascript9/index.html">2007-08-17 javascript 9 gotchas</a></li>
+                                            <li><a href="/talks/20070813-mfintra-security/index.html">2007-08-13 basic security issue</a></li>
+                                            <li><a href="/talks/20070813-mfintra-mobilebrowsers/index.html">2007-08-13 mobile browsers</a></li>
+                                            <li><a href="/talks/20070808-mfintra-microformats/index.html">2007-08-08 about microformats</a></li>
+                                            <li><a href="/talks/20070730-soozycon2-moxy/index.html">2007-07-30 Mobile web development with Moxy(sanitized)</a></li>
+                                            <li><a href="/talks/20070528-mfintra-pictogram/index.html">2007-05-28 モバイルの文字コード</a></li>
+                                            <li><a href="/talks/20070502-mfintra-gearman/index.html">2007-05-02 ギヤッッッッッマンとシュワルツゥウ</a></li>
+                                            <li><a href="/talks/20070406-yapcasia2007-cdbi2dbic/index.html">2007-04-06 CDBI から DBIC にスムーズするための10の小技</a></li>
+                    
+                    </ul>
+                </div>
+            </div>
+            <hr />
+            <footer>
+                Copyright (C) tokuhirom
+            </footer>
     </div>
-    <div class="year clearfix">
-    <h2>2012</h2>
-<ul>
-    <li>
-        <a href="/talks/20121121-intra-testing">
-            <div class="title">Recent Testing Libraries</div>
-            <div class="date">20121121</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20120928-yapcasia2012-tora">
-            <div class="title">tora - DSL for...</div>
-            <div class="date">20120928</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20120928-yapcasia2012-paraniod">
-            <div class="title">Make LWP as Paranoid</div>
-            <div class="date">20120928</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20120928-yapcasia2012-furl">
-            <div class="title">Furl</div>
-            <div class="date">20120928</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20120918-nodegakuen-node-mruby">
-            <div class="title">node.js meets mruby</div>
-            <div class="date">20120918</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20120804-lldecade-tora">
-            <div class="title">next Perl5 処理系　tora の設計と実装。</div>
-            <div class="date">20120804</div>
-        </a>
-    </li>
-</ul>
-    </div>
-    <div class="year clearfix">
-    <h2>2011</h2>
-<ul>
-    <li>
-        <a href="/talks/20111015-yapcasia2011-zglob">
-            <div class="title">File::Zglob</div>
-            <div class="date">20111015</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20111015-yapcasia2011-ukigumo">
-            <div class="title">Ukigumo</div>
-            <div class="date">20111015</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20111015-yapcasia2011-metacpan">
-            <div class="title">Hacking with metacpan</div>
-            <div class="date">20111015</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20111014-yapcasia2011-amon2">
-            <div class="title">Amon2 3.0</div>
-            <div class="date">20111014</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20110611-fukuokapm-dotcloud">
-            <div class="title">How can I create dotcloud like environment on Sakrua VPS?</div>
-            <div class="date">20110611</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20110325-osdctw-frepan">
-            <div class="title">FrePAN - Freshness CPAN mirror</div>
-            <div class="date">20110325</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20110121-soozycon-dbi">
-            <div class="title">Minimalistic approach for DB related modules</div>
-            <div class="date">20110121</div>
-        </a>
-    </li>
-</ul>
-    </div>
-    <div class="year clearfix">
-    <h2>2010</h2>
-<ul>
-    <li>
-        <a href="/talks/20101209-shibuyapm-cpan">
-            <div class="title">テスト</div>
-            <div class="date">20101209</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20101014-yapcasia-perldevenv">
-            <div class="title">モダンな Perl5 開発環境について - Modern Perl5 Development Environment - 2010年代を生きのびる Perl5 活用術</div>
-            <div class="date">20101014</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20101014-yapcasia-amon">
-            <div class="title">Amon2</div>
-            <div class="date">20101014</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20100930-shibuyapm-msgpack">
-            <div class="title">Data::MessagePack</div>
-            <div class="date">20100930</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20100528-tsukubaxs-sql-embedded">
-            <div class="title">Internal SQL::Embedded</div>
-            <div class="date">20100528</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20100424-osdctw-pl_keywrod_plugin">
-            <div class="title">most minor Perl5.12&#39;s new feature - PL_keyword_plugin *hack*</div>
-            <div class="date">20100424</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20100323-hbstudy-mogilefs">
-            <div class="title">Webアプリケーション開発のための分散ファイルシステム MogileFS を使う理由</div>
-            <div class="date">20100323</div>
-        </a>
-    </li>
-</ul>
-    </div>
-    <div class="year clearfix">
-    <h2>2009</h2>
-<ul>
-    <li>
-        <a href="/talks/20091130-shibuyapm-pl_keyword_plugin">
-            <div class="title">ああ、柔軟な言語 Perl よ。(PL_keyword_plugin編)</div>
-            <div class="date">20091130</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20091130-shibuyapm-channel">
-            <div class="title">ああ、柔軟な言語 Perl よ。(overload編)</div>
-            <div class="date">20091130</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20090911-yapcasia2009-asyncdbi">
-            <div class="title">Concurrent DB Access with Perl</div>
-            <div class="date">20090911</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20090911-yapcasia2009-args">
-            <div class="title">collllllllllloooooool argument validation for you!</div>
-            <div class="date">20090911</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20090910-yapcasia2009-test-tcp">
-            <div class="title">Test::TCP</div>
-            <div class="date">20090910</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20090910-yapcasia2009-psgi-plack">
-            <div class="title">今日はAsync/DBIの話はしません</div>
-            <div class="date">20090910</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20090421-shibuyapm11-safeeval">
-            <div class="title">The Perl Sandbox</div>
-            <div class="date">20090421</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20090421-shibuyapm11-bindpp">
-            <div class="title">write C++ extensin with Devel::BindPP.</div>
-            <div class="date">20090421</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20090318-soozy7-shakan">
-            <div class="title">Shakan</div>
-            <div class="date">20090318</div>
-        </a>
-    </li>
-</ul>
-    </div>
-    <div class="year clearfix">
-    <h2>2008</h2>
-<ul>
-    <li>
-        <a href="/talks/20081218-mfintra-tmt">
-            <div class="title">Text::MicroTemplate</div>
-            <div class="date">20081218</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20081215-mfintra-qpsmtpd">
-            <div class="title">qpsmtpd</div>
-            <div class="date">20081215</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20081127-shibuyapm10-oointro">
-            <div class="title">Perl OO 入門 - LL温泉報告 -</div>
-            <div class="date">20081127</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20081127-shibuyapm10-menta">
-            <div class="title">MENTA!</div>
-            <div class="date">20081127</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20081126-hecon-lt">
-            <div class="title">HTTP::Engine が遅すぎ &amp; メモリくいすぎの件</div>
-            <div class="date">20081126</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20081126-hecon">
-            <div class="title">HTTP::Engine とPerl における Web Application のあり方についての、愛、思想</div>
-            <div class="date">20081126</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20081115-llonsen-lt">
-            <div class="title">PerlがもっともLightweightな件</div>
-            <div class="date">20081115</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20081114-llonsen-tut1">
-            <div class="title">Perl 入門</div>
-            <div class="date">20081114</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20080917-memcachedcon">
-            <div class="title">memcachedに最適な言語はなにか</div>
-            <div class="date">20080917</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20080905-itprochallenge-nite">
-            <div class="title">llv8call</div>
-            <div class="date">20080905</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20080829-llfuture-codegolf">
-            <div class="title">きみならどう書く?</div>
-            <div class="date">20080829</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20080827-microblogcon-jobqueue">
-            <div class="title">Queueueueueue</div>
-            <div class="date">20080827</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20080625-xsnite-vmgolf">
-            <div class="title">Perl5VM Golf</div>
-            <div class="date">20080625</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20080625-xsnite-autobox">
-            <div class="title">autobox internals</div>
-            <div class="date">20080625</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20080515-yapc-perl510">
-            <div class="title">Perl5.10をつかうべき510の理由</div>
-            <div class="date">20080515</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20080514-soozycon5-yapc">
-            <div class="title">Write your own WAF in 3 hours.</div>
-            <div class="date">20080514</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20080422-catalystcon1">
-            <div class="title">Sledgeと私</div>
-            <div class="date">20080422</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20080214-devsum-tkskhour">
-            <div class="title">コミュニケーションを加速するコミュニティサイト Wassr を高速に開発するためのコミュニケーション技法</div>
-            <div class="date">20080214</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20080127-soozycon4-mobilecarrierjp">
-            <div class="title">WWW::MobileCarrierJP</div>
-            <div class="date">20080127</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20080121-mfintra-encode_jp_mobile">
-            <div class="title">Encode-JP-Mobile</div>
-            <div class="date">20080121</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20080115-mfintra-geogeo">
-            <div class="title">adlocal</div>
-            <div class="date">20080115</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20080109-mfintra-apt">
-            <div class="title">apt</div>
-            <div class="date">20080109</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20080108-mfintra-deb">
-            <div class="title">deb.</div>
-            <div class="date">20080108</div>
-        </a>
-    </li>
-</ul>
-    </div>
-    <div class="year clearfix">
-    <h2>2007</h2>
-<ul>
-    <li>
-        <a href="/talks/20071220-mfintra-perl510">
-            <div class="title">perl5.10</div>
-            <div class="date">20071220</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20071218-mfintra-as3">
-            <div class="title">why as3?</div>
-            <div class="date">20071218</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20071211-mfintra-whysvk">
-            <div class="title">SVK</div>
-            <div class="date">20071211</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20071210-mfintra-readable_test_code">
-            <div class="title">readable test code with DSL.</div>
-            <div class="date">20071210</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20071130-soozycon-brad">
-            <div class="title">life with brad</div>
-            <div class="date">20071130</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20071126-mfintra-pictogram2">
-            <div class="title">Life with Pictogram 2</div>
-            <div class="date">20071126</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20071112-mfintra-prism">
-            <div class="title">Prism</div>
-            <div class="date">20071112</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20071107-mfintra-mobirc">
-            <div class="title">mobirc</div>
-            <div class="date">20071107</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20071022-mfintra-djabberd">
-            <div class="title">DJabberdについて</div>
-            <div class="date">20071022</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20071001-shibuyapm-gopher">
-            <div class="title">人はなぜ Gopher に飽きるのか</div>
-            <div class="date">20071001</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20070917-mobaben2-moxy">
-            <div class="title">Mobile web development with Moxy</div>
-            <div class="date">20070917</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20070917-mobaben2-docomocss">
-            <div class="title">docomo css hack.</div>
-            <div class="date">20070917</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20070914-mfintra-gopher">
-            <div class="title">What&#39;s gopher</div>
-            <div class="date">20070914</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20070817-mfintra-javascript9">
-            <div class="title">javascript 9 gotchas</div>
-            <div class="date">20070817</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20070813-mfintra-security">
-            <div class="title">basic security issue</div>
-            <div class="date">20070813</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20070813-mfintra-mobilebrowsers">
-            <div class="title">mobile browsers</div>
-            <div class="date">20070813</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20070808-mfintra-microformats">
-            <div class="title">about microformats</div>
-            <div class="date">20070808</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20070730-soozycon2-moxy">
-            <div class="title">Mobile web development with Moxy(sanitized)</div>
-            <div class="date">20070730</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20070528-mfintra-pictogram">
-            <div class="title">モバイルの文字コード</div>
-            <div class="date">20070528</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20070502-mfintra-gearman">
-            <div class="title">ギヤッッッッッマンとシュワルツゥウ</div>
-            <div class="date">20070502</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20070406-yapcasia2007-cdbi2dbic">
-            <div class="title">CDBI から DBIC にスムーズするための10の小技</div>
-            <div class="date">20070406</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20070405-mfintra-utf8">
-            <div class="title">utf8 at Sledge</div>
-            <div class="date">20070405</div>
-        </a>
-    </li>
-</ul>
-    </div>
-    <div class="year clearfix">
-    <h2>2006</h2>
-<ul>
-    <li>
-        <a href="/talks/20060408-python-webpy">
-            <div class="title">20060408-python-webpy</div>
-            <div class="date">20060408</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20060403-soozy20-mfsledge">
-            <div class="title">20060403-soozy20-mfsledge</div>
-            <div class="date">20060403</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20060330-yapcaisa2006-debugscren">
-            <div class="title">20060330-yapcaisa2006-debugscren</div>
-            <div class="date">20060330</div>
-        </a>
-    </li>
-    <li>
-        <a href="/talks/20060330-yapcaisa2006-datetime">
-            <div class="title">20060330-yapcaisa2006-datetime</div>
-            <div class="date">20060330</div>
-        </a>
-    </li>
-</ul>
-    </div>
-</div>
+    <style>
+        li {
+            text-overflow: ellipsis;
+            list-style-position:inside;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;    
+        }
+    </style>
 </body>
 </html>

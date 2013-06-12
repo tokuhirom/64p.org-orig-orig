@@ -57,9 +57,26 @@
                     [% FOR note IN notes %]
                         <li><a href="[% note.link %]">[% note.title %]</a></li>
                     [% END %]
-                </ul>
+                    </ul>
+                </div>
+                <div class="span4">
+                    <h2>Talks</h2>
+                    <ul>
+                    [% FOR talk IN talks -%]
+                        <li><a href="[% talk.link %]">[% talk.date.strftime('%Y-%m-%d') %] [% talk.title %]</a></li>
+                    [% END %]
+                    </ul>
                 </div>
             </div>
     </div>
+    <style>
+        li {
+            text-overflow: ellipsis;
+            list-style-position:inside;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;    
+        }
+    </style>
 </body>
 </html>

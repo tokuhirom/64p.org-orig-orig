@@ -37,6 +37,10 @@ https://github.com/rakudo/rakudo
 
 One of the implementation of Perl6. It's only run on parrot in the old days. Now, Rakudo also run on JVM.
 
+## MoarVM
+
+ * CU : CompUnit
+
 ## Related slides
 
  * [Rakudo Perl 6: to the JVM and beyond!](http://jnthn.net/papers/2013-plpw-rakudo-jvm.pdf)

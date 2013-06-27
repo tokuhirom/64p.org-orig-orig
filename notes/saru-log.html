@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Perl5 missing stuff</title>
+    <title>Saru</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/spacelab/bootstrap.min.css">
     <style>
         .container {
@@ -40,37 +40,46 @@
                 <div class="span10">
                     <div class="entry">
                         <div class="entry-body">
-                            <h1>Perl5 missing stuff</h1>
+                            <h1>Saru</h1>
 
-<h2>boolean value</h2>
+<h2>現状</h2>
 
-<p>I suggest to add boolean value.</p>
+<p>現状では簡単な四則演算ができる程度。まったく実用的ではない。</p>
 
-<p>Add two new built-in functions.</p>
+<p>アセンブラ部分が原始的すぎるのがひとつ、開発の妨げになっているというか、
+Assembler.cc を自動生成するようにすれば、コンパイル時にエラーを発見で
+きるので、楽になるという目論見はある。</p>
 
-<pre><code>true()
-false()
-</code></pre>
+<p>できるだけ初期段階でやったほうが効果は大きいから、がんばってやっつけた
+い。src/core/oplist を変換すればいいだけなんで、そんなにむずかしい作業
+ではない。</p>
 
-<h2><code>-&gt;</code> style lambda</h2>
+<h2>2013-06-17</h2>
 
-<p><code>-&gt;</code> style lambda is one of the great feature in Perl6.</p>
+<p>nqp-cc/nqp-src/NQPCORE.setting がブートストラップだった!!
+意外とこの部分のコードを C++ なりなんなりでかかないと、まともにならな
+そう。。</p>
 
-<pre><code>-&gt; $x { ... }
-</code></pre>
+<h2>2013-06-18</h2>
 
-<p>is same as</p>
+<p>まあなにしろ、関数よびだしで引数がわたせるようになれば、とりあえず
+fib() はもとめられそうだ。</p>
 
-<pre><code>sub { my $x = shift; ... }
-</code></pre>
+<p>いよいよ、ひとつの目標がたっせられるということで、非常にありがたいこと
+であるよ。</p>
 
-<h2>slurp/spew</h2>
+<h2>2013-06-19</h2>
 
-<p>I really need <code>slurp</code> and <code>spew</code></p>
+<p>とりあえず fibonacci もとめられるようになった。Perl5 の 1.5 倍ぐらい遅
+いかんじ。だけど MoarVM 自体がぜんぜん最適化されてないし、最適化オプショ
+ンとかもとくにやってないんで、現状でもちょっとかえるだけでソコソコはや
+いかもしれない。</p>
+
+<p>まあ、速度面でいうと、生成コードの差だけって話なのだけど。</p>
 
                         </div>
                         <div class="entry-footer">
-                            <a class="timestamp" href="/notes/perl5-missing-stuff.html">2013-06-12(Wed)</a>
+                            <a class="timestamp" href="/notes/saru-log.html">2013-06-19(Wed)</a>
                         </div>
                     </div>
                 </div>

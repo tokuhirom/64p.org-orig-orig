@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Perl5 missing stuff</title>
+    <title>C++</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/spacelab/bootstrap.min.css">
     <style>
         .container {
@@ -40,37 +40,42 @@
                 <div class="span10">
                     <div class="entry">
                         <div class="entry-body">
-                            <h1>Perl5 missing stuff</h1>
+                            <h1>C++</h1>
 
-<h2>boolean value</h2>
+<h2>Reference</h2>
 
-<p>I suggest to add boolean value.</p>
+<p><a href="http://en.cppreference.com/w/">cppreference.com</a> is very useful.</p>
 
-<p>Add two new built-in functions.</p>
+<h2>Debugging</h2>
 
-<pre><code>true()
-false()
-</code></pre>
+<p>  g++ -D_GLIBCXX_DEBUG foo.cc</p>
 
-<h2><code>-&gt;</code> style lambda</h2>
+<h2>stacktrace</h2>
 
-<p><code>-&gt;</code> style lambda is one of the great feature in Perl6.</p>
+<p>  catchsegv ./a.out</p>
 
-<pre><code>-&gt; $x { ... }
-</code></pre>
+<h2>Libraries</h2>
 
-<p>is same as</p>
+<h3>POCO</h3>
 
-<pre><code>sub { my $x = shift; ... }
-</code></pre>
+<p>C++ class libraries.</p>
 
-<h2>slurp/spew</h2>
+<ul>
+<li>zip</li>
+<li>ssl</li>
+<li>networking</li>
+<li>crypto</li>
+<li>xml</li>
+<li>sqlite3</li>
+<li>mysql</li>
+</ul>
 
-<p>I really need <code>slurp</code> and <code>spew</code></p>
+
+<p><a href="http://pocoproject.org/">http://pocoproject.org/</a></p>
 
                         </div>
                         <div class="entry-footer">
-                            <a class="timestamp" href="/notes/perl5-missing-stuff.html">2013-06-12(Wed)</a>
+                            <a class="timestamp" href="/notes/cplusplus.html">2013-06-27(Thu)</a>
                         </div>
                     </div>
                 </div>

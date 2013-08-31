@@ -1,0 +1,410 @@
+CPAN と私
+<div style="text-align:right; font-size: 50%;">
+Hokkaido.pm@20130830(Sat)
+tokuhirom
+</div>
+----
+東京からきました。
+<img src="tokyo-japan-crossing-stock1141.jpg">
+----
+Thanks to JPA++
+----
+*自己紹介
+----
+- Web Application Enginner
+- サーバーサイド
+- 自社サービス
+- Perl5, Perl6, Ruby, PHP, Python, Java, C, C++, Objective-C, JavaScript, etc.
+----
+<B>書いたもの</B>:
+cpan-outdated, Test::Pretty, Test::TCP, Spellunker, Minilla, Module::Build::Pluggable, scan-prereqs-cpanfile, FormValidator::Lite, OrePAN2, SQL::Maker,  Data::MessagePack, plenv, etc.
+----
+CPAN モジュールの話をしようとおもってたんですが、
+チョイ前の @xaicron とかぶるので調整。
+<img src="http://img.pics.livedoor.com/012/b/3/b3f4c61496416eef2dc3-LL.JPG">
+----
+立場がかわれば技術もかわる
+- 受託とか
+- 納期とか
+----
+アジェンダ
+- CPAN モジュールの選び方
+- おすすめの CPAN モジュール
+- CPAN モジュールをとりあつかうためのモジュール
+- 将来への展望と YAPC
+----
+- 随時質問してください
+- Dan the Question 歓迎です
+<img src="https://si0.twimg.com/profile_images/3214741727/4b8f9850b0da612fba2b9d2e0a773379.jpeg">
+----
+*CPANモジュールの判別
+----
+僕が重要視すること
+- 他人のコードのせいで動かないことはキライ
+----
+*モジュールの客観的な選別
+----
+- 最終更新日をみる
+- CPAN Testers の結果をみる
+- t/ がさびしいモジュールはつかわない
+- バグトラッカーへの登録数をみる
+----
+* 作者による選別
+----
+- 個性にあふれすぎている CPAN Authors
+- 人ごとの癖がわかると、わりとなんとかなる
+----
+- gfx だから高速
+- ○○さんはテストを動かさないでリリースする
+- ○○さんはインターフェイスが重厚
+- ○○さんのモジュールは実際にはつかってない
+- ○○だから非互換の変更をする
+----
+信頼のおけるパールハカーの例
+- pause:dagolden
+- pause:rjbs
+- pause:miyagawa
+- pause:gfuji
+- pause:mschwern
+- etc.
+----
+- 速度
+-- 当たり前ですね!
+- メモリ消費量
+----
+- 後方互換性にたいする姿勢
+-- 最重要
+-- 動いていたコードが動かなくなるのはすごく嫌
+----
+結局は他人に聞くのが一番いい
+- Twitter
+- Lingr
+- etc.
+----
+最終的に自分でメンテしてもいいな、というものだけをえらぶ
+----
+<div style="font-size: 200%">
+第１部完。
+</div>
+----
+ここまででなにかありますか?
+----
+*補足
+----
+はやりすたり
+- アーリーアダプター穴掘り
+- つきあう必要なし
+----
+* CPAN モジュールの選び方の実例
+----
+@xaicron とかぶってないのをえらんでみました
+あがってないのの中で、気になるのあればいってください。
+<img src="http://gyazo.64p.org/image/d431e789702aff02c238aec63f19d236.png">
+----
+* アプリケーションサーバー
+----
+Plack + PSGI
+----
+<div class="plain_list">
+- \p{WHITE SMILING FACE} Starlet
+- \p{WHITE SMILING FACE} Twiggy
+- \p{BLACK SMILING FACE} Starman
+- \p{WHITE FROWNING FACE} FCGI
+- — CGI
+- — mod_perl
+</div>
+----
+* オブジェクト関連
+----
+<div class="plain_list">
+- \p{WHITE SMILING FACE} Class::Accessor::Lite
+- \p{BLACK SMILING FACE} Class::Accessor::Fast
+- \p{WHITE FROWNING FACE} And others
+</div>
+----
+<div class="plain_list">
+- \p{WHITE SMILING FACE} Moo
+- \p{WHITE SMILING FACE} Mo[u]se
+- \p{BLACK SMILING FACE} Mo[o]se
+- \p{WHITE FROWNING FACE} Any::Moose
+- \p{WHITE FROWNING FACE} And others
+</div>
+----
+今後の展開
+- p5-mop-redux
+- たぶんコアへ
+- たぶん 5.20 にはまにあわない
+<img src="http://farm6.staticflickr.com/5312/7382445448_8722e4db67_z.jpg">
+----
+* CPAN インストーラ
+----
+<div class="plain_list">
+- \p{WHITE SMILING FACE} cpanm
+- \p{WHITE FROWNING FACE} The CPAN Shell
+- \p{WHITE FROWNING FACE} CPANPLUS
+</div>
+----
+* O/R Mapper
+----
+<div class="plain_list">
+- \p{WHITE SMILING FACE} Teng
+- \p{BLACK SMILING FACE} DBIx::Skinny
+- \p{BLACK SMILING FACE} DBIx::Class
+- \p{WHITE FROWNING FACE} Class::DBI
+</div>
+----
+* 日付関連
+----
+<div class="plain_list">
+- \p{WHITE SMILING FACE} Time::Piece
+- \p{WHITE FROWNING FACE} DateTime
+</div>
+----
+- 月末
+- タイムゾーン
+----
+* JSON
+----
+<div class="plain_list">
+- \p{WHITE SMILING FACE} JSON::PP
+- \p{WHITE SMILING FACE} JSON::XS
+- \p{BLACK SMILING FACE} JSON.pm
+- \p{WHITE FROWNING FACE} Cpanel::JSON
+- \p{WHITE FROWNING FACE} JSON::Any
+</div>
+----
+<div style="font-size: 200%">
+第二部完。
+</div>
+----
+* CPAN モジュールの使い方
+----
+実際、どういう風に CPAN モジュールを管理していくか
+----
+- plenv
+- cpanm
+- carton
+----
+plenv
+- Perlバイナリの管理
+- perlbrew みたいなもの
+----
+- 複数バージョンの Perl5 をきりかえて使う
+- 最新の Perl5 をつかう
+----
+<B>Mac</B> だと system Perl が腐ってるので必須
+<B>linux</B> なら system perl をつかってもいい。
+----
+ただし、system perl は
+`-Dusethreads` → <B>速度劣化</B>
+----
+- アプリケーション単位で perl のバージョンをかえられる
+- 環境変数でバージョンきりかえ
+- perlbrew 重い
+- pure bash script
+- 挙動がわかりやすい
+----
+* インストール方法
+----
+>||
+% git clone \
+    git://github.com/tokuhirom/plenv.git \
+    ~/.plenv
+||<
+----
+>||
+% git clone \
+    git://github.com/tokuhirom/Perl-Build.git \
+    ~/.plenv/plugins/perl-build/
+||<
+----
+Perl-Build
+- Perl5 builder/installer
+----
+>||
+% perl-build 5.18.0 /opt/perl-5.18/
+||<
+----
+以下のものを .zshrc かなにかに。
+>||
+export PATH="$HOME/.plenv/bin/:$PATH"
+eval "$(plenv init -)";
+||<
+----
+* つかってみる
+----
+ビルドする
+>||
+% plenv install 5.18.0
+||<
+----
+古いものもつかえる
+>||
+% plenv install 5.8.1
+||<
+----
+有効化する
+>||
+% plenv global 5.18.0
+||<
+----
+つかえた
+>||
+% perl -v
+This is perl 5, version 18, subversion 0 (v5.18.0) built for x86_64-linux
+
+Copyright 1987-2013, Larry Wall
+
+...
+||<
+----
+>||
+% cd ~/my/project/
+% plenv local 5.8.1
+||<
+----
+ふるい Perl がこのプロジェクトでは有効に
+>||
+% perl -v
+This is perl, v5.8.1 built for x86_64-linux
+
+Copyright 1987-2003, Larry Wall
+
+...
+||<
+----
+>||
+% cat ./.perl-version
+5.8.1
+||<
+----
+環境変数でも指定可能
+>||
+% PLENV_VERSION=5.19.0 perl -v
+This is perl 5, version 19, subversion 0 (v5.19.0) built for x86_64-linux
+
+Copyright 1987-2013, Larry Wall
+
+...
+||<
+----
+* 仕組み
+----
+- シェルスクリプトを `~/.plenv/shims/` につくりまくる
+- $PATH にいれてある `plenv init`
+----
+`~/.plenv/shims/perl` is:
+>||
+#!/usr/bin/env bash
+set -e
+[ -n "$PLENV_DEBUG" ] && set -x
+
+program="${0##*/}"
+if [ "$program" = "perl" ]; then
+  for arg; do
+    case "$arg" in
+    -e* | -- ) break ;;
+    */* )
+      if [ -f "$arg" ]; then
+        export PLENV_DIR="${arg%/*}"
+        break
+      fi
+      ;;
+    esac
+  done
+fi
+
+export PLENV_ROOT="/Users/tokuhirom/.plenv"
+exec "/usr/local/Cellar/plenv/2.0.1/libexec/plenv" exec "$program" "$@"
+||<
+----
+ダイナミック!
+----
+* どうやってバージョンを確定しているか
+----
+- `PLENV_VERSION`(環境変数)
+- `.perl-version`(`plenv local`)
+- `~/.plenv/version`(`plenv global`)
+- システムPerl
+----
+以上。簡単な plenv の使い方でした。
+----
+<div style="font-size: 200%">
+第三部完
+</div>
+----
+* cpanm の話
+----
+CPAN モジュールのインストールには cpanm をつかいます
+plenv install-cpanm でいれる
+----
+インストールしなくてもつかえる
+>||
+curl -L http://cpanmin.us \
+    | sudo -H perl - LWP::UserAgent
+||<
+----
+`cpan` とか `perl -MCPAN -eshell`
+やめておいた方がいい
+----
+>||
+cpanm -n Carton
+||<
+----
+簡単でしょ。
+----
+<div style="font-size: 200%">
+第4部完
+</div>
+----
+* Carton の話
+----
+cpanfile というファイルに、使うモジュールをかきます。
+----
+>||
+requires 'LWP', 6;
+on 'test' => sub {
+    requires 'Test::More', 0.98;
+};
+||<
+----
+>||
+% carton install
+||<
+----
+- `local/` 以下にモジュールがインストールされる
+- インストールしたバージョンを `cpanfile.snapshot` に記録
+- `cpanfile.snapshot` を元に `local/` を復元できる
+----
+<div style="font-size: 200%">
+第5部完
+</div>
+----
+* github 止まりモジュール
+----
+* Nagara
+----
+O/R Mapper - resultset
+----
+* PVIP
+----
+Perl5 is DSL for CPAN
+----
+...
+----
+Another DSL?
+----
+Perl6!
+----
+YAPC でくわしくは話す
+----
+Seis
+- Perl6 to Perl5 transpiler
+- like Cofee Script
+- With XS hacks
+----
+Passed 3% in test suites
+----
+* Demo
+----
+以上です。ありがとうございました。

@@ -53,6 +53,7 @@ body * {
 }
 #topics ul li {
     text-align: left;
+    margin-bottom: 90px;
 }
 
 #topics .code {
@@ -65,9 +66,20 @@ body * {
 #topics .list {
     font-size: 90%;
     text-align: left;
+    margin-bottom: 18px;
 }
 #topics .list::before {
-    content: '●'
+    content: '・'
+}
+#topics .plain_list .list::before { content: '' }
+
+#topics .list_child {
+    font-size: 80%;
+    text-align: left;
+    margin-left: 40px;
+}
+#topics .list_child::before {
+    content: '・'
 }
 
 #topics .note {

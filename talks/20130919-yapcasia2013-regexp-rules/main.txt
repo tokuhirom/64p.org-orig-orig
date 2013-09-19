@@ -1,0 +1,102 @@
+Mo[ou](?:se)
+<div style="text-align:right; font-size: 50%;">
+YAPC Asia 2013@20130920(Fri)
+tokuhirom
+</div>
+----
+Any::Moose → 使ってはいけない
+----
+Moo or Mouse
+----
+Moose...
+----
+Mouse
+- はやい
+- 依存がない
+- Xslate いれるとはいってきちゃうから
+<img src="http://a0.twimg.com/profile_images/2788742131/bd31d4c5ff720790ec8b8f24cc4f5eb1.jpeg">
+----
+Moo
+- 海外で人気がある
+<img src="http://www.trout.me.uk/mattpic.jpg">
+----
+p5-mop-redux
+くる!!
+<img src="http://farm7.staticflickr.com/6229/6343433285_31f4661fa3_z.jpg">
+----
+>||
+class Foo {
+  has $!stuff;
+  method do_stuff ($stuff) {
+    $!stuff = $stuff;
+  }
+}
+||<
+----
+そのうち Perl5 にはいる!
+----
+sub foo($n) { ... }
+が、もしかしたら Perl 5.20 ではいる?
+----
+明日、15:20〜からトークします!
+<img src="http://gyazo.64p.org/image/f55c6b16b16d30b96328ff1effe1d4fb.png">
+----
+----
+----
+----
+----
+----
+----
+Regexp::Rules
+<div style="text-align:right; font-size: 50%;">
+YAPC Asia 2013@20130920(Fri)
+tokuhirom
+</div>
+----
+Perl6 に<B>Rules</B>ってあるじゃないですか.
+----
+こういうの
+>||
+token TOP       { ^ \s* [ <object> | <array> ] \s* $ }
+rule object     { '{' ~ '}' <pairlist>     }
+rule pairlist   { <pair> * % \,            }
+rule pair       { <string> ':' <value>     }
+rule array      { '[' ~ ']' <arraylist>    }
+rule arraylist  { <value>* % [ \, ]        }
+||<
+----
+Perl5 でもつかいたいなあ。
+----
+Regexp::Rules ってのかいた。
+----
+>||
+grammar Arith {
+    rule TOP { (?&additive) };
+    rule additive  { (?&multitive) (?: ([+-])  (?&multitive) )* };
+    rule multitive { (?&primary)   (?: ([*\/]) (?&primary)   )* };
+    token primary { ( [0-9]+ ) | (?: [(] (?&additive) [)] ) };
+};
+||<
+----
+>||
+(?^msx:
+  (?&TOP)
+  (?(DEFINE)
+    (?<TOP>  (?> (?{ Regexp::Rules::_prepare() })  (?&additive)  (?{ Regexp::Rules::_finalize('TOP') })))
+    (?<additive>  (?> (?{ Regexp::Rules::_prepare() })  (?&multitive) (?: ([+-])  (?&multitive) )*  (?{ Regexp::Rules::_finalize('additive') })))
+    (?<multitive>  (?> (?{ Regexp::Rules::_prepare() })  (?&primary)   (?: ([*\/]) (?&primary)   )*  (?{ Regexp::Rules::_finalize('multitive') })))
+    (?<primary>  (?> (?{ Regexp::Rules::_prepare() }) (?: ( [0-9]+ ) | (?: [(] (?&additive) [)] ) ) (?{ Regexp::Rules::_finalize('primary') })))
+||<
+----
+>||
+Arith->parse('3+5*2', Regexp::Rules::SexpAction::);
+||<
+----
+>||
+(+ 3 (* 5 2))
+||<
+----
+明日、15:20〜からトークします!
+<img src="http://gyazo.64p.org/image/f55c6b16b16d30b96328ff1effe1d4fb.png">
+----
+That's all, thanks.

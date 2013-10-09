@@ -1,0 +1,58 @@
+Test::Power
+<div style="text-align:right; font-size: 50%;">
+YAPC Asia 2013@20130920(Fri)
+tokuhirom
+</div>
+----
+Test::More
+----
+- `cmp_ok`
+- `is`
+- `isn't`
+----
+<div style="font-size:400%">\p{WHITE FROWNING FACE}</div>
+----
+I want to use `ok` only…
+----
+>||
+ok $x == 3;
+||<
+>||
+not ok 1
+#   Failed test at -e line 1.
+||<
+----
+\p{WHITE FROWNING FACE}
+----
+>||
+＿人人人人人人人＿
+＞　Test::Power　＜
+￣Y^Y^Y^Y^Y^Y￣
+||<
+----
+>||
+use Test::Power;
+expect { $x != 3 }
+||<
+----
+>||
+not ok 1 - L1
+#   Failed test 'L1'
+#   at -e line 1.
+# $x
+#    => 3
+||<
+----
+YATTA!!!
+----
+How it works?
+----
+Rewrite B::OP tree.
+----
+Tapping result from entersub/rv2sv/padsv, you know.
+----
+One more thing
+----
+<img src="2f49b5b1d50824816e9cda1af937539f.png">
+----
+That's all.

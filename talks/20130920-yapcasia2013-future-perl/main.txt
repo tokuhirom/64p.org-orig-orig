@@ -1,0 +1,254 @@
+Perl の過去と未来
+Perl - Past and Future
+<div style="text-align:right; font-size: 50%;">
+YAPC Asia 2013@20130920(Fri)
+tokuhirom
+</div>
+----
+*自己紹介
+----
+- Web Application Enginner
+- Server side applications
+- <B>Perl5</B>, <B>Perl6</B>, Ruby, PHP, Python, Java, C, C++, Objective-C, JavaScript, etc.
+----
+<B>I wrote</B>:
+Test::Power, Amon2, cpan-outdated, Test::Pretty, Test::TCP, Spellunker, Minilla, Module::Build::Pluggable, scan-prereqs-cpanfile, FormValidator::Lite, OrePAN2, SQL::Maker,  Data::MessagePack, plenv, etc.
+----
+Agenda
+- History of Perl5
+- Latest changes around Perl5
+- History of Perl6
+- My hacks around Perl6
+----
+- Dan the Question is okay!
+<img src="https://si0.twimg.com/profile_images/3214741727/4b8f9850b0da612fba2b9d2e0a773379.jpeg">
+----
+* First,
+----
+<blockquote>
+Perl5 is DSL for CPAN
+  -- @clkao
+</blockquote>
+----
+* History of Perl5
+----
+- 1987: Perl 1.0
+- 1988: Perl 2.0
+- 1989: Perl 3.0
+- 1991: Perl 4.0
+- 1994: Perl 5.0(ref, OOP)
+----
+- 1998: 5.5
+- 2000: 5.6
+- 2002: 5.8
+- 2007: 5.10
+----
+- 2010: 5.12
+- 2011: 5.14
+- 2012: 5.16
+- 2013: 5.18
+----
+<img src="http://gyazo.64p.org/image/2e483690e72ccb1841cbc3513a87ffa0.png">
+----
+Lancaster Concensus
+- 5.8.1+
+----
+* Recent updates in Perl5
+----
+5.10
+- `say()`
+- `//` defined-or
+- state
+- smart match
+- given/when
+----
+5.12
+- ...
+----
+5.14
+- s///r
+- package NAME BLOCK
+- push $aryref, $stuff;
+----
+5.18
+- my sub hoge {...}
+- __SUB__
+- (hash randomization)
+- cpanp was deprecated
+----
+5.20?
+- Method signatures?
+-- sub foo($x) { ... }
+- postfix dereferencing?
+-- $x->{foo}->[0]->@*
+----
+Great Perl6 feature comes!
+----
+* On backend...
+----
+5.8
+- Source filter
+----
+5.14
+- Custom ops
+- the Perl parser API
+-- parse_barestmt
+-- parse_block
+----
+5.18
+- Pad APIs
+-- PadWalker
+----
+Future prediction
+- Perl5 gets more flexibility.
+- Support multiple language in one core.
+----
+* In the other hand!!!
+We gets another implementation of Perls!
+----
+Moe
+- Stevan Little
+- Written in Scala
+----
+p2
+- p2 (perl 5+6 = 11) on the potion vm
+- Listen Reini's presentation
+----
+goccy
+- Compiler::Parser
+- Compiler::Lexer
+- gperl
+- perlmotion
+----
+<B>&lt;/first section&gt;</B>
+Qestion?
+----
+* History of Perl6
+----
+- 2000: Started(<I>5.6</I>)
+- 2005: Pugs
+- 2010: Rakudo Star!
+----
+* Current status of Perl6
+----
+Is rakudo* useful?
+>||
+% time perl6 -e 'say [+] 1..100'
+5050
+perl6 -e 'say [+] 1..100'  0.76s user 0.18s system 99% cpu 0.945 total
+||<
+----
+The nqp language
+- Perl6 sub set
+- Rakudo is now written in nqp, mostly.
+----
+Rakudo
+- Most popular Perl6 implementation
+- Ported to nqp
+- Now on parrot and <B>JVM</B>
+----
+MoarVM
+- Lightweight VM for Perl6
+----
+Perl6 roast
+- Test suite for Perl6
+- Test suite for implementations.
+----
+* Perl6 is awesome?
+----
+Junction
+- `$var == 3|5|7`
+- Perl6::Junction
+- Syntax::Keyword::Junction
+----
+MOP, Role
+- p5-mop-redux
+- Mo[ou](?:se)?
+----
+slurp/spew
+- Perl6::Slurp
+- Path::Tiny
+----
+Lexical subs
+- comes core at Perl 5.18
+----
+Rules
+- Write parser easily
+- Regexp::Rules
+----
+Reduction operators
+- [+] 1..100
+- I need it.
+- I can't implement this on Perl5!
+----
+Hyper Operators
+>||
+my @a = 1..5;
+my @b = 6..10;
+my @c = @a »*« @b;
+# @c = 1*6, 2*7, 3*8, 4*9, 5*10
+||<
+----
+Cross Operators
+>||
+my @a = 1, 2;
+my @b = 3, 4;
+my @c = @a X @b;  # (1,3), (1,4), (2,3), (2,4)
+||<
+----
+I want to implement infix operators on <B>Perl5<B>!
+----
+* And then
+----
+I want to introduce <B>my Perl6 related hacks</B>.
+----
+Regexp::Rules
+>||
+grammar Arith {
+    rule TOP { (?&additive) };
+    rule additive  { (?&multitive) (?: ([+-])  (?&multitive) )* };
+    rule multitive { (?&primary)   (?: ([*\/]) (?&primary)   )* };
+    token primary { ( [0-9]+ ) | (?: [(] (?&additive) [)] ) };
+};
+||<
+----
+>||
+(?^msx:
+  (?&TOP)
+  (?(DEFINE)
+    (?<TOP>  (?> (?{ Regexp::Rules::_prepare() })  (?&additive)  (?{ Regexp::Rules::_finalize('TOP') })))
+    (?<additive>  (?> (?{ Regexp::Rules::_prepare() })  (?&multitive) (?: ([+-])  (?&multitive) )*  (?{ Regexp::Rules::_finalize('additive') })))
+    (?<multitive>  (?> (?{ Regexp::Rules::_prepare() })  (?&primary)   (?: ([*\/]) (?&primary)   )*  (?{ Regexp::Rules::_finalize('multitive') })))
+    (?<primary>  (?> (?{ Regexp::Rules::_prepare() }) (?: ( [0-9]+ ) | (?: [(] (?&additive) [)] ) ) (?{ Regexp::Rules::_finalize('primary') })))
+||<
+----
+>||
+Arith->parse('3+5*2', Regexp::Rules::SexpAction::);
+||<
+----
+>||
+(+ 3 (* 5 2))
+||<
+----
+PVIP
+- Perl6 parser library
+- Written in <B>C</B>
+- <B>Perl5 binding</B> Perl6::PVIP is available
+----
+Seis
+- Perl6 to Perl5 <B>transpiler</B>
+- like Cofee Script
+- With XS hacks
+----
+Passed <B>1000+</B> test suites
+----
+Writing Seis easier is good.
+----
+Seis goals
+- Writing code in Perl6?
+- Learn Perl6
+- Writing XS for porting Perl6 features
+----
+* Demo
+----
+That's all, thanks.

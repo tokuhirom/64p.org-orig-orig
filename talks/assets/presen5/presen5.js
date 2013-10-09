@@ -19,7 +19,7 @@ var Presen = {
         var self = this;
 
         setInterval(
-            function () { self.cron(); }, 1
+            function () { self.cron(); }, 500
         );
     },
     init_page: function () {

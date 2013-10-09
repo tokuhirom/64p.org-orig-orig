@@ -1,4 +1,4 @@
-Mo[ou](?:se)
+Mo(?:o(?:se)?|o)
 <div style="text-align:right; font-size: 50%;">
 YAPC Asia 2013@20130920(Fri)
 tokuhirom

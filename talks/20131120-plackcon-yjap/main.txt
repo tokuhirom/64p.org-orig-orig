@@ -1,0 +1,109 @@
+Plack::BodyParser の話
+<div style="text-align:right; font-size: 50%;">
+Shibuya.plack #1@20131120(Wed)
+tokuhirom
+</div>
+----
+HTTP では Request body は <B>application/x-www-form-urlencoded</B> か <B>multipart/form-data</B> でおくられてくる。
+----
+最近だと <B>application/json</B> とかもくる。<B>XHR</B> とかで。
+----
+Plack::Request はボディパーザとして HTTP::Body をつかってる。
+----
+インターフェイスが微妙だし、グローバル変数でしか設定を変えられない。
+----
+Plack::BodyParser とかつくってさしかえよう。
+----
+URL::Encode by <B>CHANSEN</B> で application/x-www-form-urlencoded
+----
+multipart/form-data は、俺がパーザ書いてたら <B>CHANSEN</B> が HTTP::MultiPartParser とかいうのをかいてくれた。
+----
+とりあえず実装だけおわって放置している。
+----
+YJAP - Yurufuwa JSON API Protocol
+<div style="text-align:right; font-size: 50%;">
+Shibuya.plack #1@20131120(Wed)
+tokuhirom
+</div>
+----
+最近のサーバーサイドの仕事って、
+JSON API の実装と管理画面の実装がメインですよね。
+----
+JSON API って一口にいっても社内で微妙に実装がずれる。。
+----
+→ JSON API を実装するときの方針を社内向けにまとめたやつについて
+----
+てか、だいたいみんなこうしてるよね?
+みたいなやつです。
+----
+*用語
+----
+リソース: ブログとかブログエントリとか
+----
+*条件
+----
+- ルールがむずかしくなりすぎない
+- 数個のルールを覚えればそれでできる
+- 運用が楽になるようにする
+- 実装が楽になるようにする
+----
+かっこいいけど実装がめんどくさくなって運用が楽にならないのとかはいらない。
+----
+* HTTP status code のあつかい
+----
+- HTTP の status code は、API がうまくやいったかどうかを返す。
+- リソースの有無などについては関与しない
+----
+対象アイテムがないときに <B>404</B> とかかえさない。
+<B>200 OK</B> で空のレスポンスをかえす。
+----
+- <span style="color: blue">200</span>: API 処理が成功した
+- <span style="color: red">403</span>: ログインが必要なAPIです
+- <span style="color: red">404</span>: そんな API ないよ
+- <span style="color: red">500</span>: API が予期せぬエラーになったよ
+----
+* 監視
+----
+<B>4xx</B> と <B>5xx</B> がいっぱいでてたらアラートをあげる。
+→ わかりやすい!!
+----
+* ドメイン名
+----
+http://<B>api</B>.example.com/ みたいにする。
+- vhost をけちってもいいことない!
+----
+* URL 設計
+----
+>||
+http://api.example.com/v1/entry/detail?id=1
+http://api.example.com/v1/entry/list?page=1&rows=20
+||<
+- リソース ID とか URL にうめてもいいことない
+- どうせ裏側でたたくだけだから<B>かっこつけても無駄</B>
+----
+* API のボディ
+----
+>||
+{
+  status: 200, # ← YJAP Status(Same as HTTP Status)
+  rows: [
+    {body: 1},
+    ...
+  ]
+}
+||<
+----
+* X-API-Version
+----
+- X-API-Version: \d+
+- API のバージョンとか URL で管理できるけど、なんかくみたてるのめんどくね!
+- URL がばらけると Hive で集計するのだるい
+- すごいかわったら、URL を /v2/ とかにすればいい
+----
+* X-API-Status
+----
+Body の `/status` の値を HTTP Header にも出すと便利。
+それを nginx でひろって、Fluentd にだしたりできる!!!
+(でもまあ、これ自体はあってもなくてもいいとおもう)
+----
+That’s all.

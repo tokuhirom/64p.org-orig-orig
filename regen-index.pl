@@ -15,7 +15,6 @@ use Text::Xslate;
 
 sub regen {
     my @talks = TGP::Talks->regen();
-    my @notes = TGP::Notes->regen();
     my $xslate = Text::Xslate->new(
         syntax => 'TTerse',
         path => ['tmpl'],
@@ -23,7 +22,6 @@ sub regen {
     my $dat = $xslate->render(
         'index.tt' => {
             talks => [@talks[0..7]],
-            notes => \@notes,
             now   => scalar(localtime),
         },
     );
@@ -121,60 +119,6 @@ sub replace_title {
     open my $ofh, '>:utf8', $filename or die "Cannot open $filename: $!";
     print {$ofh} $src;
     close $ofh;
-}
-
-package TGP::Notes;
-# use Text::Markdown qw(markdown);
-use Text::Markdown::Discount qw(markdown);
-use File::stat;
-use Time::Piece;
-
-sub regen {
-    my @src = map {
-        open my $fh, '<', $_;
-        my $mkdn = join('', <$fh>);
-        my ($title) = ($mkdn =~ /\A(.*)\n/);
-        my $html = markdown($mkdn, Text::Markdown::Discount::MKD_AUTOLINK);
-        (my $link = $_) =~ s!src/!!;
-        $link =~ s/\.md$/\.html/;
-        +{
-            title => $title,
-            body  => $html,
-            link  => "/$link",
-            file  => $_,
-            mtime => scalar(localtime(stat($_)->mtime)),
-        }
-    } reverse sort { stat($a)->mtime <=> stat($b)->mtime } glob('notes/src/*.md');
-    for my $src (@src) {
-        my $xslate = Text::Xslate->new(
-            syntax => 'TTerse',
-            path => ['tmpl'],
-        );
-        my $res = $xslate->render(
-            'note.tt' => +{
-                %$src,
-                notes => \@src,
-            },
-        );
-        (my $dst = $src->{file}) =~ s!src/!!;
-        $dst =~ s/\.md$/\.html/;
-        spew($dst, $res);
-    }
-    return @src;
-}
-
-sub spew {
-    my $fname = shift;
-    open my $fh, '>', $fname
-        or Carp::croak("Can't open '$fname' for writing: '$!'");
-    print {$fh} $_[0];
-}
-
-sub slurp {
-    my $fname = shift;
-    open my $fh, '<', $fname
-        or Carp::croak("Can't open '$fname' for reading: '$!'");
-    scalar do { local $/; <$fh> }
 }
 
 if ($0 eq __FILE__) {

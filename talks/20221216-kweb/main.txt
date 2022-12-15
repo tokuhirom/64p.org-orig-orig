@@ -1,0 +1,141 @@
+kweb について
+<div style="text-align:right; font-size: 50%;">
+忘年会@20221216
+tokuhirom
+</div>
+----
+*kwebってなんだ
+----
+ウェブエンジニアたるもの
+ブログシステムは自分で実装すべき
+という教え
+----
+でも、めんどくさくない?
+----
+何がめんどくさいのか
+----
+JS/TS と Kotlin
+を使い分け
+----
+通信するときに
+エンドポイント定義して
+API をコールする
+----
+めんどくさい。。
+----
+ではどうするか？
+----
+そこで kweb ですよ
+----
+なぜ kweb では
+問題が解決しているのか
+----
+サーバーサイドも
+クライアントサイドも
+Kotlin でかける
+----
+それ
+Jetpack Compose for Web
+でできるよ
+----
+それでも通信が
+めんどくさい
+----
+webpack とか
+使う羽目に
+----
+めんどくさい
+----
+やはり kweb
+----
+>||
+fun main() {
+    Kweb(port = 16097) {
+        doc.body {
+            val input = input(type = InputType.text)
+            input.on.keypress { keypressEvent ->
+                // ここはサーバーサイドで実行
+                logger.info("Key Pressed: ${keypressEvent.key}")
+            }
+        }
+    }
+}
+||<
+----
+なぜ kweb では
+問題が解決しているのか
+----
+常に
+WebSocket
+で通信
+----
+>||
+fun main() {
+    Kweb(port = 16097) {
+        // HTML のレンダリングの DSL
+        doc.body {
+            val input = input(type = InputType.text)
+            input.on.keypress { keypressEvent ->
+                // ここは WebSocket で呼ばれるコールバック
+                logger.info("Key Pressed: ${keypressEvent.key}")
+            }
+        }
+    }
+}
+||<
+----
+サーバーサイドのコールバックが
+シームレスに呼ばれる
+----
+API 定義とか不要
+----
+複雑なページ
+だったらどうなる？
+----
+>||
+fun main() {
+    Kweb(port = 16097) {
+        doc.body {
+            route {
+                path("/users/{userId}") { params ->
+                    val userId = params.getValue("userId")
+                    h1().text(userId.map { "User id: $it" })
+                }
+                path("/lists/{listId}") { params ->
+                    val listId = params.getValue("listId")
+                    h1().text(listId.map { "List id: $it" })
+                }
+            }
+        }
+    }
+}
+||<
+----
+ルーティングが
+できる
+----
+浮かぶ
+疑念
+----
+*再起動したら
+*どうなる？
+----
+*コールバックの位置が変わったらどうなる？
+----
+とにかく
+入力中の
+データは
+消える
+----
+というわけで
+----
+あまり
+実用的
+ではない
+----
+自分しか
+使わない
+ウェブシステム
+には最適
+----
+Enjoy!
